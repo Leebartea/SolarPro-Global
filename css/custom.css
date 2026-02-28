@@ -303,20 +303,31 @@ html.light .faq-a{color:#64748b;}
 .faq-item.open .faq-a{max-height:320px;padding:0 1.2rem 1.2rem;}
 
 /* --- Contact form ------------------------------------------- */
-.form-inp,.form-ta,.form-sel{
+.form-inp,.form-ta,.form-sel,.form-input{
   width:100%;padding:.82rem 1.05rem;border-radius:10px;
   font-family:'Outfit',sans-serif;font-size:.93rem;
   outline:none;border:2px solid transparent;transition:all var(--t);
 }
-html.dark  .form-inp,.dark  .form-ta,.dark  .form-sel{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.08);}
-html.light .form-inp,.light .form-ta,.light .form-sel{background:#f8fafc;color:#1e293b;border-color:#e2e8f0;}
-html.dark  .form-ta{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.08);}
-html.dark  .form-sel{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.08);}
-html.light .form-ta{background:#f8fafc;color:#1e293b;border-color:#e2e8f0;}
-html.light .form-sel{background:#f8fafc;color:#1e293b;border-color:#e2e8f0;}
-.form-inp:focus,.form-ta:focus,.form-sel:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.12);}
-html.dark .form-sel option{background:#1e293b;}
+html.dark  .form-inp,html.dark  .form-ta,html.dark  .form-sel,html.dark  .form-input{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.08);}
+html.light .form-inp,html.light .form-ta,html.light .form-sel,html.light .form-input{background:#f8fafc;color:#1e293b;border-color:#e2e8f0;}
+.form-inp:focus,.form-ta:focus,.form-sel:focus,.form-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.12);}
+html.dark  .form-sel option,html.dark  .form-input option{background:#1e293b;}
 .form-ta{resize:vertical;min-height:128px;}
+textarea.form-input{resize:vertical;min-height:128px;}
+/* Placeholder colours */
+html.dark  .form-inp::placeholder,html.dark  .form-ta::placeholder,html.dark  .form-input::placeholder{color:rgba(148,163,184,.55);}
+html.light .form-inp::placeholder,html.light .form-ta::placeholder,html.light .form-input::placeholder{color:rgba(100,116,139,.5);}
+/* Prevent browser autofill from overriding text colour */
+html.dark  .form-inp:-webkit-autofill,html.dark  .form-input:-webkit-autofill{
+  -webkit-text-fill-color:#e2e8f0!important;
+  -webkit-box-shadow:0 0 0 1000px #1e293b inset!important;
+  caret-color:#e2e8f0;
+}
+html.light .form-inp:-webkit-autofill,html.light .form-input:-webkit-autofill{
+  -webkit-text-fill-color:#1e293b!important;
+  -webkit-box-shadow:0 0 0 1000px #f8fafc inset!important;
+  caret-color:#1e293b;
+}
 .flabel{font-size:.82rem;font-weight:600;margin-bottom:.45rem;display:block;}
 html.dark  .flabel{color:#94a3b8;}
 html.light .flabel{color:#475569;}
