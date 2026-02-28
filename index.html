@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarPro Global | Professional Solar Energy Solutions Worldwide</title>
+  <meta name="description" content="SolarPro Global delivers certified solar PV installations for residential, commercial, and off-grid clients across 15+ countries. Get your free solar savings estimate today." />
+  <meta name="keywords" content="solar energy, solar installation, PV system, solar panels, off-grid solar, solar savings calculator, Nigeria solar, renewable energy" />
+  <meta name="author" content="SolarPro Global" />
+  <meta name="robots" content="index, follow" />
+  <!-- Canonical URL — replace with your live domain -->
+  <link rel="canonical" href="https://solarproglobal.com/index.html" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SolarPro Global | Professional Solar Energy Solutions Worldwide" />
+  <meta property="og:description" content="Certified solar PV installations across 15+ countries. Residential, commercial, and off-grid solutions backed by real irradiance data." />
+  <meta property="og:image" content="assets/images/og-cover.jpg" />
+  <meta property="og:url" content="https://solarproglobal.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (function(){
+      var s = localStorage.getItem('solarproTheme');
+      var d = s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (d) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animate On Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  NAVBAR                                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0" aria-label="SolarPro Global Home">
+        <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </div>
+        <span style="font-weight:800;font-size:1.05rem;color:var(--text);">SolarPro <span style="color:var(--primary);">Global</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-1">
+        <a href="index.html"            class="nav-link active">Home</a>
+        <a href="pages/services.html"   class="nav-link">Services</a>
+        <a href="pages/calculator.html" class="nav-link">Calculator</a>
+        <a href="pages/portfolio.html"  class="nav-link">Portfolio</a>
+        <a href="pages/about.html"      class="nav-link">About</a>
+        <a href="pages/contact.html"    class="nav-link">Contact</a>
+      </div>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-2">
+        <!-- Currency Switcher -->
+        <div class="currency-dropdown hidden md:block">
+          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-haspopup="true" aria-label="Switch currency">
+            <span class="currency-label">🇺🇸 USD</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="currency-dropdown-menu" role="listbox" aria-label="Currency options">
+            <div class="currency-option" data-currency="USD" role="option">🇺🇸 USD — US Dollar</div>
+            <div class="currency-option" data-currency="EUR" role="option">🇪🇺 EUR — Euro</div>
+            <div class="currency-option" data-currency="GBP" role="option">🇬🇧 GBP — British Pound</div>
+            <div class="currency-option" data-currency="NGN" role="option">🇳🇬 NGN — Nigerian Naira</div>
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark mode"></button>
+
+        <!-- CTA Button Desktop -->
+        <a href="pages/contact.html" class="btn-primary hidden md:inline-flex text-sm py-2 px-4">Get Free Quote</a>
+
+        <!-- Hamburger Mobile -->
+        <button id="hamburger-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open navigation menu" aria-expanded="false" style="color:var(--text);">
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"            class="nav-link active">Home</a>
+    <a href="pages/services.html"   class="nav-link">Services</a>
+    <a href="pages/calculator.html" class="nav-link">Calculator</a>
+    <a href="pages/portfolio.html"  class="nav-link">Portfolio</a>
+    <a href="pages/about.html"      class="nav-link">About</a>
+    <a href="pages/contact.html"    class="nav-link">Contact</a>
+    <!-- Mobile currency + CTA -->
+    <div style="padding:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <div class="currency-dropdown" style="flex:1;">
+        <button class="currency-trigger flex items-center gap-1 px-3 py-2 rounded-lg border text-sm font-semibold w-full justify-between" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
+          <span class="currency-label">🇺🇸 USD</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="currency-dropdown-menu" role="listbox">
+          <div class="currency-option" data-currency="USD">🇺🇸 USD</div>
+          <div class="currency-option" data-currency="EUR">🇪🇺 EUR</div>
+          <div class="currency-option" data-currency="GBP">🇬🇧 GBP</div>
+          <div class="currency-option" data-currency="NGN">🇳🇬 NGN</div>
+        </div>
+      </div>
+      <a href="pages/contact.html" class="btn-primary text-sm" style="flex:1;justify-content:center;">Get Free Quote</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  HERO SECTION                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="hero-section" aria-label="Hero" style="position:relative;">
+  <!-- Hero background image -->
+  <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=85"
+       alt="Large solar panel field generating clean renewable energy"
+       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:0.22;"
+       fetchpriority="high" />
+  <div class="hero-sun" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+    <div class="max-w-3xl">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold mb-6" style="background:rgba(249,115,22,0.15);color:#f97316;border:1px solid rgba(249,115,22,0.25);" data-aos="fade-down">
+        <span>Certified Solar PV Installer · 15+ Countries</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-white font-black leading-tight mb-6" style="font-size:clamp(2.2rem,5vw,3.75rem);" data-aos="fade-up" data-aos-delay="50">
+        Power Your World<br />
+        <span style="background:linear-gradient(135deg,#f97316,#eab308);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">with Solar Energy</span>
+      </h1>
+
+      <!-- Sub-headline -->
+      <p class="text-lg mb-8 leading-relaxed" style="color:rgba(255,255,255,0.78);max-width:560px;" data-aos="fade-up" data-aos-delay="100">
+        From Lagos to London, we design, install, and commission solar PV systems that reduce energy costs and deliver decades of clean, reliable power. Backed by certified expertise and real irradiance data.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-3 mb-12" data-aos="fade-up" data-aos-delay="150">
+        <a href="pages/contact.html" class="btn-primary pulse-glow text-base px-6 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Get Free Quote
+        </a>
+        <a href="pages/calculator.html" class="btn-outline-white text-base px-6 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="10" x2="8" y2="10"/><line x1="12" y1="14" x2="8" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/></svg>
+          View Calculator
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="trust-badge">
+          <div class="text-xl font-black text-white">500+</div>
+          <div class="text-xs font-medium" style="color:rgba(255,255,255,0.65);">Installations</div>
+        </div>
+        <div class="trust-badge">
+          <div class="text-xl font-black text-white">15+</div>
+          <div class="text-xs font-medium" style="color:rgba(255,255,255,0.65);">Countries</div>
+        </div>
+        <div class="trust-badge">
+          <div class="text-xl font-black text-white">10 MW+</div>
+          <div class="text-xs font-medium" style="color:rgba(255,255,255,0.65);">Installed</div>
+        </div>
+        <div class="trust-badge">
+          <div class="text-xl font-black text-white">98%</div>
+          <div class="text-xs font-medium" style="color:rgba(255,255,255,0.65);">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  SERVICES OVERVIEW                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-20" style="background-color:var(--bg);" aria-labelledby="services-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-tag">Our Services</div>
+      <h2 id="services-heading" class="section-title">Solar Solutions for Every Need</h2>
+      <p class="section-subtitle">Whether you're a homeowner, business owner, or managing a remote site with no grid access, we engineer the right solar system for your exact requirements.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Residential -->
+      <div class="card p-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2" style="color:var(--text);">Residential Solar</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--text-muted);">Rooftop solar systems designed to reduce or eliminate your home electricity bill. Grid-tied, hybrid, or fully off-grid solutions starting from 1.5 kWp.</p>
+        <a href="pages/services.html#residential" class="text-sm font-semibold" style="color:var(--primary);">Learn More →</a>
+      </div>
+
+      <!-- Commercial -->
+      <div class="card p-6" data-aos="fade-up" data-aos-delay="80">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2" style="color:var(--text);">Commercial Solar</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--text-muted);">Large-scale rooftop and ground-mounted installations for offices, factories, hotels, and shopping centres. Systems from 20 kWp to multi-MW scale.</p>
+        <a href="pages/services.html#commercial" class="text-sm font-semibold" style="color:var(--primary);">Learn More →</a>
+      </div>
+
+      <!-- Off-Grid -->
+      <div class="card p-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2" style="color:var(--text);">Off-Grid Systems</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--text-muted);">Complete energy independence for remote sites, rural communities, telecommunications towers, and locations with unreliable grid access. Solar + battery storage.</p>
+        <a href="pages/services.html#offgrid" class="text-sm font-semibold" style="color:var(--primary);">Learn More →</a>
+      </div>
+
+      <!-- Maintenance -->
+      <div class="card p-6" data-aos="fade-up" data-aos-delay="240">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2" style="color:var(--text);">Maintenance & Support</h3>
+        <p class="text-sm leading-relaxed mb-4" style="color:var(--text-muted);">Scheduled preventive maintenance, panel cleaning, inverter diagnostics, and performance monitoring to ensure your system operates at peak efficiency for 25+ years.</p>
+        <a href="pages/services.html#maintenance" class="text-sm font-semibold" style="color:var(--primary);">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  WHY CHOOSE US                                              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-20" style="background-color:var(--bg-alt);" aria-labelledby="why-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 id="why-heading" class="section-title">Engineering-Grade Solar, Globally Delivered</h2>
+      <p class="section-subtitle">We combine certified technical expertise with country-specific irradiance data to deliver systems that perform — not just on paper, but for decades in the field.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Feature 1 -->
+      <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+        <div class="feature-icon solar-gradient-subtle mx-auto" style="width:64px;height:64px;border-radius:1rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-3" style="color:var(--text);">Certified & Accredited</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Our engineers hold IEC-recognized solar PV certifications and comply with international electrical installation standards (IEC 60364, IEC 62446). Every installation is inspected and commissioned to manufacturer specifications.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="text-center" data-aos="fade-up" data-aos-delay="80">
+        <div class="feature-icon solar-gradient-subtle mx-auto" style="width:64px;height:64px;border-radius:1rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-3" style="color:var(--text);">Real Irradiance Data</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">We use NASA POWER and Solargis datasets for every project location, not rough estimates. This ensures your system is sized correctly and the savings forecast matches real-world output within 5% margin.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="text-center" data-aos="fade-up" data-aos-delay="160">
+        <div class="feature-icon solar-gradient-subtle mx-auto" style="width:64px;height:64px;border-radius:1rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-3" style="color:var(--text);">End-to-End Service</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">From site assessment and system design to installation, grid-connection permits, and 5-year workmanship warranty — we handle every step. Remote project management available for international clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  SOLAR SAVINGS TEASER                                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-20" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);" aria-labelledby="savings-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Text side -->
+      <div data-aos="fade-right">
+        <div class="section-tag" style="background:rgba(249,115,22,0.15);color:#f97316;">Solar Savings Calculator</div>
+        <h2 id="savings-heading" class="section-title mt-3" style="color:white;">See How Much You Could Save with Solar</h2>
+        <p class="mb-8 leading-relaxed" style="color:rgba(255,255,255,0.72);">Our free interactive calculator uses real peak sun hours for your country and current electricity tariffs to estimate your system size, annual savings, payback period, and 25-year return on investment.</p>
+        <a href="pages/calculator.html" class="btn-primary text-base px-6 py-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="10" x2="8" y2="10"/><line x1="12" y1="14" x2="8" y2="14"/></svg>
+          Try the Calculator Free
+        </a>
+      </div>
+
+      <!-- Stats side -->
+      <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+        <div class="stat-card">
+          <div class="stat-number">$1,200</div>
+          <div class="text-xs mt-1 font-medium" style="color:rgba(255,255,255,0.6);">Avg. Annual Savings (USA)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">₦2.4M</div>
+          <div class="text-xs mt-1 font-medium" style="color:rgba(255,255,255,0.6);">Avg. Annual Savings (Nigeria)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">6.5 yrs</div>
+          <div class="text-xs mt-1 font-medium" style="color:rgba(255,255,255,0.6);">Typical Payback Period</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">25 yrs</div>
+          <div class="text-xs mt-1 font-medium" style="color:rgba(255,255,255,0.6);">Panel Performance Warranty</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PORTFOLIO PREVIEW                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-20" style="background-color:var(--bg);" aria-labelledby="portfolio-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-12" data-aos="fade-up">
+      <div>
+        <div class="section-tag">Our Work</div>
+        <h2 id="portfolio-heading" class="section-title mb-0">Featured Projects</h2>
+      </div>
+      <a href="pages/portfolio.html" class="btn-secondary text-sm">View All Projects →</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Project 1 -->
+      <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="0">
+        <div style="height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80"
+               alt="50 kWp commercial rooftop solar installation on industrial building in Lagos, Nigeria"
+               loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+        </div>
+        <div class="p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="badge badge-commercial">Commercial</span>
+            <span class="text-xs font-medium" style="color:var(--text-muted);">🇳🇬 Lagos, Nigeria</span>
+          </div>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);">50 kWp Industrial Rooftop Installation</h3>
+          <p class="text-sm" style="color:var(--text-muted);">Grid-tied commercial system for a manufacturing plant. Reduced peak demand charges by 65% and achieved payback in under 4 years.</p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="80">
+        <div style="height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80"
+               alt="80 kWp rural solar microgrid installation in Ashanti Region, Ghana"
+               loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+        </div>
+        <div class="p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="badge badge-offgrid">Off-Grid</span>
+            <span class="text-xs font-medium" style="color:var(--text-muted);">🇬🇭 Accra, Ghana</span>
+          </div>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);">Rural Electrification — 30-Home Microgrid</h3>
+          <p class="text-sm" style="color:var(--text-muted);">80 kWp solar microgrid with 200 kWh lithium battery bank, powering 30 rural homes with 24/7 clean energy. First electricity access for the community.</p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="160">
+        <div style="height:180px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?w=600&q=80"
+               alt="10 kWp hybrid residential rooftop solar system in Cape Town, South Africa"
+               loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+        </div>
+        <div class="p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="badge badge-residential">Residential</span>
+            <span class="text-xs font-medium" style="color:var(--text-muted);">🇿🇦 Cape Town, South Africa</span>
+          </div>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);">10 kWp Hybrid Home System</h3>
+          <p class="text-sm" style="color:var(--text-muted);">Hybrid rooftop system with 20 kWh battery storage, eliminating load-shedding impact and reducing grid dependence by 92% for a high-demand residential property.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  TESTIMONIALS SLIDER                                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-20" style="background-color:var(--bg-alt);" aria-labelledby="testimonials-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <div class="section-tag">Testimonials</div>
+      <h2 id="testimonials-heading" class="section-title">What Our Clients Say</h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="50">
+      <div class="overflow-hidden-scroll" style="overflow:hidden;border-radius:var(--radius);">
+        <div class="testimonial-track" id="testimonial-track" style="display:flex;will-change:transform;">
+
+          <!-- Testimonial 1 -->
+          <div class="testimonial-slide" style="min-width:100%;padding:0 0.5rem;">
+            <div class="testimonial-card">
+              <div class="flex mb-3" aria-label="5 star rating">
+                <span style="color:#eab308;font-size:1.1rem;" aria-hidden="true">★★★★★</span>
+              </div>
+              <p class="text-sm leading-relaxed mb-5" style="color:var(--text);">"SolarPro Global installed a 15 kWp hybrid system for our home in Lekki. Our electricity bill dropped from ₦85,000 to under ₦8,000 per month. The installation was professional and the team explained every component. Worth every naira!"</p>
+              <div class="flex items-center gap-3">
+                <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f97316,#eab308);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;flex-shrink:0;" aria-hidden="true">AC</div>
+                <div>
+                  <div class="font-semibold text-sm" style="color:var(--text);">Adaeze Chukwu</div>
+                  <div class="text-xs" style="color:var(--text-muted);">🇳🇬 Lagos, Nigeria · Residential Client</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-slide" style="min-width:100%;padding:0 0.5rem;">
+            <div class="testimonial-card">
+              <div class="flex mb-3" aria-label="5 star rating">
+                <span style="color:#eab308;font-size:1.1rem;" aria-hidden="true">★★★★★</span>
+              </div>
+              <p class="text-sm leading-relaxed mb-5" style="color:var(--text);">"We had SolarPro design and install a 100 kWp commercial system on our warehouse in Accra. The energy yield projections were accurate to within 3% of actual production after 12 months. Our diesel generator costs have been eliminated entirely."</p>
+              <div class="flex items-center gap-3">
+                <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1e3a5f,#0f172a);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;flex-shrink:0;" aria-hidden="true">KA</div>
+                <div>
+                  <div class="font-semibold text-sm" style="color:var(--text);">Kwame Asante</div>
+                  <div class="text-xs" style="color:var(--text-muted);">🇬🇭 Accra, Ghana · Warehouse Owner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-slide" style="min-width:100%;padding:0 0.5rem;">
+            <div class="testimonial-card">
+              <div class="flex mb-3" aria-label="5 star rating">
+                <span style="color:#eab308;font-size:1.1rem;" aria-hidden="true">★★★★★</span>
+              </div>
+              <p class="text-sm leading-relaxed mb-5" style="color:var(--text);">"Managing a safari lodge in Kenya means reliable power is non-negotiable. SolarPro Global designed a 25 kWp off-grid system with battery storage that runs our lodge 24/7 with zero generator noise. Guests love it, and so do our accountants."</p>
+              <div class="flex items-center gap-3">
+                <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#15803d);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;flex-shrink:0;" aria-hidden="true">JM</div>
+                <div>
+                  <div class="font-semibold text-sm" style="color:var(--text);">James Mwangi</div>
+                  <div class="text-xs" style="color:var(--text-muted);">🇰🇪 Nairobi, Kenya · Lodge Director</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="testimonial-slide" style="min-width:100%;padding:0 0.5rem;">
+            <div class="testimonial-card">
+              <div class="flex mb-3" aria-label="5 star rating">
+                <span style="color:#eab308;font-size:1.1rem;" aria-hidden="true">★★★★★</span>
+              </div>
+              <p class="text-sm leading-relaxed mb-5" style="color:var(--text);">"After Eskom's load-shedding made our bakery operations unbearable, SolarPro installed a 12 kWp hybrid system with 30 kWh of lithium storage. We haven't missed a single production shift since commissioning. The ROI has been incredible."</p>
+              <div class="flex items-center gap-3">
+                <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#dc2626,#b91c1c);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;flex-shrink:0;" aria-hidden="true">TN</div>
+                <div>
+                  <div class="font-semibold text-sm" style="color:var(--text);">Thandi Nkosi</div>
+                  <div class="text-xs" style="color:var(--text-muted);">🇿🇦 Johannesburg, South Africa · Bakery Owner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 5 -->
+          <div class="testimonial-slide" style="min-width:100%;padding:0 0.5rem;">
+            <div class="testimonial-card">
+              <div class="flex mb-3" aria-label="5 star rating">
+                <span style="color:#eab308;font-size:1.1rem;" aria-hidden="true">★★★★★</span>
+              </div>
+              <p class="text-sm leading-relaxed mb-5" style="color:var(--text);">"I reached out from the UAE and was impressed by the technical depth of SolarPro's proposal. They used actual Solargis data for our villa location and the system has been performing exactly as projected. Outstanding professionalism and post-install support."</p>
+              <div class="flex items-center gap-3">
+                <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#eab308,#f97316);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;flex-shrink:0;" aria-hidden="true">FA</div>
+                <div>
+                  <div class="font-semibold text-sm" style="color:var(--text);">Fatima Al-Rashid</div>
+                  <div class="text-xs" style="color:var(--text-muted);">🇦🇪 Dubai, UAE · Villa Owner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /testimonial-track -->
+      </div>
+
+      <!-- Slider Controls -->
+      <div class="flex items-center justify-center gap-4 mt-6">
+        <button id="slider-prev" class="w-9 h-9 rounded-full flex items-center justify-center" style="border:1.5px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer;" aria-label="Previous testimonial">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div id="testimonial-dots" class="slider-dots" role="tablist" aria-label="Testimonial navigation"></div>
+        <button id="slider-next" class="w-9 h-9 rounded-full flex items-center justify-center" style="border:1.5px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer;" aria-label="Next testimonial">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  CTA BANNER                                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="cta-banner py-20" aria-labelledby="cta-heading">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="fade-up">
+    <div class="text-5xl mb-4" aria-hidden="true">☀️</div>
+    <h2 id="cta-heading" class="text-white font-black mb-4" style="font-size:clamp(1.75rem,3.5vw,2.75rem);">Ready to Go Solar?</h2>
+    <p class="mb-8 leading-relaxed" style="color:rgba(255,255,255,0.72);font-size:1.05rem;max-width:550px;margin:0 auto 2rem;">Get a free, no-obligation solar assessment and savings report for your property. Our engineers will analyse your location, energy consumption, and roof characteristics within 48 hours.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="pages/contact.html" class="btn-primary px-7 py-3 text-base">Start My Free Assessment</a>
+      <a href="pages/calculator.html" class="btn-outline-white px-7 py-3 text-base">Try the Calculator First</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PARTNERS & CERTIFICATIONS                                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-16" style="background-color:var(--bg);" aria-labelledby="partners-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <p class="text-sm font-semibold uppercase tracking-widest" style="color:var(--text-muted);">Trusted Brands &amp; Certifications</p>
+    </div>
+    <div class="grid grid-cols-3 sm:grid-cols-6 gap-4" data-aos="fade-up" data-aos-delay="50">
+      <div class="partner-box">SMA Inverters</div>
+      <div class="partner-box">Huawei Solar</div>
+      <div class="partner-box">JA Solar Panels</div>
+      <div class="partner-box">Victron Energy</div>
+      <div class="partner-box">NABCEP Cert.</div>
+      <div class="partner-box">IEC 62446</div>
+    </div>
+    <p class="text-center text-xs mt-4" style="color:var(--text-muted);">Replace placeholder boxes with actual partner logos in the assets/images folder.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </div>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:#f97316;">Global</span></span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color:#64748b;">Certified solar PV installations for residential, commercial, and off-grid clients across Africa, Europe, the Middle East, and beyond.</p>
+        <!-- Social Icons -->
+        <div class="flex gap-2">
+          <a href="#" class="footer-social-btn" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Twitter/X">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a href="#" class="footer-social-btn" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://wa.me/2348000000000" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/services.html">Our Services</a></li>
+          <li><a href="pages/calculator.html">Solar Calculator</a></li>
+          <li><a href="pages/portfolio.html">Portfolio</a></li>
+          <li><a href="pages/about.html">About Us</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="pages/services.html#residential">Residential Solar</a></li>
+          <li><a href="pages/services.html#commercial">Commercial Solar</a></li>
+          <li><a href="pages/services.html#offgrid">Off-Grid Systems</a></li>
+          <li><a href="pages/services.html#maintenance">Maintenance & Support</a></li>
+          <li><a href="pages/calculator.html">Free Quote Calculator</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Contact</h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-2 items-start">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:hello@solarproglobal.com" style="color:#64748b;">hello@solarproglobal.com</a>
+          </li>
+          <li class="flex gap-2 items-start">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+2348000000000" style="color:#64748b;">+234 800 0000 000</a>
+          </li>
+          <li class="flex gap-2 items-start">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span style="color:#64748b;">Lagos, Nigeria · Global Reach</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm" style="color:#475569;">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:#334155;">Powered by certified solar engineering expertise</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  COOKIE CONSENT BANNER                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">
+    We use cookies to enhance your browsing experience and analyse site traffic. By continuing, you accept our use of cookies.
+    <a href="#" style="color:#f97316;text-decoration:underline;">Learn more</a>
+  </p>
+  <div class="flex gap-2 flex-shrink-0">
+    <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
+    <button id="cookie-accept" class="btn-primary text-sm py-2 px-4">Accept All</button>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  SCRIPTS                                                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

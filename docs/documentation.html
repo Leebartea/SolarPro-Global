@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarPro Global v1 — Buyer Documentation</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #f97316;
+      --secondary: #1e3a5f;
+      --accent: #eab308;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+      --sidebar-w: 260px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      min-height: 100vh;
+      background: var(--secondary);
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      overflow-y: auto;
+      padding: 2rem 0 3rem;
+      flex-shrink: 0;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0 1.5rem 1.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+    }
+
+    .sidebar-logo-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f97316, #eab308);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo-text {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #f1f5f9;
+    }
+
+    .sidebar-logo-text span { color: #f97316; }
+
+    .sidebar-section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      padding: 0 1.5rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .sidebar nav a {
+      display: block;
+      padding: 0.4rem 1.5rem;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      color: #ffffff;
+      background: rgba(249,115,22,0.12);
+      border-left-color: #f97316;
+    }
+
+    /* ── MAIN CONTENT ────────────────────────── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      max-width: 860px;
+      padding: 3rem 3rem 5rem;
+    }
+
+    .doc-section {
+      margin-bottom: 4rem;
+      padding-top: 1rem;
+    }
+
+    .doc-section:not(:first-child) {
+      border-top: 1px solid var(--border);
+      padding-top: 3rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 .version-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#f97316,#eab308);
+      color: #fff;
+      margin-left: 0.6rem;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.75rem 0 0.6rem;
+    }
+
+    p { margin-bottom: 1rem; color: var(--text-muted); }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    li { margin-bottom: 0.35rem; }
+
+    code {
+      font-family: 'Menlo', 'Consolas', 'SF Mono', monospace;
+      font-size: 0.82em;
+      background: var(--code-bg);
+      color: var(--secondary);
+      padding: 0.15em 0.45em;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.83rem;
+      line-height: 1.65;
+    }
+
+    pre code {
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    pre .comment { color: #64748b; }
+    pre .key     { color: #f97316; }
+    pre .str     { color: #86efac; }
+    pre .kw      { color: #a78bfa; }
+    pre .tag     { color: #60a5fa; }
+    pre .attr    { color: #fde68a; }
+
+    /* Callout boxes */
+    .callout {
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.9rem;
+      border-left: 4px solid;
+    }
+
+    .callout p { margin-bottom: 0; }
+
+    .callout-tip {
+      background: rgba(249,115,22,0.07);
+      border-color: #f97316;
+      color: var(--text);
+    }
+
+    .callout-note {
+      background: rgba(30,58,95,0.06);
+      border-color: var(--secondary);
+      color: var(--text);
+    }
+
+    .callout-warn {
+      background: rgba(234,179,8,0.08);
+      border-color: #eab308;
+      color: var(--text);
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background: var(--bg-alt);
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 2px solid var(--border);
+    }
+
+    td {
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* Checkmark list */
+    .check-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .check-list li {
+      padding-left: 1.75rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+
+    .check-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.35em;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f97316, #eab308);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .check-list li::after {
+      content: '';
+      position: absolute;
+      left: 3px; top: 0.52em;
+      width: 8px; height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg);
+    }
+
+    /* Step numbers */
+    .steps-list {
+      list-style: none;
+      padding-left: 0;
+      counter-reset: steps;
+    }
+
+    .steps-list li {
+      padding-left: 2.5rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+      counter-increment: steps;
+    }
+
+    .steps-list li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0; top: 0;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Responsive: hide sidebar on narrow screens */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 2rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────────── -->
+<aside class="sidebar" aria-label="Documentation navigation">
+  <a href="../index.html" class="sidebar-logo">
+    <div class="sidebar-logo-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </div>
+    <span class="sidebar-logo-text">SolarPro <span>Global</span></span>
+  </a>
+
+  <nav>
+    <div class="sidebar-section-label">Getting Started</div>
+    <a href="#overview" class="active">Overview</a>
+    <a href="#quickstart">Quick Start</a>
+    <a href="#folder-structure">Folder Structure</a>
+
+    <div class="sidebar-section-label">Customisation</div>
+    <a href="#branding">Branding &amp; Colors</a>
+    <a href="#content">Content &amp; Text</a>
+    <a href="#images">Images</a>
+    <a href="#calculator">Calculator Data</a>
+    <a href="#portfolio">Portfolio Projects</a>
+    <a href="#contact-details">Contact Details</a>
+    <a href="#payments">Payment Gateways</a>
+    <a href="#maps">Google Maps</a>
+
+    <div class="sidebar-section-label">Deployment</div>
+    <a href="#netlify">Netlify</a>
+    <a href="#vercel">Vercel</a>
+    <a href="#github-pages">GitHub Pages</a>
+    <a href="#cpanel">cPanel / Hosting</a>
+
+    <div class="sidebar-section-label">Reference</div>
+    <a href="#tech-stack">Tech Stack</a>
+    <a href="#browser-support">Browser Support</a>
+    <a href="#credits">Image &amp; Library Credits</a>
+    <a href="#license">License</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</aside>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────────── -->
+<main class="main" id="main-content">
+
+  <!-- OVERVIEW -->
+  <section class="doc-section" id="overview">
+    <h1>Documentation <span class="version-tag">v1.0.0</span></h1>
+    <p style="font-size:1.05rem;color:var(--text);margin-bottom:0.25rem;"><strong>SolarPro Global</strong> is a complete, production-ready website template for solar PV installation businesses.</p>
+    <p>6 fully built HTML pages, an interactive savings calculator with real irradiance data for 10 countries, a filterable portfolio with lightbox, dark/light mode, currency switcher, and zero build-step dependency. Open a file in your browser and it works.</p>
+
+    <h3>What's Included</h3>
+    <table>
+      <thead>
+        <tr><th>File</th><th>Page</th><th>Key Features</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index.html</code></td><td>Home</td><td>Hero, services overview, testimonial slider, portfolio preview, CTA, trust badges</td></tr>
+        <tr><td><code>pages/services.html</code></td><td>Services</td><td>4 service sections with images, process timeline, payment options</td></tr>
+        <tr><td><code>pages/calculator.html</code></td><td>Calculator</td><td>7-output solar savings calculator, formula methodology, FAQ accordion</td></tr>
+        <tr><td><code>pages/portfolio.html</code></td><td>Portfolio</td><td>9 project cards, filter by type, vanilla JS lightbox</td></tr>
+        <tr><td><code>pages/about.html</code></td><td>About</td><td>Company story, timeline, team, certifications, differentiators</td></tr>
+        <tr><td><code>pages/contact.html</code></td><td>Contact</td><td>Validated 6-field form, WhatsApp CTA, map placeholder, FAQ</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Global Features on Every Page</h3>
+    <ul class="check-list">
+      <li>Dark / light mode toggle with <code>localStorage</code> persistence — no flash on reload</li>
+      <li>Currency switcher: USD, EUR, GBP, NGN — persists across page navigations</li>
+      <li>Mobile-first responsive layout — hamburger menu on all pages</li>
+      <li>AOS Animate On Scroll entrance animations</li>
+      <li>Cookie consent banner (shown once, stored in <code>localStorage</code>)</li>
+      <li>Back-to-top button (appears after 400 px scroll)</li>
+      <li>Sticky navbar with scroll shadow</li>
+      <li>SEO meta tags + Open Graph + canonical links on every page</li>
+      <li>WCAG AA accessibility — ARIA labels, roles, keyboard navigation throughout</li>
+    </ul>
+  </section>
+
+  <!-- QUICK START -->
+  <section class="doc-section" id="quickstart">
+    <h2>Quick Start</h2>
+    <p>No installation, no terminal, no Node.js. Just open a file.</p>
+
+    <ol class="steps-list">
+      <li>Unzip the downloaded <code>SolarPro-Global-v1.zip</code> to any folder on your computer.</li>
+      <li>Open <code>index.html</code> in Chrome, Firefox, Safari, or Edge.</li>
+      <li>All 6 pages are linked internally and work on the <code>file://</code> protocol.</li>
+      <li>Edit the HTML files in any text editor (VS Code recommended) to customise content.</li>
+      <li>When ready to go live, upload the entire folder to your hosting provider or deploy via Netlify / Vercel (see <a href="#netlify">Deployment</a>).</li>
+    </ol>
+
+    <div class="callout callout-note">
+      <p><strong>Internet required for first load:</strong> Tailwind CSS and AOS are loaded from CDN. The template requires an internet connection to render correctly. For fully offline use, download and self-host these libraries locally — instructions in the <a href="#tech-stack">Tech Stack</a> section.</p>
+    </div>
+  </section>
+
+  <!-- FOLDER STRUCTURE -->
+  <section class="doc-section" id="folder-structure">
+    <h2>Folder Structure</h2>
+    <pre><code>SolarPro-Global-v1/
+<span class="comment">├── index.html               ← Home page</span>
+├── pages/
+│   ├── services.html        <span class="comment">← Services page</span>
+│   ├── calculator.html      <span class="comment">← Solar savings calculator</span>
+│   ├── portfolio.html       <span class="comment">← Project portfolio with lightbox</span>
+│   ├── about.html           <span class="comment">← Company story, team, certifications</span>
+│   └── contact.html         <span class="comment">← Contact form + WhatsApp</span>
+├── js/
+│   ├── main.js              <span class="comment">← Currency, slider, lightbox, form, cookies</span>
+│   ├── calculator.js        <span class="comment">← Solar calculation engine (heavily commented)</span>
+│   └── theme.js             <span class="comment">← Dark/light mode manager</span>
+├── css/
+│   └── custom.css           <span class="comment">← CSS variables, components, animations, dark mode</span>
+├── assets/
+│   ├── images/              <span class="comment">← Place your project photos, team photos here</span>
+│   └── icons/               <span class="comment">← Place custom SVG icons here</span>
+├── docs/
+│   └── documentation.html  <span class="comment">← This file</span>
+└── README.md                <span class="comment">← Quick reference (for developers)</span></code></pre>
+  </section>
+
+  <!-- BRANDING -->
+  <section class="doc-section" id="branding">
+    <h2>Branding &amp; Colors</h2>
+
+    <h3>Company Name / Logo</h3>
+    <p>The logo text appears in the <code>&lt;nav&gt;</code> of every page. Search and replace <code>SolarPro</code> and <code>Global</code> with your company name across all 6 HTML files. To use an actual logo image instead of the SVG sun icon, replace the icon <code>&lt;div&gt;</code> with an <code>&lt;img&gt;</code> tag:</p>
+    <pre><code><span class="comment">&lt;!-- Replace the SVG icon wrapper with: --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"../assets/images/logo.svg"</span>
+     <span class="attr">alt</span>=<span class="str">"Your Company Logo"</span>
+     <span class="attr">width</span>=<span class="str">"32"</span> <span class="attr">height</span>=<span class="str">"32"</span>
+     <span class="attr">style</span>=<span class="str">"border-radius:8px;"</span> <span class="tag">/&gt;</span></code></pre>
+
+    <h3>Color Scheme</h3>
+    <p>All colors are defined as CSS custom properties in <code>css/custom.css</code>. Change these three values and every component updates automatically:</p>
+    <pre><code><span class="key">:root</span> {
+  <span class="attr">--primary</span>:   <span class="str">#f97316</span>;  <span class="comment">/* orange — main brand color */</span>
+  <span class="attr">--secondary</span>: <span class="str">#1e3a5f</span>;  <span class="comment">/* navy blue */</span>
+  <span class="attr">--accent</span>:    <span class="str">#eab308</span>;  <span class="comment">/* yellow */</span>
+}</code></pre>
+
+    <div class="callout callout-tip">
+      <p><strong>Tip:</strong> Use a tool like <a href="https://coolors.co" target="_blank" rel="noopener noreferrer">coolors.co</a> or <a href="https://uicolors.app" target="_blank" rel="noopener noreferrer">uicolors.app</a> to generate a harmonious brand palette. Keep the <code>--primary</code> value at 600-700 weight for contrast on white backgrounds.</p>
+    </div>
+
+    <h3>Typography</h3>
+    <p>The template uses the system font stack for zero-latency rendering. To add a custom font, add a Google Fonts <code>&lt;link&gt;</code> in the <code>&lt;head&gt;</code> of every HTML file and add the font-family to <code>body</code> in <code>custom.css</code>:</p>
+    <pre><code><span class="comment">&lt;!-- In &lt;head&gt; of each HTML file --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"preconnect"</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap"</span>
+      <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="tag">/&gt;</span>
+
+<span class="comment">/* In css/custom.css — add to body selector */</span>
+<span class="key">body</span> { <span class="attr">font-family</span>: <span class="str">'Inter', system-ui, sans-serif</span>; }</code></pre>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="doc-section" id="content">
+    <h2>Content &amp; Text</h2>
+    <p>All content is written directly in the HTML files — no CMS required. Open any page in your text editor, find the relevant section, and edit the text. Every section has an HTML comment label (e.g., <code>&lt;!-- COMPANY STORY --&gt;</code>) to help you locate sections quickly.</p>
+
+    <h3>Key Things to Personalise</h3>
+    <ul>
+      <li>Company name and tagline (hero sections of every page)</li>
+      <li>Founder/team names and bios (<code>pages/about.html</code> — Team section)</li>
+      <li>Company founding year and statistics (About page stats bar)</li>
+      <li>Service descriptions (<code>pages/services.html</code>)</li>
+      <li>Portfolio project details — see the <a href="#portfolio">Portfolio</a> section</li>
+      <li>Testimonials (<code>index.html</code> — Testimonials section, 5 testimonial cards)</li>
+      <li>Footer copyright year</li>
+    </ul>
+
+    <div class="callout callout-warn">
+      <p><strong>Footer copyright year:</strong> The footer on all 6 pages reads <code>&copy; <span class="footer-year">2026</span> SolarPro Global</code>. Update this to your current year and company name. Search all files for <code>2025 SolarPro Global</code> to find all instances.</p>
+    </div>
+  </section>
+
+  <!-- IMAGES -->
+  <section class="doc-section" id="images">
+    <h2>Images</h2>
+    <p>Hero and section images are served from Unsplash CDN URLs embedded in the HTML. To replace them with your own photos, place your image files in <code>assets/images/</code> and update the <code>src</code> attribute.</p>
+
+    <h3>Recommended Image Specs</h3>
+    <table>
+      <thead>
+        <tr><th>Image</th><th>Recommended Size</th><th>Location</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hero background (home)</td><td>1920 × 1080 px, JPEG, &lt;300 KB</td><td><code>index.html</code> hero section</td></tr>
+        <tr><td>Page hero backgrounds</td><td>1200 × 600 px, JPEG, &lt;200 KB</td><td>Each page's <code>.page-hero</code> section</td></tr>
+        <tr><td>Service section images</td><td>800 × 600 px, JPEG, &lt;150 KB</td><td><code>pages/services.html</code></td></tr>
+        <tr><td>Portfolio project photos</td><td>800 × 500 px, JPEG, &lt;120 KB</td><td><code>pages/portfolio.html</code> project cards</td></tr>
+        <tr><td>Team photos</td><td>400 × 400 px, JPEG/PNG, square crop</td><td><code>pages/about.html</code> team section</td></tr>
+        <tr><td>Open Graph cover</td><td>1200 × 630 px, JPEG</td><td><code>assets/images/og-cover.jpg</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Replacing an Unsplash Image with Your Own</h3>
+    <p>Find the <code>&lt;img&gt;</code> tag in the relevant HTML file and replace the <code>src</code> URL:</p>
+    <pre><code><span class="comment">&lt;!-- Before (Unsplash CDN): --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&amp;q=85"</span>
+     <span class="attr">alt</span>=<span class="str">"Solar panel field"</span> ... <span class="tag">/&gt;</span>
+
+<span class="comment">&lt;!-- After (your own file): --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"../assets/images/hero-solar-farm.jpg"</span>
+     <span class="attr">alt</span>=<span class="str">"Our solar farm installation in Lagos"</span> ... <span class="tag">/&gt;</span></code></pre>
+
+    <h3>Replacing Team Avatar Initials with Photos</h3>
+    <p>The team section uses colored circles with initials as placeholders. Replace each with a real photo:</p>
+    <pre><code><span class="comment">&lt;!-- Remove this: --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"avatar-circle"</span> <span class="attr">style</span>=<span class="str">"background:..."</span> <span class="attr">aria-hidden</span>=<span class="str">"true"</span><span class="tag">&gt;</span>AO<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- Add this: --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"../assets/images/team-adebayo.jpg"</span>
+     <span class="attr">alt</span>=<span class="str">"Adebayo Okafor, Founder and Lead Engineer"</span>
+     <span class="attr">class</span>=<span class="str">"rounded-full mx-auto mb-4 object-cover"</span>
+     <span class="attr">style</span>=<span class="str">"width:80px;height:80px;"</span>
+     <span class="attr">loading</span>=<span class="str">"lazy"</span> <span class="tag">/&gt;</span></code></pre>
+
+    <h3>Open Graph Image</h3>
+    <p>The OG image (<code>assets/images/og-cover.jpg</code>) is what shows when your site is shared on social media. Create a 1200 × 630 px image using Canva, Figma, or Photoshop. Recommended content: company logo, tagline, website URL on a dark background with a solar panel image. Place the file at <code>assets/images/og-cover.jpg</code> — all 6 pages already reference this path.</p>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="doc-section" id="calculator">
+    <h2>Calculator Data</h2>
+    <p>The solar savings calculator lives in <code>js/calculator.js</code>. All country-specific data is defined at the top of the file in the <code>COUNTRY_DATA</code> object. Open the file in any text editor to update tariffs as electricity rates change.</p>
+
+    <pre><code><span class="comment">// js/calculator.js — update tariff rates here</span>
+<span class="kw">const</span> <span class="key">COUNTRY_DATA</span> = {
+  nigeria: {
+    psh: <span class="str">5.5</span>,          <span class="comment">// Peak Sun Hours — do not change unless you have updated data</span>
+    tariff: <span class="str">68</span>,        <span class="comment">// ← Update this: NGN per kWh (2024 rate)</span>
+    currencyCode: <span class="str">'NGN'</span>,
+    currencySymbol: <span class="str">'₦'</span>,
+    usdRate: <span class="str">0.00063</span>,   <span class="comment">// ← Update this: 1 NGN in USD</span>
+    tariffInUSD: <span class="str">0.043</span>  <span class="comment">// ← Update this: tariff converted to USD</span>
+  },
+  usa: { psh: <span class="str">5.0</span>, tariff: <span class="str">0.13</span>, ... },
+  <span class="comment">// ... 8 more countries</span>
+};</code></pre>
+
+    <h3>Adding a New Country</h3>
+    <p>Copy any existing country block, give it a unique key, and fill in the data:</p>
+    <pre><code>australia: {
+  psh: <span class="str">5.6</span>,             <span class="comment">// From NASA POWER for central Australia</span>
+  tariff: <span class="str">0.28</span>,          <span class="comment">// AUD per kWh</span>
+  currencyCode: <span class="str">'AUD'</span>,
+  currencySymbol: <span class="str">'A$'</span>,
+  usdRate: <span class="str">0.65</span>,         <span class="comment">// 1 AUD in USD</span>
+  tariffInUSD: <span class="str">0.182</span>     <span class="comment">// 0.28 × 0.65</span>
+},</code></pre>
+    <p>Then add a matching <code>&lt;option&gt;</code> to the country select in <code>pages/calculator.html</code>:</p>
+    <pre><code><span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="str">"australia"</span><span class="tag">&gt;</span>Australia (5.6 PSH)<span class="tag">&lt;/option&gt;</span></code></pre>
+
+    <div class="callout callout-tip">
+      <p><strong>PSH data source:</strong> Use <a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener noreferrer">NASA POWER Data Access Viewer</a> to look up annual average horizontal irradiance for any location. Divide the annual GHI (kWh/m²/year) by 365 to get the daily PSH value.</p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="doc-section" id="portfolio">
+    <h2>Portfolio Projects</h2>
+    <p>Each project card in <code>pages/portfolio.html</code> uses <code>data-*</code> attributes on the card wrapper <code>&lt;div&gt;</code>. The vanilla JS lightbox reads these attributes on click and builds the modal content dynamically — no JavaScript changes needed to add or edit projects.</p>
+
+    <h3>Card Attribute Reference</h3>
+    <table>
+      <thead>
+        <tr><th>Attribute</th><th>Example Value</th><th>Used In</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>data-type</code></td><td><code>"commercial"</code></td><td>Filter buttons (residential / commercial / off-grid)</td></tr>
+        <tr><td><code>data-title</code></td><td><code>"Lagos Textile Factory"</code></td><td>Lightbox heading</td></tr>
+        <tr><td><code>data-size</code></td><td><code>"120 kWp"</code></td><td>Lightbox system size stat</td></tr>
+        <tr><td><code>data-location</code></td><td><code>"Kano, Nigeria"</code></td><td>Lightbox location</td></tr>
+        <tr><td><code>data-description</code></td><td>Full project summary (up to ~300 chars)</td><td>Lightbox description paragraph</td></tr>
+        <tr><td><code>data-installed</code></td><td><code>"March 2023"</code></td><td>Lightbox installation date</td></tr>
+        <tr><td><code>data-panels</code></td><td><code>"300 × 400Wp panels"</code></td><td>Lightbox panels stat</td></tr>
+        <tr><td><code>data-savings</code></td><td><code>"$18,000/yr"</code></td><td>Lightbox savings stat</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Adding a New Project</h3>
+    <p>Copy an existing project card block (from one <code>&lt;div class="card project-card"&gt;</code> to its closing <code>&lt;/div&gt;</code>) and update all the <code>data-*</code> attributes and the image <code>src</code>. To change the project photo:</p>
+    <pre><code><span class="comment">&lt;!-- Project image (replace src with your photo) --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"../assets/images/project-your-project.jpg"</span>
+     <span class="attr">alt</span>=<span class="str">"Description of the project"</span>
+     <span class="attr">loading</span>=<span class="str">"lazy"</span>
+     <span class="attr">style</span>=<span class="str">"position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"</span> <span class="tag">/&gt;</span></code></pre>
+  </section>
+
+  <!-- CONTACT DETAILS -->
+  <section class="doc-section" id="contact-details">
+    <h2>Contact Details</h2>
+    <p>Contact information appears in the footer of every page and in the <code>contact.html</code> sidebar. Use your text editor's Find &amp; Replace (Ctrl+H or Cmd+H) to replace all instances across the project at once.</p>
+
+    <table>
+      <thead>
+        <tr><th>Placeholder</th><th>Replace With</th><th>Appears On</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>hello@solarproglobal.com</code></td><td>Your email address</td><td>All 6 pages (footer)</td></tr>
+        <tr><td><code>+234 800 0000 000</code></td><td>Your phone number</td><td>All 6 pages (footer)</td></tr>
+        <tr><td><code>2348000000000</code></td><td>Your WhatsApp number (no +, no spaces)</td><td>All 6 pages (WhatsApp links)</td></tr>
+        <tr><td><code>14 Solar Drive, Victoria Island, Lagos</code></td><td>Your office address</td><td>contact.html</td></tr>
+        <tr><td><code>solarproglobal.com</code></td><td>Your live domain</td><td>All 6 pages (canonical links)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>WhatsApp Link Format</h3>
+    <p>WhatsApp deep links use this format:</p>
+    <pre><code>https://wa.me/<span class="key">COUNTRYCODE</span><span class="str">PHONENUMBER</span>?text=<span class="attr">URL_ENCODED_MESSAGE</span>
+
+<span class="comment">Examples:</span>
+https://wa.me/447700900000          <span class="comment">← UK number, no pre-fill</span>
+https://wa.me/12125551234           <span class="comment">← US number, no pre-fill</span>
+https://wa.me/447700900000?text=Hello%20there  <span class="comment">← with pre-filled message</span></code></pre>
+    <p>Use <a href="https://www.urlencoder.org" target="_blank" rel="noopener noreferrer">urlencoder.org</a> to URL-encode your custom pre-fill message text.</p>
+  </section>
+
+  <!-- PAYMENTS -->
+  <section class="doc-section" id="payments">
+    <h2>Payment Gateways</h2>
+    <p>The payment buttons in <code>pages/services.html</code> are styled placeholder buttons with <code>class="payment-btn disabled"</code>. To activate them, remove the <code>disabled</code> class and add your payment checkout URL as an <code>href</code>:</p>
+
+    <pre><code><span class="comment">&lt;!-- Before (disabled placeholder): --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"payment-btn disabled"</span><span class="tag">&gt;</span>Pay with Paystack<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- After (live link): --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="str">"https://paystack.com/pay/your-link"</span>
+   <span class="attr">class</span>=<span class="str">"payment-btn"</span>
+   <span class="attr">target</span>=<span class="str">"_blank"</span>
+   <span class="attr">rel</span>=<span class="str">"noopener noreferrer"</span><span class="tag">&gt;</span>Pay with Paystack<span class="tag">&lt;/a&gt;</span></code></pre>
+
+    <table>
+      <thead>
+        <tr><th>Gateway</th><th>Best For</th><th>Checkout Link Format</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Paystack</td><td>Nigeria, Ghana, SA</td><td><code>paystack.com/pay/[your-plan]</code></td></tr>
+        <tr><td>Flutterwave</td><td>Pan-African</td><td><code>flutterwave.com/pay/[your-link]</code></td></tr>
+        <tr><td>Stripe</td><td>USD / EUR / GBP</td><td><code>buy.stripe.com/[your-link]</code></td></tr>
+        <tr><td>Lemon Squeezy</td><td>Digital products globally</td><td><code>[yourstore].lemonsqueezy.com</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- MAPS -->
+  <section class="doc-section" id="maps">
+    <h2>Google Maps Embed</h2>
+    <p>The map placeholder in <code>pages/contact.html</code> shows instructions for embedding a Google Map. To add your real map:</p>
+
+    <ol class="steps-list">
+      <li>Go to <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">maps.google.com</a> and search for your address.</li>
+      <li>Click <strong>Share</strong> → <strong>Embed a map</strong> → Copy the iframe HTML.</li>
+      <li>In <code>contact.html</code>, find the <code>&lt;div class="map-placeholder"&gt;</code> element.</li>
+      <li>Replace the entire <code>&lt;div class="map-placeholder"&gt;...&lt;/div&gt;</code> with the copied <code>&lt;iframe&gt;</code>.</li>
+      <li>Add <code>style="border:0;border-radius:0.75rem;width:100%;"</code> and <code>loading="lazy"</code> to the iframe for consistent styling.</li>
+    </ol>
+
+    <pre><code><span class="comment">&lt;!-- Replace the map-placeholder div with: --&gt;</span>
+<span class="tag">&lt;iframe</span>
+  <span class="attr">src</span>=<span class="str">"https://www.google.com/maps/embed?pb=..."</span>
+  <span class="attr">width</span>=<span class="str">"100%"</span>
+  <span class="attr">height</span>=<span class="str">"380"</span>
+  <span class="attr">style</span>=<span class="str">"border:0;border-radius:0.75rem;"</span>
+  <span class="attr">allowfullscreen</span>
+  <span class="attr">loading</span>=<span class="str">"lazy"</span>
+  <span class="attr">referrerpolicy</span>=<span class="str">"no-referrer-when-downgrade"</span>
+  <span class="attr">title</span>=<span class="str">"Office location map"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/iframe&gt;</span></code></pre>
+  </section>
+
+  <!-- NETLIFY -->
+  <section class="doc-section" id="netlify">
+    <h2>Deploy to Netlify (Recommended)</h2>
+    <p>Netlify offers the simplest one-step deployment with a free tier that covers all static websites.</p>
+
+    <h3>Option A — Drag and Drop (30 seconds)</h3>
+    <ol class="steps-list">
+      <li>Go to <a href="https://app.netlify.com/drop" target="_blank" rel="noopener noreferrer">app.netlify.com/drop</a></li>
+      <li>Drag and drop your <code>SolarPro-Global-v1</code> folder onto the page.</li>
+      <li>Your site goes live immediately at a random <code>.netlify.app</code> URL.</li>
+      <li>Connect a custom domain in Site Settings → Domain Management.</li>
+    </ol>
+
+    <h3>Option B — Connect GitHub (Recommended for ongoing updates)</h3>
+    <ol class="steps-list">
+      <li>Push the template folder to a GitHub repository.</li>
+      <li>In Netlify: New Site → Import from Git → Select your repo.</li>
+      <li>Build command: leave blank. Publish directory: leave blank (serves from root).</li>
+      <li>Click Deploy. Every <code>git push</code> to main will auto-deploy.</li>
+    </ol>
+
+    <div class="callout callout-tip">
+      <p><strong>Free custom domain:</strong> Netlify provides free HTTPS (Let's Encrypt SSL) for any custom domain connected to your site. No certificate purchase needed.</p>
+    </div>
+  </section>
+
+  <!-- VERCEL -->
+  <section class="doc-section" id="vercel">
+    <h2>Deploy to Vercel</h2>
+    <ol class="steps-list">
+      <li>Push the template to a GitHub (or GitLab) repository.</li>
+      <li>Go to <a href="https://vercel.com/new" target="_blank" rel="noopener noreferrer">vercel.com/new</a> and import your repository.</li>
+      <li>Framework Preset: select <strong>Other</strong>.</li>
+      <li>Build command: leave blank. Output directory: leave blank.</li>
+      <li>Click Deploy. Your site is live at a <code>.vercel.app</code> URL.</li>
+    </ol>
+    <p>Connect a custom domain in the project's Domains settings page.</p>
+  </section>
+
+  <!-- GITHUB PAGES -->
+  <section class="doc-section" id="github-pages">
+    <h2>Deploy to GitHub Pages (Free)</h2>
+    <ol class="steps-list">
+      <li>Push the template folder to a public GitHub repository.</li>
+      <li>In the repository: Settings → Pages → Source → Branch: <code>main</code>, folder: <code>/ (root)</code>.</li>
+      <li>Click Save. Your site will be live at <code>https://[username].github.io/[repo-name]/</code>.</li>
+    </ol>
+
+    <div class="callout callout-warn">
+      <p><strong>Path note:</strong> On GitHub Pages with a repo-name subdirectory (not a user/org site), internal links still work because all paths are relative. However, canonical URLs in the <code>&lt;head&gt;</code> will need updating to match the <code>/repo-name/</code> base path.</p>
+    </div>
+  </section>
+
+  <!-- CPANEL -->
+  <section class="doc-section" id="cpanel">
+    <h2>Upload to cPanel / Web Hosting</h2>
+    <ol class="steps-list">
+      <li>Log into your hosting provider's cPanel.</li>
+      <li>Open <strong>File Manager</strong> and navigate to <code>public_html</code> (or <code>www</code>).</li>
+      <li>Upload the entire <code>SolarPro-Global-v1</code> folder, or upload a ZIP and extract it there.</li>
+      <li>If deploying to the root domain, move all files from the extracted folder into <code>public_html</code> directly (so <code>index.html</code> is at <code>public_html/index.html</code>).</li>
+      <li>Visit your domain — the site should be live.</li>
+    </ol>
+    <p>For subdomains, upload to the subdomain's document root folder instead of <code>public_html</code>.</p>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="doc-section" id="tech-stack">
+    <h2>Tech Stack</h2>
+    <table>
+      <thead>
+        <tr><th>Technology</th><th>Version</th><th>Purpose</th><th>CDN / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HTML5</td><td>—</td><td>Semantic markup, accessibility</td><td>Native browser</td></tr>
+        <tr><td>Tailwind CSS</td><td>v3 (CDN)</td><td>Utility-first layout and spacing</td><td><code>cdn.tailwindcss.com</code></td></tr>
+        <tr><td>Custom CSS</td><td>—</td><td>CSS variables, components, dark mode, animations</td><td><code>css/custom.css</code></td></tr>
+        <tr><td>Vanilla JavaScript</td><td>ES6+</td><td>All interactive features (no frameworks)</td><td><code>js/</code> folder</td></tr>
+        <tr><td>AOS</td><td>2.3.4 (CDN)</td><td>Scroll entrance animations</td><td><code>unpkg.com/aos@2.3.4</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Self-Hosting CDN Libraries (Offline Mode)</h3>
+    <p>To remove CDN dependency, download the libraries and reference them locally:</p>
+    <pre><code><span class="comment"># 1. Download Tailwind standalone CLI and generate a CSS file:</span>
+npx tailwindcss -i ./css/custom.css -o ./css/tailwind.css --content "./**/*.html"
+
+<span class="comment"># 2. Replace the CDN tag in every HTML file with:</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"../css/tailwind.css"</span> <span class="tag">/&gt;</span>
+
+<span class="comment"># 3. Download AOS:</span>
+<span class="comment"># - https://unpkg.com/aos@2.3.4/dist/aos.css  → save as css/aos.css</span>
+<span class="comment"># - https://unpkg.com/aos@2.3.4/dist/aos.js   → save as js/aos.js</span>
+<span class="comment"># Update references in all HTML files accordingly.</span></code></pre>
+  </section>
+
+  <!-- BROWSER SUPPORT -->
+  <section class="doc-section" id="browser-support">
+    <h2>Browser Support</h2>
+    <table>
+      <thead>
+        <tr><th>Browser</th><th>Minimum Version</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chrome</td><td>100+</td><td>Full support</td></tr>
+        <tr><td>Firefox</td><td>100+</td><td>Full support</td></tr>
+        <tr><td>Safari</td><td>15+ (macOS / iOS)</td><td>Full support — dark mode tested on Safari 16+</td></tr>
+        <tr><td>Edge</td><td>100+</td><td>Full support (Chromium-based)</td></tr>
+        <tr><td>Chrome for Android</td><td>Current</td><td>Full support including touch slider</td></tr>
+        <tr><td>Mobile Safari (iOS)</td><td>iOS 15+</td><td>Full support including touch/swipe</td></tr>
+        <tr><td>Internet Explorer</td><td>Not supported</td><td>IE does not support CSS custom properties or ES6+</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CREDITS -->
+  <section class="doc-section" id="credits">
+    <h2>Image &amp; Library Credits</h2>
+    <p>All third-party resources used in this template are free for commercial use under their respective licenses.</p>
+
+    <h3>Photography (Unsplash)</h3>
+    <p>All photographs are sourced from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> under the <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a> — free for commercial use, no attribution required. Original photographer credits:</p>
+    <table>
+      <thead>
+        <tr><th>Photo ID</th><th>Usage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>photo-1509391366360-2e959784a276</code></td><td>Home hero background — solar panel field</td></tr>
+        <tr><td><code>photo-1521618755572-156ae0cdd74d</code></td><td>About/Services hero — solar technician</td></tr>
+        <tr><td><code>photo-1545209463-e2825498edbf</code></td><td>Services — residential solar</td></tr>
+        <tr><td><code>photo-1497440001374-f26997328c1b</code></td><td>Services — commercial solar</td></tr>
+        <tr><td><code>photo-1508514177221-188b1cf16e9d</code></td><td>Services — off-grid systems</td></tr>
+        <tr><td><code>photo-1560518883-ce09059eeffa</code></td><td>Portfolio card 1</td></tr>
+        <tr><td><code>photo-1466611653911-95081537e5b7</code></td><td>Portfolio card 2</td></tr>
+        <tr><td><code>photo-1491895200222-0fc4a4c35e18</code></td><td>Portfolio card 3</td></tr>
+        <tr><td><code>photo-1543966888-7c1dc482a810</code></td><td>Portfolio card 4</td></tr>
+        <tr><td><code>photo-1532601224476-15c79f2f7a51</code></td><td>Portfolio card 5</td></tr>
+        <tr><td><code>photo-1473341304170-971dccb5ac1e</code></td><td>Portfolio card 6</td></tr>
+        <tr><td><code>photo-1611365892117-00ac5ef43c90</code></td><td>Portfolio card 7</td></tr>
+        <tr><td><code>photo-1560518883-ce09059eeffa</code></td><td>Index portfolio preview</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Open Source Libraries</h3>
+    <ul>
+      <li><strong>Tailwind CSS</strong> — <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">tailwindcss.com</a> — MIT License</li>
+      <li><strong>AOS (Animate On Scroll)</strong> — <a href="https://michalsnik.github.io/aos" target="_blank" rel="noopener noreferrer">michalsnik.github.io/aos</a> — MIT License</li>
+    </ul>
+
+    <h3>Data Sources</h3>
+    <ul>
+      <li><strong>Peak Sun Hours data</strong> — NASA POWER Project (<a href="https://power.larc.nasa.gov" target="_blank" rel="noopener noreferrer">power.larc.nasa.gov</a>) — Public domain</li>
+      <li><strong>Electricity tariff data</strong> — Based on 2024 published national average rates. Update <code>js/calculator.js</code> as rates change.</li>
+    </ul>
+  </section>
+
+  <!-- LICENSE -->
+  <section class="doc-section" id="license">
+    <h2>License</h2>
+    <p>Your purchase of SolarPro Global v1 includes a <strong>Single Use License</strong>. This license permits:</p>
+    <ul class="check-list">
+      <li>Use on one (1) domain or project</li>
+      <li>Full customisation of all code and design elements</li>
+      <li>Deployment to a live public-facing website</li>
+      <li>Modification for your client (as a freelancer or agency) on one project</li>
+    </ul>
+
+    <p style="margin-top:1rem;">The following are <strong>not permitted</strong> under this license:</p>
+    <ul>
+      <li>Reselling or redistributing this template in whole or as part of another product</li>
+      <li>Using the template for more than one end client or domain without purchasing additional licenses</li>
+      <li>Sharing the template files with third parties</li>
+      <li>Removing the README or documentation files from the source distribution</li>
+    </ul>
+
+    <p>For multi-site or extended commercial use, contact the template author to purchase additional licenses.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="doc-section" id="faq">
+    <h2>FAQ</h2>
+
+    <h3>Does this template require a backend or server?</h3>
+    <p>No. This is a fully static HTML/CSS/JS template. It requires no server, no database, and no Node.js. It works directly in any browser and can be hosted on any static file host (Netlify, Vercel, GitHub Pages, cPanel, Amazon S3, etc.).</p>
+
+    <h3>Does the contact form send real emails?</h3>
+    <p>The form performs client-side validation and shows a success message on submission. It does not send emails — it is a frontend-only template. To receive real form submissions, connect the form to a backend service. Recommended options: <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree</a> (free tier available), <a href="https://netlify.com/products/forms" target="_blank" rel="noopener noreferrer">Netlify Forms</a> (if hosting on Netlify), or <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer">Web3Forms</a> (no backend required).</p>
+
+    <h3>Can I use this template for a client project?</h3>
+    <p>Yes, the Single Use License permits use on one client project. If you are an agency or freelancer building sites for multiple clients, purchase a separate license for each.</p>
+
+    <h3>How do I update the dark mode colors?</h3>
+    <p>Dark mode colors are in the <code>html.dark</code> block in <code>css/custom.css</code>:</p>
+    <pre><code><span class="key">html.dark</span> {
+  <span class="attr">--bg</span>:      <span class="str">#0f172a</span>;   <span class="comment">/* deep navy page background */</span>
+  <span class="attr">--bg-alt</span>:  <span class="str">#1e293b</span>;   <span class="comment">/* section alternating background */</span>
+  <span class="attr">--card-bg</span>: <span class="str">#1e293b</span>;   <span class="comment">/* card background */</span>
+  <span class="attr">--text</span>:    <span class="str">#f1f5f9</span>;   <span class="comment">/* primary text */</span>
+  <span class="attr">--text-muted</span>: <span class="str">#94a3b8</span>; <span class="comment">/* secondary text */</span>
+  <span class="attr">--border</span>:  <span class="str">#334155</span>;   <span class="comment">/* card/input borders */</span>
+}</code></pre>
+
+    <h3>Can I add more pages?</h3>
+    <p>Yes. Copy any existing page file as a starting point. The navbar, footer, dark mode script, and JS includes are identical across all pages — just copy and update the <code>class="nav-link active"</code> on the appropriate nav link and update the page title and meta description.</p>
+
+    <h3>How do I get support?</h3>
+    <p>For customisation questions and bug reports, contact the template author via the marketplace where you purchased this template (Gumroad / Selar / ThemeForest). Include your order number and a description of the issue. Response within 48 business hours.</p>
+  </section>
+
+</main>
+
+<script>
+  // Highlight active sidebar link based on scroll position
+  (function() {
+    var sections = document.querySelectorAll('.doc-section[id]');
+    var links = document.querySelectorAll('.sidebar nav a');
+
+    function onScroll() {
+      var scrollY = window.scrollY + 100;
+      var active = '';
+      sections.forEach(function(section) {
+        if (section.offsetTop <= scrollY) {
+          active = section.getAttribute('id');
+        }
+      });
+      links.forEach(function(link) {
+        var href = link.getAttribute('href').replace('#', '');
+        if (href === active) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Smooth scroll for sidebar links
+    links.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var targetId = this.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          e.preventDefault();
+          var target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

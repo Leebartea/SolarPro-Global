@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Services | SolarPro Global — Residential, Commercial, Off-Grid &amp; Maintenance</title>
+  <meta name="description" content="Explore SolarPro Global's full range of solar PV services: residential rooftop systems, large-scale commercial installations, off-grid battery solutions, and preventive maintenance packages." />
+  <meta name="robots" content="index, follow" />
+  <!-- Canonical URL — replace with your live domain -->
+  <link rel="canonical" href="https://solarproglobal.com/pages/services.html" />
+  <meta property="og:title" content="Solar Services | SolarPro Global" />
+  <meta property="og:description" content="Certified solar PV services for every application — residential, commercial, off-grid, and ongoing maintenance. 500+ installations across 15+ countries." />
+  <meta property="og:image" content="../assets/images/og-cover.jpg" />
+  <script>
+    (function(){
+      var s = localStorage.getItem('solarproTheme');
+      var d = s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (d) document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="../css/custom.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="../index.html" class="flex items-center gap-2 flex-shrink-0" aria-label="SolarPro Global Home">
+        <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <span style="font-weight:800;font-size:1.05rem;color:var(--text);">SolarPro <span style="color:var(--primary);">Global</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-1">
+        <a href="../index.html"          class="nav-link">Home</a>
+        <a href="services.html"          class="nav-link active">Services</a>
+        <a href="calculator.html"        class="nav-link">Calculator</a>
+        <a href="portfolio.html"         class="nav-link">Portfolio</a>
+        <a href="about.html"             class="nav-link">About</a>
+        <a href="contact.html"           class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="currency-dropdown hidden md:block">
+          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
+            <span class="currency-label">🇺🇸 USD</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="currency-dropdown-menu" role="listbox">
+            <div class="currency-option" data-currency="USD">🇺🇸 USD — US Dollar</div>
+            <div class="currency-option" data-currency="EUR">🇪🇺 EUR — Euro</div>
+            <div class="currency-option" data-currency="GBP">🇬🇧 GBP — British Pound</div>
+            <div class="currency-option" data-currency="NGN">🇳🇬 NGN — Nigerian Naira</div>
+          </div>
+        </div>
+        <button id="theme-toggle" aria-label="Toggle dark mode"></button>
+        <a href="contact.html" class="btn-primary hidden md:inline-flex text-sm py-2 px-4">Get Free Quote</a>
+        <button id="hamburger-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <a href="../index.html"  class="nav-link">Home</a>
+    <a href="services.html"  class="nav-link active">Services</a>
+    <a href="calculator.html" class="nav-link">Calculator</a>
+    <a href="portfolio.html" class="nav-link">Portfolio</a>
+    <a href="about.html"     class="nav-link">About</a>
+    <a href="contact.html"   class="nav-link">Contact</a>
+    <div style="padding:1rem;"><a href="contact.html" class="btn-primary text-sm" style="display:block;text-align:center;">Get Free Quote</a></div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="Page header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-2xl" data-aos="fade-up">
+      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:#f97316;">What We Offer</div>
+      <h1 class="text-white font-black mt-3 mb-4" style="font-size:clamp(2rem,4vw,3rem);">Solar Solutions<br />Engineered to Perform</h1>
+      <p style="color:rgba(255,255,255,0.72);font-size:1.05rem;line-height:1.65;">From a single rooftop system to a multi-site commercial rollout, our certified engineers design, supply, install, and maintain solar PV systems built to exceed their projected performance for 25 years and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ RESIDENTIAL ═══════════ -->
+<section id="residential" class="py-20" style="background-color:var(--bg);" aria-labelledby="residential-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Residential image -->
+      <div class="rounded-2xl overflow-hidden" style="height:320px;" data-aos="fade-right">
+        <img src="https://images.unsplash.com/photo-1545209463-e2825498edbf?w=800&q=80"
+             alt="Residential rooftop solar panels installed on a suburban family home"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+      </div>
+      <!-- Content -->
+      <div data-aos="fade-left">
+        <div class="section-tag">Residential Solar</div>
+        <h2 id="residential-heading" class="section-title mt-2">Power Your Home, Slash Your Bill</h2>
+        <p class="leading-relaxed mb-4" style="color:var(--text-muted);">Our residential solar solutions are designed for homeowners who want to take control of their energy costs. We perform a detailed site assessment — including roof orientation, shading analysis, and local irradiance data — to size a system that delivers maximum financial return for your specific property and consumption patterns.</p>
+        <p class="leading-relaxed mb-6" style="color:var(--text-muted);">Whether you need a simple grid-tied rooftop system to reduce your electricity bill, a hybrid system with battery backup to survive load-shedding and power outages, or a fully off-grid setup for remote living — we engineer the right solution, not just the easiest sale.</p>
+
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Grid-tied, hybrid (battery backup), and full off-grid configurations available
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            High-efficiency monocrystalline panels (380W – 550W per module)
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Lithium iron phosphate (LiFePO₄) batteries for long cycle life and safety
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Remote monitoring app: track generation, consumption, and battery state in real time
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            5-year workmanship warranty + 25-year panel performance guarantee (from manufacturer)
+          </li>
+        </ul>
+
+        <div class="p-4 rounded-xl mb-6" style="background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.15);">
+          <p class="text-sm font-medium" style="color:var(--text);">Typical use case: 3-bedroom home with a <strong>₦80,000/month</strong> electricity bill — a 10 kWp hybrid system typically reduces bills to under <strong>₦6,000/month</strong> with a payback period of 4–6 years.</p>
+        </div>
+
+        <a href="contact.html" class="btn-primary">Request a Home Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ COMMERCIAL ══════════════ -->
+<section id="commercial" class="py-20" style="background-color:var(--bg-alt);" aria-labelledby="commercial-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Content -->
+      <div data-aos="fade-right">
+        <div class="section-tag">Commercial Solar</div>
+        <h2 id="commercial-heading" class="section-title mt-2">Reduce Operational Costs at Scale</h2>
+        <p class="leading-relaxed mb-4" style="color:var(--text-muted);">For businesses, electricity is one of the largest controllable operating expenses. A well-engineered commercial solar system can reduce your energy expenditure by 50–80%, improve operational resilience, and deliver a compelling return on investment — often achieving payback in 3–5 years at commercial scale.</p>
+        <p class="leading-relaxed mb-6" style="color:var(--text-muted);">We work with factories, office complexes, retail centres, hotels, schools, hospitals, and telecom operators to engineer systems that match your load profile, available roof or ground area, and energy procurement strategy. Our projects include export-to-grid setups with net metering arrangements where local regulations permit.</p>
+
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            System sizes from 20 kWp to multi-MW — rooftop, carport, and ground-mount
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Load-flow analysis and shading simulation using PVsyst modelling software
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Grid-connection application and DISCO approval management (where applicable)
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Enterprise SCADA monitoring with real-time performance alerts and monthly reports
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            ESG reporting support: CO₂ offset documentation for sustainability disclosures
+          </li>
+        </ul>
+
+        <div class="p-4 rounded-xl mb-6" style="background:rgba(30,58,95,0.08);border:1px solid rgba(30,58,95,0.15);">
+          <p class="text-sm font-medium" style="color:var(--text);">Typical use case: A 250 kWp rooftop system on a manufacturing facility in Nigeria saves approximately <strong>₦28M annually</strong> in electricity costs with a payback period of approximately <strong>3.5 years</strong>.</p>
+        </div>
+
+        <a href="contact.html" class="btn-primary">Request a Commercial Assessment</a>
+      </div>
+      <!-- Commercial image -->
+      <div class="rounded-2xl overflow-hidden" style="height:320px;" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=800&q=80"
+             alt="Large-scale commercial solar panel installation on an industrial rooftop"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ OFF-GRID ════════════════ -->
+<section id="offgrid" class="py-20" style="background-color:var(--bg);" aria-labelledby="offgrid-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Off-grid image -->
+      <div class="rounded-2xl overflow-hidden" style="height:320px;" data-aos="fade-right">
+        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
+             alt="Off-grid solar installation with battery storage for a rural property"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+      </div>
+      <!-- Content -->
+      <div data-aos="fade-left">
+        <div class="section-tag">Off-Grid Systems</div>
+        <h2 id="offgrid-heading" class="section-title mt-2">Energy Independence Where the Grid Doesn't Reach</h2>
+        <p class="leading-relaxed mb-4" style="color:var(--text-muted);">Across Africa and in rural regions globally, grid electricity is either unavailable, unreliable, or prohibitively expensive to connect. Off-grid solar systems — combining solar generation with battery storage and sometimes a backup generator — provide 24/7 clean, reliable power without dependence on a utility grid.</p>
+        <p class="leading-relaxed mb-6" style="color:var(--text-muted);">We design off-grid systems for rural households and communities, agricultural operations, telecommunications base stations, remote lodges and camps, water pumping stations, and any application where energy reliability is non-negotiable. Every system is sized based on verified daily load profiles and local irradiance data to ensure autonomy even during extended overcast periods.</p>
+
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Battery autonomy sizing: minimum 2 days of reserve capacity for critical loads
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Hybrid charge controllers: solar primary, generator backup for extended cloudy seasons
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Community microgrid design with prepaid energy metering for multi-household systems
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Solar water pump systems: DC pump solutions for borehole and surface water applications
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Remote GSM/GPRS monitoring for unmanned or remote installations
+          </li>
+        </ul>
+
+        <a href="contact.html" class="btn-primary">Discuss Your Off-Grid Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ MAINTENANCE ═══════════ -->
+<section id="maintenance" class="py-20" style="background-color:var(--bg-alt);" aria-labelledby="maintenance-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Content -->
+      <div data-aos="fade-right">
+        <div class="section-tag">Maintenance &amp; Support</div>
+        <h2 id="maintenance-heading" class="section-title mt-2">Protect Your Investment for 25 Years</h2>
+        <p class="leading-relaxed mb-4" style="color:var(--text-muted);">A solar PV system is a 25-year investment. Neglected panels lose 0.5–1% efficiency per year from soiling, microcracking, and degraded connections — losses that compound significantly over time. Our preventive maintenance programmes ensure your system operates at peak performance year after year, protecting your return on investment.</p>
+        <p class="leading-relaxed mb-6" style="color:var(--text-muted);">We offer flexible maintenance contracts for installations we commissioned and for third-party systems. Our technicians are trained to service all major inverter brands including SMA, Huawei, ABB, Fronius, Victron, and Growatt.</p>
+
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Bi-annual preventive maintenance visits: panel cleaning, torque checks, thermal imaging
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Inverter diagnostics and firmware updates with performance benchmarking
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Battery health assessment: capacity testing, electrolyte check (lead-acid), BMS diagnostics (lithium)
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Continuous remote monitoring with email/SMS alerts for fault conditions
+          </li>
+          <li class="flex items-start gap-2 text-sm" style="color:var(--text);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Emergency call-out service: 24-hour response SLA for critical system failures
+          </li>
+        </ul>
+
+        <a href="contact.html" class="btn-primary">Request a Maintenance Quote</a>
+      </div>
+      <!-- Maintenance image -->
+      <div class="rounded-2xl overflow-hidden" style="height:320px;" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?w=800&q=80"
+             alt="Solar technician performing maintenance inspection on rooftop PV panels"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ HOW WE WORK ═══════════ -->
+<section class="py-20" style="background-color:var(--bg);" aria-labelledby="process-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-tag">Our Process</div>
+      <h2 id="process-heading" class="section-title">How We Work</h2>
+      <p class="section-subtitle">A structured, transparent process from your first enquiry to a fully commissioned, monitored solar system — and ongoing support beyond.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <!-- Step 1 -->
+      <div class="process-step text-center" data-aos="fade-up" data-aos-delay="0">
+        <div class="step-number">1</div>
+        <h3 class="font-bold text-base mb-2" style="color:var(--text);">Site Assessment</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">We visit your site (or analyse remotely using satellite data) to evaluate roof area, orientation, shading, and your electricity consumption data.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="process-step text-center" data-aos="fade-up" data-aos-delay="80">
+        <div class="step-number">2</div>
+        <h3 class="font-bold text-base mb-2" style="color:var(--text);">System Design</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Our engineers produce a detailed system design using PVsyst modelling, a full bill of materials, single-line diagrams, and a bankable financial model.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="process-step text-center" data-aos="fade-up" data-aos-delay="160">
+        <div class="step-number">3</div>
+        <h3 class="font-bold text-base mb-2" style="color:var(--text);">Installation</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Certified technicians install the racking system, modules, inverter, batteries, cabling, and protection devices to IEC standards and manufacturer specifications.</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="process-step text-center" data-aos="fade-up" data-aos-delay="240">
+        <div class="step-number">4</div>
+        <h3 class="font-bold text-base mb-2" style="color:var(--text);">Commissioning</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Full system commissioning including insulation resistance tests, earth continuity checks, I-V curve testing, and grid-connection verification. You receive an IEC 62446 test report.</p>
+      </div>
+      <!-- Step 5 -->
+      <div class="process-step text-center" data-aos="fade-up" data-aos-delay="320">
+        <div class="step-number">5</div>
+        <h3 class="font-bold text-base mb-2" style="color:var(--text);">Ongoing Support</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Monitoring portal access from day one. Annual or bi-annual maintenance visits. Direct line to our technical support team for the life of the system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ PAYMENT OPTIONS ══════ -->
+<section class="py-16" style="background-color:var(--bg-alt);" aria-labelledby="payment-heading">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <div class="section-tag">Flexible Payments</div>
+      <h2 id="payment-heading" class="section-title">Payment Options We Support</h2>
+      <p class="section-subtitle">Pay securely using your preferred payment method. International and local payment gateways available.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="50">
+      <button class="payment-btn stripe disabled" aria-disabled="true" aria-label="Stripe payment (coming soon)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Stripe (Card / Bank)
+      </button>
+      <button class="payment-btn paystack disabled" aria-disabled="true" aria-label="Paystack payment (coming soon)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Paystack (Nigeria)
+      </button>
+      <button class="payment-btn flutterwave disabled" aria-disabled="true" aria-label="Flutterwave payment (coming soon)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Flutterwave (Africa)
+      </button>
+      <button class="payment-btn disabled" aria-disabled="true" aria-label="Bank transfer (coming soon)" style="border-color:#6b7280;color:#6b7280;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Bank Transfer / Wire
+      </button>
+    </div>
+    <p class="text-center text-xs mt-5" style="color:var(--text-muted);">Payment gateway integrations are configured during project setup. Contact us to discuss financing options including solar asset finance and lease-to-own arrangements.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner py-16" aria-label="Call to action">
+  <div class="max-w-3xl mx-auto px-4 text-center relative z-10" data-aos="fade-up">
+    <h2 class="text-white font-black text-2xl sm:text-3xl mb-4">Ready to Start Your Solar Project?</h2>
+    <p class="mb-6" style="color:rgba(255,255,255,0.72);">Contact our team for a free site assessment and detailed proposal tailored to your energy needs and budget.</p>
+    <a href="contact.html" class="btn-primary px-7 py-3 text-base">Get My Free Quote Today</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </div>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:#f97316;">Global</span></span>
+        </div>
+        <p class="text-sm leading-relaxed" style="color:#64748b;">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="calculator.html">Calculator</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="services.html#residential">Residential Solar</a></li>
+          <li><a href="services.html#commercial">Commercial Solar</a></li>
+          <li><a href="services.html#offgrid">Off-Grid Systems</a></li>
+          <li><a href="services.html#maintenance">Maintenance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Contact</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="mailto:hello@solarproglobal.com" style="color:#64748b;">hello@solarproglobal.com</a></li>
+          <li><a href="tel:+2348000000000" style="color:#64748b;">+234 800 0000 000</a></li>
+          <li><a href="https://wa.me/2348000000000" style="color:#25d366;" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm" style="color:#475569;">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:#334155;">Certified Solar PV Engineering</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:#f97316;text-decoration:underline;">Learn more</a></p>
+  <div class="flex gap-2">
+    <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
+    <button id="cookie-accept" class="btn-primary text-sm py-2 px-4">Accept All</button>
+  </div>
+</div>
+
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

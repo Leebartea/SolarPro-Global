@@ -1,0 +1,4 @@
+node_modules/
+proof-*.png
+.DS_Store
+.claude/
