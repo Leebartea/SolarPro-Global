@@ -186,15 +186,17 @@ function calculate() {
   const areaM2     = parseFloat(($('calc-area')   || {}).value) || 0;
   const sysType    = ($('calc-system-type') || {}).value || 'grid-tied';
 
-  /* Validate */
+  /* Validate — guard against NaN, negative, and nonsense values */
   const billErr = $('bill-error');
-  if (!bill || bill <= 0) {
+  if (!bill || bill <= 0 || !isFinite(bill)) {
     if (billErr) billErr.textContent = 'Please enter your monthly electricity bill.';
     return;
   }
   if (billErr) billErr.textContent = '';
 
-  if (!tariff || tariff <= 0) return;
+  if (!tariff || tariff <= 0 || !isFinite(tariff)) return;
+  /* Guard: minimum meaningful bill equivalent to 1 kWh/month */
+  if (bill / tariff < 1) return;
 
   const c   = COUNTRY_DATA[countryKey];
   const sys = SYS_MULTIPLIERS[sysType] || SYS_MULTIPLIERS['grid-tied'];
@@ -256,18 +258,19 @@ function calculate() {
 
 function displayResults(r) {
   const { c, sys, systemKwp, dailyYieldKwh, annualKwh,
-          annualSavingsLocal, paybackYrs, co2KgYr, savings25yr } = r;
+          annualSavingsLocal, costLocal, paybackYrs, co2KgYr, savings25yr } = r;
 
   const sym = c.currSymbol;
 
   /* Fill result cards */
-  setText('res-system-size',    systemKwp.toFixed(1) + ' kWp');
-  setText('res-daily-yield',    fmtNum(dailyYieldKwh, 1) + ' kWh/day');
-  setText('res-annual-prod',    fmtNum(Math.round(annualKwh)) + ' kWh/yr');
-  setText('res-annual-savings', sym + fmtNum(Math.round(annualSavingsLocal)) + '/yr');
-  setText('res-payback',        paybackYrs.toFixed(1) + ' years');
-  setText('res-co2',            fmtNum(co2KgYr, 0) + ' kg/yr');
-  setText('res-25year',         sym + fmtNum(Math.round(savings25yr)));
+  setText('res-system-size',     systemKwp.toFixed(1) + ' kWp');
+  setText('res-daily-yield',     fmtNum(dailyYieldKwh, 1) + ' kWh/day');
+  setText('res-annual-prod',     fmtNum(Math.round(annualKwh)) + ' kWh/yr');
+  setText('res-annual-savings',  sym + fmtNum(Math.round(annualSavingsLocal)) + '/yr');
+  setText('res-installed-cost',  sym + fmtNum(Math.round(costLocal)));
+  setText('res-payback',         paybackYrs >= 99 ? 'N/A' : paybackYrs.toFixed(1) + ' years');
+  setText('res-co2',             fmtNum(co2KgYr, 0) + ' kg/yr');
+  setText('res-25year',          sym + fmtNum(Math.round(savings25yr)));
 
   /* System type note */
   const noteEl = $('res-system-note');
@@ -295,9 +298,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const countryEl = $('calc-country');
   if (countryEl) countryEl.addEventListener('change', updateCountryDefaults);
 
-  /* Trigger calculation on button click */
+  /* Trigger calculation on button click — with brief loading state */
   const btn = $('calc-btn');
-  if (btn) btn.addEventListener('click', calculate);
+  if (btn) btn.addEventListener('click', function () {
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Calculating…';
+    setTimeout(function () {
+      calculate();
+      btn.disabled = false;
+      btn.textContent = orig;
+    }, 350);
+  });
 
   /* Also recalculate live as user types */
   ['calc-bill', 'calc-tariff', 'calc-area', 'calc-system-type'].forEach(function (id) {

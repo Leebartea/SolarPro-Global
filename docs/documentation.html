@@ -580,6 +580,22 @@
     <div class="callout callout-tip">
       <p><strong>PSH data source:</strong> Use <a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener noreferrer">NASA POWER Data Access Viewer</a> to look up annual average horizontal irradiance for any location. Divide the annual GHI (kWh/m²/year) by 365 to get the daily PSH value.</p>
     </div>
+
+    <h3>Changing the Installed Cost Benchmark ($800/kWp)</h3>
+    <p>The calculator uses <strong>$800 per kWp</strong> as the all-in installed cost benchmark for grid-tied systems. Off-grid (battery) systems use a 1.85× multiplier ($1,480/kWp). These are industry-average figures for 2024. To change them, open <code>js/calculator.js</code> and find:</p>
+    <pre><code><span class="comment">/* System type cost multipliers ($800/kWp base for grid-tied) */</span>
+const SYS_MULTIPLIERS = {
+  <span class="str">'grid-tied'</span>: { mult: <span class="str">1.00</span>, ... },  <span class="comment">// $800/kWp × 1.00 = $800/kWp</span>
+  <span class="str">'hybrid'</span>:    { mult: <span class="str">1.45</span>, ... },  <span class="comment">// $800/kWp × 1.45 = $1,160/kWp</span>
+  <span class="str">'off-grid'</span>:  { mult: <span class="str">1.85</span>, ... },  <span class="comment">// $800/kWp × 1.85 = $1,480/kWp</span>
+};
+
+const BASE_COST_PER_KWP_USD = <span class="str">800</span>;  <span class="comment">// ← Change this single value</span></code></pre>
+    <p>To reflect local market pricing (e.g. Nigeria where costs may be $900–$1,100/kWp due to import duties), change <code>BASE_COST_PER_KWP_USD</code> to your local figure. The conversion to local currency happens automatically using each country's <code>usdRate</code>.</p>
+
+    <div class="callout callout-warning">
+      <p><strong>Note:</strong> The "Estimated Installed Cost" result card and the "Payback Period" both derive from this constant. Changing it updates both outputs simultaneously.</p>
+    </div>
   </section>
 
   <!-- PORTFOLIO -->
