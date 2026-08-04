@@ -70,6 +70,47 @@ module.exports = async function responsive() {
 
         const where = `${rel} @${vp.width}px (${vp.name})`;
 
+        // Overlays are hidden until opened, so a closed-state sweep never sees
+        // them. The mobile currency menu was 49px off the left edge of a 390px
+        // screen for exactly this reason: measured shut, it looked fine.
+        if (vp.mobile) {
+          const burger = await page.$('#hamburger-btn');
+          if (burger) {
+            await burger.click().catch(() => {});
+            await page.waitForTimeout(200);
+          }
+          for (const trigger of await page.$$('.currency-trigger')) {
+            if (!(await trigger.isVisible().catch(() => false))) continue;
+            await trigger.click().catch(() => {});
+            await page.waitForTimeout(200);
+          }
+
+          const stray = await page.evaluate(() => {
+            const vw = document.documentElement.clientWidth;
+            const out = [];
+            for (const el of document.querySelectorAll(
+              '.currency-dropdown-menu, #mobile-menu, .lightbox-content')) {
+              const cs = getComputedStyle(el);
+              if (cs.display === 'none' || cs.visibility === 'hidden' || +cs.opacity < 0.1) continue;
+              const r = el.getBoundingClientRect();
+              if (r.width === 0) continue;
+              if (r.left < -1 || r.right > vw + 1) {
+                out.push({
+                  cls: (el.className || el.id || '').toString().slice(0, 40),
+                  left: Math.round(r.left), right: Math.round(r.right), vw,
+                });
+              }
+            }
+            return out;
+          });
+
+          for (const s of stray) {
+            report.error(
+              `open overlay "${s.cls}" spans ${s.left}..${s.right}px, outside the ` +
+              `${s.vw}px viewport — part of it cannot be seen or tapped`, where);
+          }
+        }
+
         const probe = await page.evaluate((minTap) => {
           const vw = document.documentElement.clientWidth;
           const out = { vw, overflow: [], hamburger: null, smallTaps: [] };

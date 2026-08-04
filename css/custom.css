@@ -606,6 +606,14 @@ html.light .currency-dropdown-menu{background:#fff;border:1px solid var(--bl);bo
 .currency-dropdown.open .currency-dropdown-menu,
 .currency-dropdown-menu.open{opacity:1;visibility:visible;transform:translateY(0);}
 
+/* In the navbar the switcher sits at the right, so the menu hangs from its
+   right edge. Inside the mobile menu it sits at the left of a two-item row,
+   where a 210px right-anchored panel runs 49px off the left of a 390px screen.
+   There it hangs from the left instead and matches the trigger's width. */
+#mobile-menu .currency-dropdown-menu{
+  left:0;right:auto;min-width:0;width:100%;
+}
+
 .currency-option{
   display:flex;align-items:center;gap:.5rem;width:100%;
   padding:.5rem .7rem;border:none;border-radius:8px;
