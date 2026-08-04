@@ -43,6 +43,16 @@ function run(cmd, args, cwd) {
 }
 
 (async () => {
+  // Delete every previously built archive first. Leaving old versions lying
+  // beside the new one is how v1.2.0 got uploaded to Selar while v1.4.0 sat in
+  // the same folder — two files, both plausible, and the wrong one chosen.
+  // Exactly one archive should ever exist here.
+  for (const f of fs.readdirSync(ROOT)) {
+    if (/^SolarPro-Global-v.*\.zip$/i.test(f)) {
+      fs.rmSync(path.join(ROOT, f));
+      if (f !== path.basename(OUT)) console.log(`removed stale archive ${f}`);
+    }
+  }
   if (fs.existsSync(OUT)) fs.rmSync(OUT);
 
   // Zip from the parent so the archive contains a single top-level folder.
