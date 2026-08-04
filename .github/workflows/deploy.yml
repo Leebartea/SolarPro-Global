@@ -1,0 +1,68 @@
+name: Build, check and deploy
+
+# A deploy path that does not depend on Cloudflare's dashboard Git integration.
+#
+# That integration silently broke once — the project showed "disconnected from
+# your Git account" while still reporting "Automatic deployments: Enabled", so
+# three pushes built nothing and the live site quietly served a five-hour-old
+# build. Nothing failed loudly; the deployments list simply stopped growing.
+#
+# Running the deploy from GitHub Actions makes that failure mode impossible to
+# miss: if a push does not deploy, the Actions tab goes red.
+#
+# It stays dormant until the two secrets exist, so adding this file changes
+# nothing on its own:
+#   CLOUDFLARE_API_TOKEN   — My Profile > API Tokens > Create Token
+#                            > "Edit Cloudflare Workers" (or a custom token
+#                            with the "Cloudflare Pages: Edit" permission)
+#   CLOUDFLARE_ACCOUNT_ID  — shown in the Cloudflare dashboard sidebar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm clean-install
+
+      # The full gate — the same 11 checks that run locally. A build that
+      # cannot pass them must never reach the live demo.
+      - name: Install browsers for the checks
+        run: npx playwright install --with-deps chromium webkit firefox
+
+      - name: Run guardrails
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+        env:
+          SITE_URL: https://solarpro-global.pages.dev
+
+      - name: Check deploy credentials
+        id: creds
+        run: |
+          if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] && [ -n "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Cloudflare secrets are not set — build and checks ran, deploy skipped."
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.creds.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=solarpro-global --branch=main
