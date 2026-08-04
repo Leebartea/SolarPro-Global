@@ -9,13 +9,13 @@
   <meta name="author" content="SolarPro Global" />
   <meta name="robots" content="index, follow" />
   <!-- Canonical URL — replace with your live domain -->
-  <link rel="canonical" href="https://solarproglobal.com/index.html" />
+  <link rel="canonical" href="https://www.example.com/index.html" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="SolarPro Global | Professional Solar Energy Solutions Worldwide" />
   <meta property="og:description" content="Certified solar PV installations across 15+ countries. Residential, commercial, and off-grid solutions backed by real irradiance data." />
   <meta property="og:image" content="assets/images/og-cover.jpg" />
-  <meta property="og:url" content="https://solarproglobal.com" />
+  <meta property="og:url" content="https://www.example.com" />
   <meta name="twitter:card" content="summary_large_image" />
   <!-- Prevent flash of wrong theme -->
   <script>
@@ -26,11 +26,12 @@
     })();
   </script>
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- AOS Animate On Scroll -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <!-- AOS Animate On Scroll -->
+  <link rel="stylesheet" href="vendor/aos/aos.css" />
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/custom.css" />
+  <!-- Tailwind utilities load last so they win over component styles -->
+  <link rel="stylesheet" href="css/tailwind.min.css" />
   <!-- Favicon placeholder -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
 </head>
@@ -54,7 +55,7 @@
       </a>
 
       <!-- Desktop Nav Links -->
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-1">
         <a href="index.html"            class="nav-link active">Home</a>
         <a href="pages/services.html"   class="nav-link">Services</a>
         <a href="pages/calculator.html" class="nav-link">Calculator</a>
@@ -66,7 +67,7 @@
       <!-- Right Controls -->
       <div class="flex items-center gap-2">
         <!-- Currency Switcher -->
-        <div class="currency-dropdown hidden md:block">
+        <div class="currency-dropdown hidden lg:block">
           <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-haspopup="true" aria-label="Switch currency">
             <span class="currency-label">🇺🇸 USD</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -83,10 +84,10 @@
         <button id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark mode"></button>
 
         <!-- CTA Button Desktop -->
-        <a href="pages/contact.html" class="btn-primary hidden md:inline-flex text-sm py-2 px-4">Get Free Quote</a>
+        <a href="pages/contact.html" class="btn-primary hidden lg:inline-flex text-sm py-2 px-4">Get Free Quote</a>
 
         <!-- Hamburger Mobile -->
-        <button id="hamburger-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open navigation menu" aria-expanded="false" style="color:var(--text);">
+        <button id="hamburger-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open navigation menu" aria-expanded="false" style="color:var(--text);">
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
@@ -96,7 +97,7 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden" role="dialog" aria-label="Mobile navigation">
+  <div id="mobile-menu" class="hidden lg:hidden" role="dialog" aria-label="Mobile navigation">
     <a href="index.html"            class="nav-link active">Home</a>
     <a href="pages/services.html"   class="nav-link">Services</a>
     <a href="pages/calculator.html" class="nav-link">Calculator</a>
@@ -127,7 +128,7 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <section class="hero-section" aria-label="Hero" style="position:relative;">
   <!-- Hero background image -->
-  <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=85"
+  <img src="assets/images/solar-farm-clouds.jpg"
        alt="Large solar panel field generating clean renewable energy"
        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:0.22;"
        fetchpriority="high" />
@@ -135,7 +136,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
     <div class="max-w-3xl">
       <!-- Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold mb-6" style="background:rgba(249,115,22,0.15);color:#f97316;border:1px solid rgba(249,115,22,0.25);" data-aos="fade-down">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold mb-6" style="background:rgba(249,115,22,0.15);color:var(--primary);border:1px solid rgba(249,115,22,0.25);" data-aos="fade-down">
         <span>Certified Solar PV Installer · 15+ Countries</span>
       </div>
 
@@ -290,7 +291,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Text side -->
       <div data-aos="fade-right">
-        <div class="section-tag" style="background:rgba(249,115,22,0.15);color:#f97316;">Solar Savings Calculator</div>
+        <div class="section-tag" style="background:rgba(249,115,22,0.15);color:var(--primary);">Solar Savings Calculator</div>
         <h2 id="savings-heading" class="section-title mt-3" style="color:white;">See How Much You Could Save with Solar</h2>
         <p class="mb-8 leading-relaxed" style="color:rgba(255,255,255,0.72);">Our free interactive calculator uses real peak sun hours for your country and current electricity tariffs to estimate your system size, annual savings, payback period, and 25-year return on investment.</p>
         <a href="pages/calculator.html" class="btn-primary text-base px-6 py-3">
@@ -339,7 +340,7 @@
       <!-- Project 1 -->
       <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="0">
         <div style="height:180px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80"
+          <img src="assets/images/solar-rooftop-commercial.jpg"
                alt="50 kWp commercial rooftop solar installation on industrial building in Lagos, Nigeria"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;" />
@@ -357,7 +358,7 @@
       <!-- Project 2 -->
       <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="80">
         <div style="height:180px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80"
+          <img src="assets/images/solar-ground-mount-aerial.jpg"
                alt="80 kWp rural solar microgrid installation in Ashanti Region, Ghana"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;" />
@@ -375,7 +376,7 @@
       <!-- Project 3 -->
       <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="160">
         <div style="height:180px;overflow:hidden;">
-          <img src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?w=600&q=80"
+          <img src="assets/images/solar-panel-closeup.jpg"
                alt="10 kWp hybrid residential rooftop solar system in Cape Town, South Africa"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;" />
@@ -533,14 +534,14 @@
       <p class="text-sm font-semibold uppercase tracking-widest" style="color:var(--text-muted);">Trusted Brands &amp; Certifications</p>
     </div>
     <div class="grid grid-cols-3 sm:grid-cols-6 gap-4" data-aos="fade-up" data-aos-delay="50">
-      <div class="partner-box">SMA Inverters</div>
-      <div class="partner-box">Huawei Solar</div>
-      <div class="partner-box">JA Solar Panels</div>
-      <div class="partner-box">Victron Energy</div>
-      <div class="partner-box">NABCEP Cert.</div>
+      <div class="partner-box">Tier-1 Modules</div>
+      <div class="partner-box">Hybrid Inverters</div>
+      <div class="partner-box">LiFePO&#8324; Storage</div>
+      <div class="partner-box">Monitoring Platform</div>
+      <div class="partner-box">IEC 60364</div>
       <div class="partner-box">IEC 62446</div>
     </div>
-    <p class="text-center text-xs mt-4" style="color:var(--text-muted);">Replace placeholder boxes with actual partner logos in the assets/images folder.</p>
+    <p class="text-center text-xs mt-4" style="color:var(--text-muted);">Equipment tiers and standards shown are representative of the systems we specify.</p>
   </div>
 </section>
 
@@ -556,9 +557,9 @@
           <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
-          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:#f97316;">Global</span></span>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:var(--primary);">Global</span></span>
         </div>
-        <p class="text-sm leading-relaxed mb-5" style="color:#64748b;">Certified solar PV installations for residential, commercial, and off-grid clients across Africa, Europe, the Middle East, and beyond.</p>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--text-muted);">Certified solar PV installations for residential, commercial, and off-grid clients across Africa, Europe, the Middle East, and beyond.</p>
         <!-- Social Icons -->
         <div class="flex gap-2">
           <a href="#" class="footer-social-btn" aria-label="LinkedIn">
@@ -607,23 +608,23 @@
         <ul class="space-y-3 text-sm">
           <li class="flex gap-2 items-start">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <a href="mailto:hello@solarproglobal.com" style="color:#64748b;">hello@solarproglobal.com</a>
+            <a href="mailto:hello@example.com" style="color:var(--text-muted);">hello@example.com</a>
           </li>
           <li class="flex gap-2 items-start">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            <a href="tel:+2348000000000" style="color:#64748b;">+234 800 0000 000</a>
+            <a href="tel:+2348000000000" style="color:var(--text-muted);">+234 800 0000 000</a>
           </li>
           <li class="flex gap-2 items-start">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span style="color:#64748b;">Lagos, Nigeria · Global Reach</span>
+            <span style="color:var(--text-muted);">Lagos, Nigeria · Global Reach</span>
           </li>
         </ul>
       </div>
     </div>
 
     <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm" style="color:#475569;">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
-      <p class="text-xs" style="color:#334155;">Powered by certified solar engineering expertise</p>
+      <p class="text-sm" style="color:var(--text-muted);">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:var(--text-muted);">Powered by certified solar engineering expertise</p>
     </div>
   </div>
 </footer>
@@ -634,7 +635,7 @@
 <div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
   <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">
     We use cookies to enhance your browsing experience and analyse site traffic. By continuing, you accept our use of cookies.
-    <a href="#" style="color:#f97316;text-decoration:underline;">Learn more</a>
+    <a href="#" style="color:var(--primary);text-decoration:underline;">Learn more</a>
   </p>
   <div class="flex gap-2 flex-shrink-0">
     <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
@@ -650,7 +651,7 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  SCRIPTS                                                    -->
 <!-- ═══════════════════════════════════════════════════════════ -->
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="vendor/aos/aos.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/main.js"></script>
 

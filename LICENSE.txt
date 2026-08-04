@@ -1,0 +1,94 @@
+SolarPro Global — Website Template
+Single Use License
+
+Copyright (c) 2026 SolarPro Global. All rights reserved.
+
+--------------------------------------------------------------------
+1. WHAT YOU MAY DO
+--------------------------------------------------------------------
+
+This template is licensed for use in ONE (1) end product by the
+individual or company that purchased it.
+
+You may:
+
+  - Use the template for one website, whether your own or a single
+    client's.
+  - Modify the HTML, CSS, JavaScript, colours, content and layout
+    without restriction.
+  - Use the resulting website commercially, including charging a
+    client for building it.
+  - Keep using it indefinitely. This licence does not expire.
+
+--------------------------------------------------------------------
+2. WHAT YOU MAY NOT DO
+--------------------------------------------------------------------
+
+You may not:
+
+  - Resell, redistribute, sublicense or give away the template files,
+    modified or unmodified.
+  - Use the template for more than one end product without buying an
+    additional licence for each.
+  - Include the template, or a derivative of it, in a product that is
+    itself sold or distributed to multiple users (a theme, a builder,
+    a starter kit, a template marketplace listing).
+  - Claim authorship of the template itself.
+
+One end product means one website at one domain. If you build sites
+for several clients, each client site needs its own licence.
+
+--------------------------------------------------------------------
+3. THIRD-PARTY ASSETS
+--------------------------------------------------------------------
+
+Components bundled with this template keep their own licences, which
+permit the use made of them here:
+
+  Tailwind CSS  - MIT License          - tailwindcss.com
+  AOS           - MIT License          - michalsnik.github.io/aos
+  Outfit        - SIL Open Font 1.1    - fonts.google.com/specimen/Outfit
+  Space Grotesk - SIL Open Font 1.1    - fonts.google.com/specimen/Space+Grotesk
+  Photography   - Unsplash License     - unsplash.com/license
+
+The Unsplash License permits commercial use without attribution. The
+bundled photographs are DEMO CONTENT: they illustrate the layout and
+are not warranted for your use. Replace them with your own project
+photography before launch.
+
+--------------------------------------------------------------------
+4. DEMO CONTENT IS NOT REAL
+--------------------------------------------------------------------
+
+All company details, testimonials, client names, case studies,
+project figures, certifications and contact details in this template
+are FICTIONAL SAMPLE CONTENT written to demonstrate the layout.
+
+You must replace them with your own truthful information before
+publishing. Publishing the sample testimonials or certifications as
+though they were your own would be a misrepresentation, and is not
+permitted under this licence.
+
+--------------------------------------------------------------------
+5. NO WARRANTY
+--------------------------------------------------------------------
+
+THE TEMPLATE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE USE OF THE
+TEMPLATE.
+
+The included solar calculator produces INDICATIVE ESTIMATES ONLY.
+It is not an engineering tool. Any system design must be validated by
+a qualified solar engineer or electrician against local electrical
+codes before installation. Neither the author nor the licensee should
+present its output as a professional system design.
+
+--------------------------------------------------------------------
+6. EXTENDED AND MULTI-USE LICENCES
+--------------------------------------------------------------------
+
+For multi-site, agency or extended licences, contact the author
+through the marketplace listing you purchased from.

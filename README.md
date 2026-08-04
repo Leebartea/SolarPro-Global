@@ -118,11 +118,11 @@ Find and replace across all 6 HTML files:
 
 | Find | Replace With |
 |------|-------------|
-| `hello@solarproglobal.com` | Your email address |
+| `hello@example.com` | Your email address |
 | `+234 800 0000 000` | Your phone number |
 | `2348000000000` | Your WhatsApp number (no `+`, no spaces) |
 | `14 Solar Drive, Victoria Island, Lagos` | Your address |
-| `solarproglobal.com` | Your live domain (for canonical URLs) |
+| `www.example.com` | Your live domain (for canonical URLs) |
 
 ### 4. Calculator Country Data
 Edit `COUNTRY_DATA` in `js/calculator.js` to update tariffs or add countries:
@@ -276,6 +276,16 @@ Full buyer documentation is at `docs/documentation.html` — open it in your bro
 - **Solar Irradiance Data** — [NASA POWER Project](https://power.larc.nasa.gov) — Public domain
 
 ---
+
+## Demo Content Is Sample Content
+
+Every company detail, testimonial, client name, case study, project figure,
+certification badge and contact detail in this template is **fictional sample
+content**, written to show how the layout behaves with realistic copy. The
+bundled photographs are stock images that illustrate the design.
+
+Replace all of it with your own truthful information before you publish. See
+`LICENSE.txt` section 4.
 
 ## License
 

@@ -2,3 +2,9 @@ node_modules/
 proof-*.png
 .DS_Store
 .claude/
+dist/
+# build + release artefacts (regenerate with npm run build / npm run package)
+*.zip
+# css/tailwind.min.css IS committed on purpose: the template's promise is
+# "no build step — open index.html", so a fresh clone must render correctly.
+

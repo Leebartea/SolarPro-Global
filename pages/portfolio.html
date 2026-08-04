@@ -7,7 +7,7 @@
   <meta name="description" content="Browse SolarPro Global's portfolio of completed solar PV projects — residential rooftops, commercial installations, and off-grid systems across Nigeria, Ghana, South Africa, UAE, Kenya, and more." />
   <meta name="robots" content="index, follow" />
   <!-- Canonical URL — replace with your live domain -->
-  <link rel="canonical" href="https://solarproglobal.com/pages/portfolio.html" />
+  <link rel="canonical" href="https://www.example.com/pages/portfolio.html" />
   <meta property="og:title" content="Solar Portfolio | SolarPro Global" />
   <meta property="og:description" content="9 featured projects spanning residential, commercial, and off-grid solar installations across Africa, the Middle East, and Europe." />
   <meta property="og:image" content="../assets/images/og-cover.jpg" />
@@ -18,9 +18,10 @@
       if (d) document.documentElement.classList.add('dark');
     })();
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="../vendor/aos/aos.css" />
   <link rel="stylesheet" href="../css/custom.css" />
+  <!-- Tailwind utilities load last so they win over component styles -->
+  <link rel="stylesheet" href="../css/tailwind.min.css" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
 </head>
 <body>
@@ -35,7 +36,7 @@
         </div>
         <span style="font-weight:800;font-size:1.05rem;color:var(--text);">SolarPro <span style="color:var(--primary);">Global</span></span>
       </a>
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-1">
         <a href="../index.html"   class="nav-link">Home</a>
         <a href="services.html"   class="nav-link">Services</a>
         <a href="calculator.html" class="nav-link">Calculator</a>
@@ -44,7 +45,7 @@
         <a href="contact.html"    class="nav-link">Contact</a>
       </div>
       <div class="flex items-center gap-2">
-        <div class="currency-dropdown hidden md:block">
+        <div class="currency-dropdown hidden lg:block">
           <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
             <span class="currency-label">🇺🇸 USD</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -57,8 +58,8 @@
           </div>
         </div>
         <button id="theme-toggle" aria-label="Toggle dark mode"></button>
-        <a href="contact.html" class="btn-primary hidden md:inline-flex text-sm py-2 px-4">Get Free Quote</a>
-        <button id="hamburger-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
+        <a href="contact.html" class="btn-primary hidden lg:inline-flex text-sm py-2 px-4">Get Free Quote</a>
+        <button id="hamburger-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
@@ -66,7 +67,7 @@
       </div>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden">
+  <div id="mobile-menu" class="hidden lg:hidden">
     <a href="../index.html"   class="nav-link">Home</a>
     <a href="services.html"   class="nav-link">Services</a>
     <a href="calculator.html" class="nav-link">Calculator</a>
@@ -81,7 +82,7 @@
 <section class="page-hero" aria-label="Portfolio hero">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="max-w-2xl" data-aos="fade-up">
-      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:#f97316;">Our Work</div>
+      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:var(--primary);">Our Work</div>
       <h1 class="text-white font-black mt-3 mb-4" style="font-size:clamp(2rem,4vw,3rem);">Solar Projects<br />Around the World</h1>
       <p style="color:rgba(255,255,255,0.72);font-size:1.05rem;line-height:1.65;">From 1.5 kWp residential rooftops in Lagos to 250 kWp commercial installations in South Africa — every project is commissioned to the highest international standards and backed by our performance monitoring system.</p>
     </div>
@@ -129,7 +130,7 @@
            data-type-label="Commercial"
            data-size="50 kWp"
            data-location="🇳🇬 Lagos, Nigeria"
-           data-description="A 50 kWp grid-tied rooftop installation on a manufacturing plant's flat concrete roof in Ikeja, Lagos. The system uses 120 × 415W JA Solar monocrystalline modules with a Huawei SUN2000 50KTL-M3 inverter. Designed to offset 70% of daytime production-shift electricity demand and eliminate all NERC Band A peak charges between 9AM and 5PM."
+           data-description="A 50 kWp grid-tied rooftop installation on a manufacturing plant's flat concrete roof in Ikeja, Lagos. The system uses 120 × 415W tier-1 monocrystalline modules with a 50 kW three-phase string inverter. Designed to offset 70% of daytime production-shift electricity demand and eliminate all NERC Band A peak charges between 9AM and 5PM."
            data-installed="March 2024"
            data-panels="120 panels"
            data-savings="₦7.2M/yr"
@@ -141,7 +142,7 @@
            aria-label="View details: 50 kWp Commercial Rooftop Lagos"
            data-aos="fade-up" data-aos-delay="0">
         <div class="project-image" style="background:#1e3a5f;">
-          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80"
+          <img src="../assets/images/solar-rooftop-commercial.jpg"
                alt="50 kWp commercial rooftop solar installation on manufacturing plant in Lagos"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -157,7 +158,7 @@
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇳🇬 Lagos, Nigeria</span>
           </div>
           <h3 class="font-bold text-base mb-1" style="color:var(--text);">50 kWp Commercial Rooftop — Lagos</h3>
-          <p class="text-sm mb-3" style="color:var(--text-muted);">Grid-tied manufacturing plant installation. 120 × 415W JA Solar panels, Huawei inverter. 70% daytime demand offset.</p>
+          <p class="text-sm mb-3" style="color:var(--text-muted);">Grid-tied manufacturing plant installation. 120 × 415W tier-1 panels, 50 kW string inverter. 70% daytime demand offset.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">50 kWp</span>
             <span>March 2024</span>
@@ -184,7 +185,7 @@
            aria-label="View details: 80 kWp Rural Microgrid Ghana"
            data-aos="fade-up" data-aos-delay="80">
         <div class="project-image" style="background:#0f172a;">
-          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80"
+          <img src="../assets/images/solar-ground-mount-aerial.jpg"
                alt="80 kWp rural solar microgrid powering 30 homes in Ashanti Region, Ghana"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -215,7 +216,7 @@
            data-title="10 kWp Hybrid Home System — Cape Town, South Africa"
            data-size="10 kWp"
            data-location="🇿🇦 Cape Town, South Africa"
-           data-description="A 10 kWp hybrid rooftop system with 20 kWh Pylontech lithium battery storage, designed specifically to provide load-shedding protection for a high-consumption residential property in Constantia, Cape Town. The Victron MultiPlus inverter provides seamless 20ms switchover from grid to battery during loadshedding events. Grid dependence reduced by 92%, with full energy independence during Eskom Stage 6 load-shedding."
+           data-description="A 10 kWp hybrid rooftop system with 20 kWh rack-mounted lithium battery storage, designed specifically to provide load-shedding protection for a high-consumption residential property in Constantia, Cape Town. The hybrid inverter provides seamless 20ms switchover from grid to battery during load-shedding events. Grid dependence reduced by 92%, with full energy independence during Eskom Stage 6 load-shedding."
            data-installed="January 2024"
            data-panels="24 panels"
            data-savings="R58,000/yr"
@@ -227,7 +228,7 @@
            aria-label="View details: 10 kWp Hybrid Cape Town"
            data-aos="fade-up" data-aos-delay="160">
         <div class="project-image" style="background:#1e3a5f;">
-          <img src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?w=600&q=80"
+          <img src="../assets/images/solar-panel-closeup.jpg"
                alt="10 kWp hybrid residential solar and battery system in Cape Town, South Africa"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -243,7 +244,7 @@
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇿🇦 Cape Town, South Africa</span>
           </div>
           <h3 class="font-bold text-base mb-1" style="color:var(--text);">10 kWp Hybrid Home — Cape Town</h3>
-          <p class="text-sm mb-3" style="color:var(--text-muted);">20 kWh Pylontech battery storage. Load-shedding protection, 92% grid independence, seamless 20ms switchover.</p>
+          <p class="text-sm mb-3" style="color:var(--text-muted);">20 kWh rack-mounted battery storage. Load-shedding protection, 92% grid independence, seamless 20ms switchover.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">10 kWp</span>
             <span>January 2024</span>
@@ -258,7 +259,7 @@
            data-title="250 kWp Office Complex — Nairobi Business District, Kenya"
            data-size="250 kWp"
            data-location="🇰🇪 Nairobi, Kenya"
-           data-description="A 250 kWp rooftop solar installation across three interconnected office buildings in Nairobi's Upper Hill business district. The project used 610 × 410W bifacial panels on an aluminium racking system with optimised inter-row spacing for the equatorial sun angle. Two ABB PVS-175 central inverters were installed alongside a Schneider EcoStruxure monitoring system providing real-time generation data to the building management system."
+           data-description="A 250 kWp rooftop solar installation across three interconnected office buildings in Nairobi's Upper Hill business district. The project used 610 × 410W bifacial panels on an aluminium racking system with optimised inter-row spacing for the equatorial sun angle. Two 175 kW central inverters were installed alongside a building-management monitoring system providing real-time generation data to the building management system."
            data-installed="June 2023"
            data-panels="610 panels"
            data-savings="KSh 14.8M/yr"
@@ -270,7 +271,7 @@
            aria-label="View details: 250 kWp Office Complex Nairobi"
            data-aos="fade-up" data-aos-delay="0">
         <div class="project-image" style="background:#0f172a;">
-          <img src="https://images.unsplash.com/photo-1548348384-15b2a6a4f3c6?w=600&q=80"
+          <img src="../assets/images/solar-farm-blue-sky.jpg"
                alt="250 kWp rooftop solar installation across Nairobi office complex, Kenya"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -286,7 +287,7 @@
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇰🇪 Nairobi, Kenya</span>
           </div>
           <h3 class="font-bold text-base mb-1" style="color:var(--text);">250 kWp Office Complex — Nairobi</h3>
-          <p class="text-sm mb-3" style="color:var(--text-muted);">610 bifacial panels across three buildings. ABB central inverters, Schneider EcoStruxure BMS integration.</p>
+          <p class="text-sm mb-3" style="color:var(--text-muted);">610 bifacial panels across three buildings. Central inverters with building-management system integration.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">250 kWp</span>
             <span>June 2023</span>
@@ -313,7 +314,7 @@
            aria-label="View details: 20 kWp Hybrid Villa Dubai"
            data-aos="fade-up" data-aos-delay="80">
         <div class="project-image" style="background:#1e3a5f;">
-          <img src="https://images.unsplash.com/photo-1543966888-7c1dc482a810?w=600&q=80"
+          <img src="../assets/images/solar-array-rows.jpg"
                alt="20 kWp hybrid solar system with battery storage on luxury villa in Dubai, UAE"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -356,7 +357,7 @@
            aria-label="View details: Telecom Tower Kano Nigeria"
            data-aos="fade-up" data-aos-delay="160">
         <div class="project-image" style="background:#0f172a;">
-          <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=600&q=80"
+          <img src="../assets/images/solar-farm-clouds.jpg"
                alt="15 kWp off-grid solar system powering a telecom base station in rural Kano, Nigeria"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -399,7 +400,7 @@
            aria-label="View details: 25 kWp Safari Lodge Maasai Mara"
            data-aos="fade-up" data-aos-delay="0">
         <div class="project-image" style="background:#1e3a5f;">
-          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80"
+          <img src="../assets/images/solar-ground-mount-aerial.jpg"
                alt="25 kWp off-grid solar system powering a safari lodge in the Maasai Mara, Kenya"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -442,7 +443,7 @@
            aria-label="View details: 5 kWp Grid-Tied Bangalore"
            data-aos="fade-up" data-aos-delay="80">
         <div class="project-image" style="background:#0f172a;">
-          <img src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=600&q=80"
+          <img src="../assets/images/solar-rooftop-commercial.jpg"
                alt="5 kWp grid-tied residential rooftop solar system in Bangalore, India"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -485,7 +486,7 @@
            aria-label="View details: 120 kWp Hospital Abuja"
            data-aos="fade-up" data-aos-delay="160">
         <div class="project-image" style="background:#1e3a5f;">
-          <img src="https://images.unsplash.com/photo-1595437193398-1c9b77c93e17?w=600&q=80"
+          <img src="../assets/images/solar-farm-blue-sky.jpg"
                alt="120 kWp hybrid solar and battery system for a private hospital in Abuja, Nigeria"
                loading="lazy"
                style="width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;" />
@@ -534,9 +535,9 @@
           <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
-          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:#f97316;">Global</span></span>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:var(--primary);">Global</span></span>
         </div>
-        <p class="text-sm leading-relaxed" style="color:#64748b;">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
       </div>
       <div>
         <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Quick Links</h3>
@@ -561,15 +562,15 @@
       <div>
         <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Contact</h3>
         <ul class="space-y-3 text-sm">
-          <li><a href="mailto:hello@solarproglobal.com" style="color:#64748b;">hello@solarproglobal.com</a></li>
-          <li><a href="tel:+2348000000000" style="color:#64748b;">+234 800 0000 000</a></li>
+          <li><a href="mailto:hello@example.com" style="color:var(--text-muted);">hello@example.com</a></li>
+          <li><a href="tel:+2348000000000" style="color:var(--text-muted);">+234 800 0000 000</a></li>
           <li><a href="https://wa.me/2348000000000" style="color:#25d366;" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
         </ul>
       </div>
     </div>
     <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm" style="color:#475569;">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
-      <p class="text-xs" style="color:#334155;">Certified Solar PV Engineering</p>
+      <p class="text-sm" style="color:var(--text-muted);">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:var(--text-muted);">Certified Solar PV Engineering</p>
     </div>
   </div>
 </footer>
@@ -586,7 +587,7 @@
 
 <!-- Cookie Banner -->
 <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
-  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:#f97316;text-decoration:underline;">Learn more</a></p>
+  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:var(--primary);text-decoration:underline;">Learn more</a></p>
   <div class="flex gap-2">
     <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
     <button id="cookie-accept" class="btn-primary text-sm py-2 px-4">Accept All</button>
@@ -597,7 +598,7 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="../vendor/aos/aos.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/main.js"></script>
 

@@ -1,0 +1,16 @@
+/* Self-hosted webfonts.
+   Google Fonts is a third-party runtime fetch: it delays first paint, and on a
+   network that blocks the host the whole template falls back to a system font.
+   Latin subset only — the template shows no other script.
+   Both families are licensed under the SIL Open Font License 1.1. */
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;font-display:swap;src:url('../assets/fonts/outfit-300.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/outfit-400.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;src:url('../assets/fonts/outfit-500.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:600;font-display:swap;src:url('../assets/fonts/outfit-600.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:700;font-display:swap;src:url('../assets/fonts/outfit-700.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:800;font-display:swap;src:url('../assets/fonts/outfit-800.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:900;font-display:swap;src:url('../assets/fonts/outfit-900.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/space-grotesk-400.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url('../assets/fonts/space-grotesk-500.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:600;font-display:swap;src:url('../assets/fonts/space-grotesk-600.woff2') format('woff2');}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url('../assets/fonts/space-grotesk-700.woff2') format('woff2');}

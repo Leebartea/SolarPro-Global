@@ -7,7 +7,7 @@
   <meta name="description" content="Get in touch with SolarPro Global for a free solar site assessment and project quote. Available by email, phone, or WhatsApp. Response within 48 hours." />
   <meta name="robots" content="index, follow" />
   <!-- Canonical URL — replace with your live domain -->
-  <link rel="canonical" href="https://solarproglobal.com/pages/contact.html" />
+  <link rel="canonical" href="https://www.example.com/pages/contact.html" />
   <meta property="og:title" content="Contact SolarPro Global | Free Solar Quote" />
   <meta property="og:description" content="Contact our certified solar engineers for a free assessment and project proposal. We respond within 48 hours." />
   <meta property="og:image" content="../assets/images/og-cover.jpg" />
@@ -18,9 +18,10 @@
       if (d) document.documentElement.classList.add('dark');
     })();
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="../vendor/aos/aos.css" />
   <link rel="stylesheet" href="../css/custom.css" />
+  <!-- Tailwind utilities load last so they win over component styles -->
+  <link rel="stylesheet" href="../css/tailwind.min.css" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
 </head>
 <body>
@@ -35,7 +36,7 @@
         </div>
         <span style="font-weight:800;font-size:1.05rem;color:var(--text);">SolarPro <span style="color:var(--primary);">Global</span></span>
       </a>
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-1">
         <a href="../index.html"   class="nav-link">Home</a>
         <a href="services.html"   class="nav-link">Services</a>
         <a href="calculator.html" class="nav-link">Calculator</a>
@@ -44,7 +45,7 @@
         <a href="contact.html"    class="nav-link active">Contact</a>
       </div>
       <div class="flex items-center gap-2">
-        <div class="currency-dropdown hidden md:block">
+        <div class="currency-dropdown hidden lg:block">
           <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
             <span class="currency-label">🇺🇸 USD</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -57,8 +58,8 @@
           </div>
         </div>
         <button id="theme-toggle" aria-label="Toggle dark mode"></button>
-        <button class="btn-primary hidden md:inline-flex text-sm py-2 px-4" style="cursor:default;">Get Free Quote</button>
-        <button id="hamburger-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
+        <button class="btn-primary hidden lg:inline-flex text-sm py-2 px-4" style="cursor:default;">Get Free Quote</button>
+        <button id="hamburger-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
@@ -66,7 +67,7 @@
       </div>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden">
+  <div id="mobile-menu" class="hidden lg:hidden">
     <a href="../index.html"   class="nav-link">Home</a>
     <a href="services.html"   class="nav-link">Services</a>
     <a href="calculator.html" class="nav-link">Calculator</a>
@@ -81,7 +82,7 @@
 <section class="page-hero" aria-label="Contact page hero">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="max-w-2xl" data-aos="fade-up">
-      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:#f97316;">Get In Touch</div>
+      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:var(--primary);">Get In Touch</div>
       <h1 class="text-white font-black mt-3 mb-4" style="font-size:clamp(2rem,4vw,3rem);">Let's Talk Solar</h1>
       <p style="color:rgba(255,255,255,0.72);font-size:1.05rem;line-height:1.65;">Whether you're ready to commission a project or just exploring your options — our engineering team is here to help. Send us a message and we'll respond with a tailored assessment within 48 hours.</p>
     </div>
@@ -207,7 +208,7 @@
               </div>
               <div>
                 <div class="font-semibold text-sm mb-0.5" style="color:var(--text);">Email</div>
-                <a href="mailto:hello@solarproglobal.com" class="text-sm" style="color:var(--primary);">hello@solarproglobal.com</a>
+                <a href="mailto:hello@example.com" class="text-sm" style="color:var(--primary);">hello@example.com</a>
               </div>
             </div>
 
@@ -374,9 +375,9 @@
           <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
-          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:#f97316;">Global</span></span>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:var(--primary);">Global</span></span>
         </div>
-        <p class="text-sm leading-relaxed" style="color:#64748b;">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
       </div>
       <div>
         <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Quick Links</h3>
@@ -401,21 +402,21 @@
       <div>
         <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Contact</h3>
         <ul class="space-y-3 text-sm">
-          <li><a href="mailto:hello@solarproglobal.com" style="color:#64748b;">hello@solarproglobal.com</a></li>
-          <li><a href="tel:+2348000000000" style="color:#64748b;">+234 800 0000 000</a></li>
+          <li><a href="mailto:hello@example.com" style="color:var(--text-muted);">hello@example.com</a></li>
+          <li><a href="tel:+2348000000000" style="color:var(--text-muted);">+234 800 0000 000</a></li>
           <li><a href="https://wa.me/2348000000000" style="color:#25d366;" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
         </ul>
       </div>
     </div>
     <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm" style="color:#475569;">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
-      <p class="text-xs" style="color:#334155;">Certified Solar PV Engineering</p>
+      <p class="text-sm" style="color:var(--text-muted);">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:var(--text-muted);">Certified Solar PV Engineering</p>
     </div>
   </div>
 </footer>
 
 <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
-  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:#f97316;text-decoration:underline;">Learn more</a></p>
+  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:var(--primary);text-decoration:underline;">Learn more</a></p>
   <div class="flex gap-2">
     <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
     <button id="cookie-accept" class="btn-primary text-sm py-2 px-4">Accept All</button>
@@ -426,7 +427,7 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="../vendor/aos/aos.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/main.js"></script>
 </body>

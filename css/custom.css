@@ -8,8 +8,8 @@
    dark/light theming via html.dark / html.light classes.
    ================================================================ */
 
-/* --- Google Fonts -------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* --- Webfonts (self-hosted — see css/fonts.css) --------------- */
+@import url('fonts.css');
 
 /* --- CSS Variables ------------------------------------------- */
 :root {
@@ -28,6 +28,41 @@
   --ease:       cubic-bezier(0.4,0,0.2,1);
   --t:          0.3s cubic-bezier(0.4,0,0.2,1);
   --r:          16px;
+}
+
+/* --- Semantic theme tokens ------------------------------------
+   The markup styles itself with var(--text), var(--bg), var(--card-bg)
+   and friends, while the palette above uses a different vocabulary
+   (--orange, --mut-d, --card-d). The two were never connected, so every
+   `style="color:var(--text-muted)"` in the six pages resolved to nothing
+   and the element silently fell back to inherited colour. These tokens
+   close that gap and carry correct values per theme, which is also what
+   keeps text contrast passing in both modes.
+   ------------------------------------------------------------- */
+:root{
+  --primary:   #f97316;
+  --secondary: #1e3a5f;
+  --radius:    16px;
+}
+html.dark{
+  --success:    #4ade80;   /* 8.4:1 on the dark card */
+  --primary:    #fb923c;   /* lighter orange: 6.1:1 on the dark card */
+  --bg:         #0a0f1e;
+  --bg-alt:     #0f172a;
+  --card-bg:    #1e293b;
+  --text:       #e2e8f0;
+  --text-muted: #94a3b8;
+  --border:     rgba(255,255,255,0.08);
+}
+html.light{
+  --success:    #15803d;   /* 4.9:1 on white */
+  --primary:    #c2410c;   /* darker orange: 4.6:1 on white, AA for body text */
+  --bg:         #f8fafc;
+  --bg-alt:     #f1f5f9;
+  --card-bg:    #ffffff;
+  --text:       #1e293b;
+  --text-muted: #5b6a7d;   /* 5.0:1 on white — #64748b measured 4.34:1 */
+  --border:     rgba(0,0,0,0.08);
 }
 
 /* --- Reset ---------------------------------------------------- */
@@ -71,8 +106,14 @@ html.light #navbar{background:rgba(248,250,252,0.92);border-bottom:1px solid var
 }
 
 /* --- Buttons ------------------------------------------------- */
-.btn{
-  display:inline-flex;align-items:center;gap:.5rem;
+/* The base layout applies to every button variant on its own, so markup can
+   use `btn-primary` alone without also needing the `btn` base class. */
+.btn,
+.btn-primary,
+.btn-outline,
+.btn-outline-white,
+.btn-wa{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
   padding:.75rem 1.75rem;border-radius:50px;
   font-family:'Outfit',sans-serif;font-weight:600;font-size:.95rem;
   border:none;cursor:pointer;text-decoration:none;
@@ -95,6 +136,12 @@ html.light #navbar{background:rgba(248,250,252,0.92);border-bottom:1px solid var
   box-shadow:0 4px 20px rgba(37,211,102,.3);
 }
 .btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.45);}
+/* Outline variant for use over dark photographic hero backgrounds. */
+.btn-outline-white{
+  background:transparent;color:#fff;
+  border:2px solid rgba(255,255,255,.55);
+}
+.btn-outline-white:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px);}
 
 /* --- Cards --------------------------------------------------- */
 .card{border-radius:var(--r);transition:all var(--t);position:relative;overflow:hidden;}
@@ -105,13 +152,18 @@ html.dark  .card:hover{border-color:rgba(249,115,22,.3);box-shadow:0 12px 40px r
 html.light .card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);}
 
 /* --- Section tag -------------------------------------------- */
+/* `.section-tag` is the name used throughout the markup; `.stag` is kept as an
+   alias so any custom pages written against the older name keep working. */
+.section-tag,
 .stag{
   display:inline-flex;align-items:center;gap:.4rem;
   padding:.3rem 1rem;border-radius:50px;
   font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
 }
+html.dark  .section-tag,
 html.dark  .stag{background:rgba(249,115,22,.12);color:var(--orange);border:1px solid rgba(249,115,22,.2);}
-html.light .stag{background:rgba(249,115,22,.08);color:#ea580c;border:1px solid rgba(249,115,22,.15);}
+html.light .section-tag,
+html.light .stag{background:rgba(249,115,22,.08);color:#c2410c;border:1px solid rgba(249,115,22,.15);}
 
 /* --- Hero ---------------------------------------------------- */
 .hero-wrap{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
@@ -225,7 +277,7 @@ html.light .pb-track{background:rgba(0,0,0,.08);}
   cursor:pointer;border:none;font-family:'Outfit',sans-serif;transition:all var(--t);
 }
 html.dark  .filter-btn{background:rgba(255,255,255,.06);color:#94a3b8;}
-html.light .filter-btn{background:#f1f5f9;color:#64748b;}
+html.light .filter-btn{background:#f1f5f9;color:var(--text-muted);}
 .filter-btn.active,.filter-btn:hover{background:var(--orange);color:#fff;}
 
 /* --- Lightbox ----------------------------------------------- */
@@ -474,3 +526,496 @@ html.light #cookie-banner{background:#1e293b;border:1px solid rgba(249,115,22,.3
   color:#fff !important;
 }
 #cookie-banner p a:hover{color:var(--orange) !important;}
+
+/* ================================================================
+   COMPONENT LAYER
+   ----------------------------------------------------------------
+   The six pages were authored against descriptive class names
+   (.nav-link, .section-title, .accordion-item) while the stylesheet
+   above was authored against abbreviated ones (.nav-active, .stag,
+   .faq-item). The two were never reconciled, so 70 classes used by
+   the markup resolved to nothing and those elements rendered
+   unstyled. Nothing errors when this happens — it is only visible by
+   looking at the page, which is why it survived to v1.0.
+
+   This layer defines the names the markup actually uses, reusing the
+   design tokens and visual language established above. The older
+   abbreviated selectors are left in place so any custom page written
+   against them keeps working.
+
+   `node guardrails/run.js css-contract` fails the build if markup
+   ever again references a class no stylesheet defines.
+   ================================================================ */
+
+/* --- Navbar --------------------------------------------------- */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:all var(--t);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.navbar.scrolled{box-shadow:0 2px 30px rgba(0,0,0,0.25);}
+html.dark  .navbar{background:rgba(10,15,30,0.92);border-bottom:1px solid var(--bd);}
+html.light .navbar{background:rgba(248,250,252,0.92);border-bottom:1px solid var(--bl);}
+/* The fixed navbar is 4rem tall; offset the page so content clears it. */
+body{padding-top:4rem;}
+
+.nav-link{
+  position:relative;
+  font-size:.92rem;font-weight:500;
+  text-decoration:none;
+  padding:.35rem 0;
+  transition:color var(--t);
+  white-space:nowrap;
+}
+html.dark  .nav-link{color:#cbd5e1;}
+html.light .nav-link{color:#475569;}
+.nav-link:hover{color:var(--orange);}
+.nav-link::after{
+  content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;
+  background:linear-gradient(90deg,var(--orange),var(--amber));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform var(--t);
+}
+.nav-link:hover::after,
+.nav-link.active::after{transform:scaleX(1);}
+.nav-link.active{color:var(--orange);font-weight:600;}
+
+/* --- Currency switcher ---------------------------------------- */
+.currency-dropdown{position:relative;display:inline-block;}
+.currency-trigger{
+  display:inline-flex;align-items:center;gap:.4rem;
+  border-radius:50px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;
+  transition:all var(--t);
+}
+html.dark  .currency-trigger{background:rgba(255,255,255,.06);color:#e2e8f0;border:1px solid var(--bd);}
+html.light .currency-trigger{background:#fff;color:#1e293b;border:1px solid var(--bl);}
+.currency-trigger:hover{border-color:var(--orange);color:var(--orange);}
+.currency-label{font-weight:700;letter-spacing:.02em;}
+
+.currency-dropdown-menu{
+  position:absolute;right:0;top:calc(100% + .5rem);z-index:1100;
+  min-width:210px;padding:.35rem;
+  border-radius:12px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity var(--t),transform var(--t),visibility var(--t);
+}
+html.dark  .currency-dropdown-menu{background:#1e293b;border:1px solid var(--bd);box-shadow:0 20px 50px rgba(0,0,0,.45);}
+html.light .currency-dropdown-menu{background:#fff;border:1px solid var(--bl);box-shadow:0 20px 50px rgba(0,0,0,.14);}
+.currency-dropdown.open .currency-dropdown-menu,
+.currency-dropdown-menu.open{opacity:1;visibility:visible;transform:translateY(0);}
+
+.currency-option{
+  display:flex;align-items:center;gap:.5rem;width:100%;
+  padding:.5rem .7rem;border:none;border-radius:8px;
+  background:none;cursor:pointer;text-align:left;
+  font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:500;
+  transition:all var(--t);
+}
+html.dark  .currency-option{color:#cbd5e1;}
+html.light .currency-option{color:#334155;}
+.currency-option:hover{background:rgba(249,115,22,.12);color:var(--orange);}
+.currency-option.active{background:rgba(249,115,22,.16);color:var(--orange);font-weight:700;}
+
+/* --- Section headings ----------------------------------------- */
+.section-title{
+  font-size:clamp(1.75rem,3.2vw,2.5rem);
+  font-weight:800;line-height:1.18;letter-spacing:-.02em;
+  margin:0;
+}
+html.dark  .section-title{color:#f1f5f9;}
+html.light .section-title{color:#0f172a;}
+.section-subtitle{
+  font-size:1rem;line-height:1.7;margin-top:.85rem;
+  max-width:46rem;margin-left:auto;margin-right:auto;
+}
+.section-subtitle{color:var(--text-muted);}
+
+/* --- Gradient surfaces ---------------------------------------- */
+.solar-gradient{background:linear-gradient(135deg,var(--orange),var(--amber));}
+.solar-gradient-subtle{
+  background:linear-gradient(135deg,rgba(249,115,22,.16),rgba(245,158,11,.08));
+  border:1px solid rgba(249,115,22,.22);
+}
+
+/* --- Hero ----------------------------------------------------- */
+.hero-section{position:relative;overflow:hidden;}
+.hero-sun{
+  position:absolute;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(249,115,22,.35) 0%,rgba(249,115,22,0) 70%);
+  filter:blur(30px);
+}
+.page-hero{position:relative;padding:5rem 0 3.5rem;overflow:hidden;}
+/* The hero band keeps a dark backdrop in both themes: its heading and lead
+   paragraph are hardcoded white in the markup, so a light background here
+   would render the page title invisible in light mode. */
+.page-hero{background:linear-gradient(135deg,#0a0f1e,#131c33 60%,#0a1628);}
+html.light .page-hero{border-bottom:1px solid var(--bl);}
+
+.trust-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.3rem .85rem;border-radius:50px;
+  font-size:.75rem;font-weight:600;
+  background:rgba(255,255,255,.1);color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+
+/* --- Stats ---------------------------------------------------- */
+.stat-card{text-align:left;}
+.stat-number{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.4rem,2.4vw,1.9rem);
+  font-weight:700;line-height:1.1;
+  background:linear-gradient(135deg,var(--orange),var(--amber),var(--yellow));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* --- Service / feature icons ---------------------------------- */
+.service-icon-wrap,
+.feature-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:52px;height:52px;border-radius:14px;
+  background:rgba(249,115,22,.1);
+  border:1px solid rgba(249,115,22,.18);
+  color:var(--orange);
+  transition:all var(--t);
+}
+.card:hover .service-icon-wrap{
+  background:linear-gradient(135deg,var(--orange),var(--amber));
+  color:#fff;border-color:transparent;
+  transform:scale(1.08) rotate(5deg);
+}
+.feature-icon{width:64px;height:64px;border-radius:18px;}
+
+/* --- Badges --------------------------------------------------- */
+.badge{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.22rem .7rem;border-radius:50px;
+  font-size:.68rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.badge-commercial {background:rgba(14,165,233,.14);color:#38bdf8;border:1px solid rgba(14,165,233,.25);}
+.badge-offgrid    {background:rgba(34,197,94,.14); color:#4ade80;border:1px solid rgba(34,197,94,.25);}
+.badge-residential{background:rgba(249,115,22,.14);color:var(--orange);border:1px solid rgba(249,115,22,.25);}
+html.light .badge-commercial {color:#0369a1;}
+html.light .badge-offgrid    {color:#15803d;}
+html.light .badge-residential{color:#c2410c;}
+
+/* --- Partner / certification strip ---------------------------- */
+.partner-box,
+.cert-badge{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;
+  padding:1rem .75rem;border-radius:12px;text-align:center;
+  font-size:.78rem;font-weight:600;letter-spacing:.01em;
+  transition:all var(--t);
+}
+html.dark  .partner-box,html.dark  .cert-badge{background:rgba(255,255,255,.04);border:1px solid var(--bd);color:#cbd5e1;}
+html.light .partner-box,html.light .cert-badge{background:#fff;border:1px solid var(--bl);color:#475569;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.partner-box:hover,.cert-badge:hover{border-color:rgba(249,115,22,.35);color:var(--orange);transform:translateY(-2px);}
+.cert-badge{padding:1.25rem .75rem;}
+
+/* --- Portfolio grid + lightbox -------------------------------- */
+.project-card{
+  position:relative;border-radius:var(--r);overflow:hidden;
+  cursor:pointer;transition:all var(--t);
+}
+html.dark  .project-card{background:var(--card-d);border:1px solid var(--bd);}
+html.light .project-card{background:#fff;border:1px solid var(--bl);box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.project-card:hover{transform:translateY(-4px);}
+html.dark  .project-card:hover{border-color:rgba(249,115,22,.3);box-shadow:0 12px 40px rgba(249,115,22,.1);}
+html.light .project-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);}
+
+.project-image{position:relative;overflow:hidden;aspect-ratio:16/10;}
+.project-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.project-card:hover .project-image img{transform:scale(1.08);}
+
+.overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,15,30,.95) 0%,rgba(10,15,30,.35) 50%,transparent 100%);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity var(--t);
+}
+.project-card:hover .overlay{opacity:1;}
+.view-icon{
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--orange);color:#fff;
+  box-shadow:0 6px 24px rgba(249,115,22,.45);
+  transform:scale(.85);transition:transform var(--t);
+}
+.project-card:hover .view-icon{transform:scale(1);}
+
+.lightbox-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(4,7,16,.92);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:1.5rem;
+  opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t);
+}
+.lightbox-overlay.open{opacity:1;visibility:visible;}
+.lightbox-content{
+  position:relative;max-width:920px;width:100%;
+  max-height:90vh;overflow-y:auto;border-radius:var(--r);
+  background:var(--card-d);border:1px solid var(--bd);
+}
+html.light .lightbox-content{background:#fff;border-color:var(--bl);}
+.lightbox-close{
+  position:absolute;top:.75rem;right:.75rem;z-index:1;
+  width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.55);color:#fff;font-size:1.25rem;line-height:1;
+  transition:all var(--t);
+}
+.lightbox-close:hover{background:var(--orange);transform:rotate(90deg);}
+
+/* --- Calculator ----------------------------------------------- */
+.calc-label{font-size:.83rem;font-weight:600;letter-spacing:.02em;margin-bottom:.45rem;display:block;}
+html.dark  .calc-label{color:#94a3b8;}
+html.light .calc-label{color:#475569;}
+
+.calc-input{
+  width:100%;padding:.72rem 1rem;border-radius:10px;
+  font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:500;
+  outline:none;border:2px solid transparent;transition:all var(--t);
+}
+html.dark  .calc-input{background:rgba(255,255,255,.06);color:#e2e8f0;border-color:rgba(255,255,255,.08);}
+html.light .calc-input{background:#f8fafc;color:#1e293b;border-color:#e2e8f0;}
+.calc-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.12);}
+html.dark .calc-input option{background:#1e293b;}
+
+.calc-hint{font-size:.76rem;line-height:1.5;margin-top:.35rem;}
+.calc-hint{color:var(--text-muted);}
+
+/* The markup lists icon, value, label and sub as flat siblings. A flex row put
+   all four side by side and squeezed the text into narrow columns; a two-column
+   grid gives the icon its own column and stacks the text beside it. */
+.result-card{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  column-gap:.85rem;
+  align-items:start;
+  padding:1rem;border-radius:14px;
+}
+.result-card > .result-icon{grid-column:1;grid-row:1 / span 3;}
+.result-card > .result-value,
+.result-card > .result-label,
+.result-card > .result-sub{grid-column:2;}
+html.dark  .result-card{background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.14);}
+html.light .result-card{background:linear-gradient(135deg,rgba(249,115,22,.05),rgba(245,158,11,.03));border:1px solid rgba(249,115,22,.12);}
+.result-icon{
+  flex-shrink:0;width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(249,115,22,.14);color:var(--orange);
+}
+.result-value{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.35rem;font-weight:700;line-height:1.15;color:var(--orange);
+}
+.result-label{font-size:.82rem;font-weight:600;margin-top:.1rem;}
+html.dark  .result-label{color:#cbd5e1;}
+html.light .result-label{color:#475569;}
+.result-sub{font-size:.72rem;margin-top:.15rem;}
+.result-sub{color:var(--text-muted);}
+
+/* --- Accordion (calculator FAQ) ------------------------------- */
+.accordion-item{border-radius:12px;overflow:hidden;margin-bottom:.6rem;}
+html.dark  .accordion-item{background:var(--card-d);border:1px solid var(--bd);}
+html.light .accordion-item{background:#fff;border:1px solid var(--bl);}
+
+.accordion-header{
+  width:100%;text-align:left;padding:1.05rem 1.2rem;
+  background:none;border:none;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:.93rem;font-weight:600;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  transition:color var(--t);
+}
+html.dark  .accordion-header{color:#e2e8f0;}
+html.light .accordion-header{color:#1e293b;}
+.accordion-header:hover{color:var(--orange);}
+
+.accordion-icon{
+  flex-shrink:0;width:24px;height:24px;border-radius:50%;
+  background:rgba(249,115,22,.12);color:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:700;transition:all var(--t);
+}
+.accordion-item.open .accordion-icon{transform:rotate(45deg);background:var(--orange);color:#fff;}
+
+.accordion-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s var(--ease);
+}
+.accordion-item.open .accordion-body{max-height:420px;}
+.accordion-body-inner{padding:0 1.2rem 1.2rem;font-size:.88rem;line-height:1.75;}
+html.dark  .accordion-body-inner{color:#94a3b8;}
+html.light .accordion-body-inner{color:#64748b;}
+
+/* --- Testimonial slider --------------------------------------- */
+.testimonial-track{display:flex;will-change:transform;transition:transform .5s var(--ease);}
+.testimonial-slide{min-width:100%;padding:0 .5rem;}
+.testimonial-card{border-radius:20px;padding:2rem;}
+html.dark  .testimonial-card{background:var(--card-d);border:1px solid var(--bd);}
+html.light .testimonial-card{background:#fff;border:1px solid var(--bl);box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.overflow-hidden-scroll{overflow:hidden;}
+.slider-dots{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1.5rem;}
+
+.avatar-circle{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--orange),var(--yellow));
+}
+
+/* --- Process steps -------------------------------------------- */
+.process-step{position:relative;padding-left:3.25rem;padding-bottom:2rem;}
+.process-step:last-child{padding-bottom:0;}
+.step-number{
+  position:absolute;left:0;top:0;
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;
+  background:linear-gradient(135deg,var(--orange),var(--amber));color:#fff;
+  box-shadow:0 4px 16px rgba(249,115,22,.3);
+}
+
+/* --- Forms ---------------------------------------------------- */
+.form-label{font-size:.83rem;font-weight:600;margin-bottom:.4rem;display:block;}
+html.dark  .form-label{color:#cbd5e1;}
+html.light .form-label{color:#475569;}
+
+.form-error,
+.calc-error{
+  display:none;
+  font-size:.75rem;font-weight:500;color:#f87171;margin-top:.3rem;
+}
+.form-error.show,
+.calc-error.show{display:block;}
+
+.form-success{
+  display:none;
+  padding:.9rem 1.1rem;border-radius:12px;
+  font-size:.88rem;font-weight:600;
+  background:rgba(34,197,94,.12);color:#4ade80;
+  border:1px solid rgba(34,197,94,.28);
+}
+.form-success.show{display:block;}
+
+.map-placeholder{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+  min-height:280px;padding:2rem;border-radius:var(--r);
+  border:2px dashed rgba(249,115,22,.3);
+}
+html.dark  .map-placeholder{background:rgba(255,255,255,.03);}
+html.light .map-placeholder{background:#f1f5f9;}
+
+/* --- Buttons: secondary, WhatsApp, payment -------------------- */
+.btn-secondary{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.75rem 1.75rem;border-radius:50px;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:.95rem;
+  cursor:pointer;text-decoration:none;white-space:nowrap;
+  transition:all var(--t);
+  background:transparent;color:var(--primary);
+  border:2px solid var(--primary);
+}
+.btn-secondary:hover{background:var(--primary);color:#fff;transform:translateY(-2px);}
+
+.whatsapp-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.75rem 1.75rem;border-radius:50px;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:.95rem;
+  border:none;cursor:pointer;text-decoration:none;white-space:nowrap;
+  background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;
+  box-shadow:0 4px 20px rgba(37,211,102,.3);
+  transition:all var(--t);
+}
+.whatsapp-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.45);}
+
+.payment-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.65rem 1.25rem;border-radius:10px;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:.85rem;
+  cursor:pointer;text-decoration:none;
+  background:transparent;
+  border:2px solid currentColor;
+  transition:all var(--t);
+}
+.payment-btn.stripe     {color:#635bff;}
+.payment-btn.paystack   {color:#00c3f7;}
+.payment-btn.flutterwave{color:#f5a623;}
+.payment-btn:not(.disabled):hover{transform:translateY(-2px);}
+.payment-btn.disabled{opacity:.5;cursor:not-allowed;pointer-events:none;}
+
+/* --- Footer --------------------------------------------------- */
+.divider{height:1px;border:none;margin:2.5rem 0 1.5rem;}
+html.dark  .divider{background:var(--bd);}
+html.light .divider{background:var(--bl);}
+.footer-year{font-size:.8rem;}
+.footer-year{color:var(--text-muted);}
+
+.footer-social-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;
+  transition:all var(--t);
+}
+html.dark  .footer-social-btn{background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid var(--bd);}
+html.light .footer-social-btn{background:#fff;color:#64748b;border:1px solid var(--bl);}
+.footer-social-btn:hover{background:var(--orange);color:#fff;border-color:transparent;transform:translateY(-2px);}
+
+/* --- CTA banner ----------------------------------------------- */
+.cta-banner{
+  position:relative;overflow:hidden;border-radius:var(--r);
+  background:linear-gradient(135deg,#0a1628 0%,#132445 55%,#1a1040 100%);
+  border:1px solid rgba(249,115,22,.18);
+}
+
+/* --- Pulse glow (deliberate attention cue on primary CTAs) ----- */
+@keyframes solarPulseGlow{
+  0%,100%{box-shadow:0 4px 20px rgba(249,115,22,.3);}
+  50%    {box-shadow:0 6px 34px rgba(249,115,22,.65);}
+}
+.pulse-glow{animation:solarPulseGlow 2.6s var(--ease) infinite;}
+
+/* Honour a reader's reduced-motion preference across the whole template. */
+@media (prefers-reduced-motion:reduce){
+  .pulse-glow{animation:none;}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* --- Footer surface ------------------------------------------- */
+/* The footer's headings, brand wordmark and link colours are hardcoded light
+   in the markup, so it needs a dark surface in both themes — on a light page
+   they were rendering at 1.05:1 (white on white). Its own social buttons and
+   muted text are re-pinned to dark-theme values to match. */
+footer[role="contentinfo"]{background:#0a0f1e;color:#e2e8f0;}
+html.light footer[role="contentinfo"]{--text-muted:#94a3b8;--text:#e2e8f0;--primary:#fb923c;}
+html.light footer[role="contentinfo"] .footer-social-btn{
+  background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid rgba(255,255,255,.08);
+}
+html.light footer[role="contentinfo"] .divider{background:rgba(255,255,255,.08);}
+
+/* --- Small-screen safety ------------------------------------- */
+/* Email addresses and URLs are single unbreakable words. In a narrow footer
+   column they push past the viewport edge — an address at 768px was extending
+   9px beyond it. Let long tokens break rather than overflow. */
+footer[role="contentinfo"] a,
+.contact-value,
+a[href^="mailto:"],
+a[href^="tel:"]{overflow-wrap:anywhere;word-break:break-word;}
+
+/* Touch targets. 36×34px is comfortable with a mouse and fiddly with a thumb;
+   WCAG 2.5.8 asks for 24px minimum and the platform guidance for 44px. These
+   are the controls a phone visitor reaches for first. */
+#hamburger-btn,
+#theme-toggle,
+#slider-prev,
+#slider-next,
+.lightbox-close{min-width:44px;min-height:44px;}
+#hamburger-btn{align-items:center;justify-content:center;}

@@ -1,0 +1,5 @@
+/* Tailwind source. Compiled to css/tailwind.min.css by `npm run build:css`.
+   Do not edit css/tailwind.min.css directly — it is generated. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

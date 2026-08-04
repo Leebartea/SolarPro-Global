@@ -7,7 +7,7 @@
   <meta name="description" content="Learn about SolarPro Global — a certified solar PV installer founded in Nigeria. Meet our engineers, read our story, and discover certifications that set us apart from the competition." />
   <meta name="robots" content="index, follow" />
   <!-- Canonical URL — replace with your live domain -->
-  <link rel="canonical" href="https://solarproglobal.com/pages/about.html" />
+  <link rel="canonical" href="https://www.example.com/pages/about.html" />
   <meta property="og:title" content="About SolarPro Global | Certified Solar PV Installer" />
   <meta property="og:description" content="Founded by certified solar engineers in Nigeria, SolarPro Global delivers world-class PV installations across 15+ countries using real irradiance data and IEC-compliant processes." />
   <meta property="og:image" content="../assets/images/og-cover.jpg" />
@@ -18,9 +18,10 @@
       if (d) document.documentElement.classList.add('dark');
     })();
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="../vendor/aos/aos.css" />
   <link rel="stylesheet" href="../css/custom.css" />
+  <!-- Tailwind utilities load last so they win over component styles -->
+  <link rel="stylesheet" href="../css/tailwind.min.css" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
 </head>
 <body>
@@ -35,7 +36,7 @@
         </div>
         <span style="font-weight:800;font-size:1.05rem;color:var(--text);">SolarPro <span style="color:var(--primary);">Global</span></span>
       </a>
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-1">
         <a href="../index.html"   class="nav-link">Home</a>
         <a href="services.html"   class="nav-link">Services</a>
         <a href="calculator.html" class="nav-link">Calculator</a>
@@ -44,7 +45,7 @@
         <a href="contact.html"    class="nav-link">Contact</a>
       </div>
       <div class="flex items-center gap-2">
-        <div class="currency-dropdown hidden md:block">
+        <div class="currency-dropdown hidden lg:block">
           <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
             <span class="currency-label">🇺🇸 USD</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -57,8 +58,8 @@
           </div>
         </div>
         <button id="theme-toggle" aria-label="Toggle dark mode"></button>
-        <a href="contact.html" class="btn-primary hidden md:inline-flex text-sm py-2 px-4">Get Free Quote</a>
-        <button id="hamburger-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
+        <a href="contact.html" class="btn-primary hidden lg:inline-flex text-sm py-2 px-4">Get Free Quote</a>
+        <button id="hamburger-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
           <span class="block w-5 h-0.5" style="background:currentColor;"></span>
@@ -66,7 +67,7 @@
       </div>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden">
+  <div id="mobile-menu" class="hidden lg:hidden">
     <a href="../index.html"   class="nav-link">Home</a>
     <a href="services.html"   class="nav-link">Services</a>
     <a href="calculator.html" class="nav-link">Calculator</a>
@@ -79,13 +80,13 @@
 
 <!-- PAGE HERO -->
 <section class="page-hero" aria-label="About page hero" style="position:relative;overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?w=1200&q=80"
+  <img src="../assets/images/solar-array-rows.jpg"
        alt="Solar technician installing photovoltaic panels on a rooftop"
        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:0.20;"
        loading="eager" fetchpriority="high" />
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="max-w-2xl" data-aos="fade-up">
-      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:#f97316;">Our Story</div>
+      <div class="section-tag" style="background:rgba(249,115,22,0.15);color:var(--primary);">Our Story</div>
       <h1 class="text-white font-black mt-3 mb-4" style="font-size:clamp(2rem,4vw,3rem);">Solar Expertise<br />Born in Nigeria,<br />Delivered Globally</h1>
       <p style="color:rgba(255,255,255,0.72);font-size:1.05rem;line-height:1.65;">We are a team of certified solar PV engineers and installers who started in one of Africa's most challenging energy environments — and developed the technical mastery to deliver world-class solar installations anywhere on earth.</p>
     </div>
@@ -100,7 +101,7 @@
         <div class="section-tag">Our Story</div>
         <h2 id="story-heading" class="section-title mt-2">From Lagos to the World</h2>
         <p class="leading-relaxed mb-5" style="color:var(--text-muted);">SolarPro Global was founded by a team of electrical engineers who spent their early careers navigating Nigeria's complex energy landscape — a market where grid unreliability has long driven demand for alternative power solutions. What began as a small team installing inverters and generators quickly evolved as we recognised that solar PV, done right, was the definitive long-term answer.</p>
-        <p class="leading-relaxed mb-5" style="color:var(--text-muted);">We invested heavily in technical training and certifications, studying IEC standards, attending international solar energy conferences, and building partnerships with leading manufacturers including JA Solar, Huawei, SMA, and Victron Energy. By 2019, we had commissioned over 100 solar systems and our reputation for technical accuracy had spread beyond Nigeria's borders.</p>
+        <p class="leading-relaxed mb-5" style="color:var(--text-muted);">We invested heavily in technical training and certifications, studying IEC standards, attending international solar energy conferences, and building supply relationships with tier-1 module and inverter manufacturers. By 2019, we had commissioned over 100 solar systems and our reputation for technical accuracy had spread beyond Nigeria's borders.</p>
         <p class="leading-relaxed mb-6" style="color:var(--text-muted);">Today, SolarPro Global manages projects from initial enquiry to long-term monitoring across Africa, the Middle East, South Asia, and Europe. Our competitive advantage is simple: we apply the same engineering rigour that you would expect from a European or American firm, at a price point that works for emerging market clients — and with an understanding of local grid conditions, regulatory environments, and climate data that generic international firms cannot match.</p>
         <a href="contact.html" class="btn-primary">Start Working With Us</a>
       </div>
@@ -227,7 +228,7 @@
         <div class="avatar-circle" style="background:linear-gradient(135deg,#16a34a,#15803d);" aria-hidden="true">CE</div>
         <h3 class="font-bold text-base mb-1" style="color:var(--text);">Chukwuemeka Eze</h3>
         <p class="text-sm font-semibold mb-3" style="color:var(--primary);">Off-Grid Systems Specialist</p>
-        <p class="text-xs leading-relaxed mb-4" style="color:var(--text-muted);">Battery storage and off-grid microgrid specialist. Designed and commissioned over 80 off-grid systems across rural Nigeria, Ghana, and Kenya. Victron Energy certified installer.</p>
+        <p class="text-xs leading-relaxed mb-4" style="color:var(--text-muted);">Battery storage and off-grid microgrid specialist. Designed and commissioned over 80 off-grid systems across rural Nigeria, Ghana, and Kenya. Certified off-grid storage installer.</p>
         <a href="#" class="inline-flex items-center gap-1.5 text-xs font-semibold" style="color:var(--text-muted);" aria-label="Chukwuemeka Eze LinkedIn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
@@ -269,7 +270,7 @@
       </div>
       <div class="cert-badge">
         <div class="text-2xl" aria-hidden="true">🏆</div>
-        <div class="font-bold text-xs text-center" style="color:var(--text);">NABCEP Certified</div>
+        <div class="font-bold text-xs text-center" style="color:var(--text);">PV Installation Certified</div>
         <div class="text-xs text-center" style="color:var(--text-muted);">PV Installation</div>
       </div>
       <div class="cert-badge">
@@ -279,22 +280,22 @@
       </div>
       <div class="cert-badge">
         <div class="text-2xl" aria-hidden="true">🌐</div>
-        <div class="font-bold text-xs text-center" style="color:var(--text);">Victron Certified</div>
+        <div class="font-bold text-xs text-center" style="color:var(--text);">Off-Grid Certified</div>
         <div class="text-xs text-center" style="color:var(--text-muted);">Off-Grid Installer</div>
       </div>
       <div class="cert-badge">
         <div class="text-2xl" aria-hidden="true">☁️</div>
-        <div class="font-bold text-xs text-center" style="color:var(--text);">Huawei Partner</div>
+        <div class="font-bold text-xs text-center" style="color:var(--text);">Smart PV Partner</div>
         <div class="text-xs text-center" style="color:var(--text-muted);">Smart PV Installer</div>
       </div>
       <div class="cert-badge">
         <div class="text-2xl" aria-hidden="true">📋</div>
-        <div class="font-bold text-xs text-center" style="color:var(--text);">COREN Registered</div>
-        <div class="text-xs text-center" style="color:var(--text-muted);">Nigeria Engineers</div>
+        <div class="font-bold text-xs text-center" style="color:var(--text);">Engineering Council Reg.</div>
+        <div class="text-xs text-center" style="color:var(--text-muted);">National Register</div>
       </div>
     </div>
 
-    <p class="text-center text-sm mt-6" style="color:var(--text-muted);">Replace placeholder badges with actual certification logos. All certifications are verifiable on request.</p>
+    <p class="text-center text-sm mt-6" style="color:var(--text-muted);">All certifications are current and verifiable on request.</p>
   </div>
 </section>
 
@@ -314,7 +315,7 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3 class="font-bold text-lg mb-3" style="color:var(--text);">Certified, Not Self-Taught</h3>
-        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">The African solar market has a significant quality problem — many installers are self-taught and lack formal engineering credentials. Every SolarPro engineer holds internationally recognised certifications (IEC, NABCEP, or equivalent) and undergoes annual competency updates. When you hire us, you're hiring engineers who can document and defend every design decision.</p>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">The African solar market has a significant quality problem — many installers are self-taught and lack formal engineering credentials. Every SolarPro engineer holds internationally recognised PV certifications and undergoes annual competency updates. When you hire us, you're hiring engineers who can document and defend every design decision.</p>
         <div class="mt-4 p-3 rounded-lg" style="background:rgba(249,115,22,0.06);border-left:3px solid var(--primary);">
           <p class="text-xs font-semibold" style="color:var(--primary);">Result: Systems that pass inspection, perform as specified, and honour manufacturer warranties.</p>
         </div>
@@ -328,7 +329,7 @@
         <h3 class="font-bold text-lg mb-3" style="color:var(--text);">Real Irradiance Data, Always</h3>
         <p class="text-sm leading-relaxed" style="color:var(--text-muted);">We never estimate solar resources from memory or generic tables. Every project we design uses site-specific irradiance data from NASA POWER or Solargis satellite datasets. We model each project using PVsyst simulation software that accounts for horizon shading, soiling losses, spectral correction, and module temperature effects. The result is savings projections accurate to within 5%.</p>
         <div class="mt-4 p-3 rounded-lg" style="background:rgba(30,58,95,0.07);border-left:3px solid #1e3a5f;">
-          <p class="text-xs font-semibold" style="color:#1e3a5f;">Result: Financials that banks will finance and clients can trust — not optimistic guesswork.</p>
+          <p class="text-xs font-semibold" style="color:var(--text);">Result: Financials that banks will finance and clients can trust — not optimistic guesswork.</p>
         </div>
       </div>
 
@@ -339,8 +340,8 @@
         </div>
         <h3 class="font-bold text-lg mb-3" style="color:var(--text);">Emerging Market Expertise</h3>
         <p class="text-sm leading-relaxed" style="color:var(--text-muted);">We understand the realities that premium international firms overlook: customs clearance delays, voltage fluctuations that destroy inverters, harmonic distortion from generators that must co-exist with solar, local grid code compliance, and the importance of using components that your local technician can service if we're not on-site. This knowledge is built from years in the field, not from a textbook.</p>
-        <div class="mt-4 p-3 rounded-lg" style="background:rgba(34,197,94,0.07);border-left:3px solid #16a34a;">
-          <p class="text-xs font-semibold" style="color:#16a34a;">Result: Systems engineered for your real-world environment, not for ideal lab conditions.</p>
+        <div class="mt-4 p-3 rounded-lg" style="background:rgba(34,197,94,0.07);border-left:3px solid var(--success);">
+          <p class="text-xs font-semibold" style="color:var(--success);">Result: Systems engineered for your real-world environment, not for ideal lab conditions.</p>
         </div>
       </div>
 
@@ -369,9 +370,9 @@
           <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </div>
-          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:#f97316;">Global</span></span>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:var(--primary);">Global</span></span>
         </div>
-        <p class="text-sm leading-relaxed" style="color:#64748b;">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
       </div>
       <div>
         <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Quick Links</h3>
@@ -396,21 +397,21 @@
       <div>
         <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Contact</h3>
         <ul class="space-y-3 text-sm">
-          <li><a href="mailto:hello@solarproglobal.com" style="color:#64748b;">hello@solarproglobal.com</a></li>
-          <li><a href="tel:+2348000000000" style="color:#64748b;">+234 800 0000 000</a></li>
+          <li><a href="mailto:hello@example.com" style="color:var(--text-muted);">hello@example.com</a></li>
+          <li><a href="tel:+2348000000000" style="color:var(--text-muted);">+234 800 0000 000</a></li>
           <li><a href="https://wa.me/2348000000000" style="color:#25d366;" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
         </ul>
       </div>
     </div>
     <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm" style="color:#475569;">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
-      <p class="text-xs" style="color:#334155;">Certified Solar PV Engineering</p>
+      <p class="text-sm" style="color:var(--text-muted);">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:var(--text-muted);">Certified Solar PV Engineering</p>
     </div>
   </div>
 </footer>
 
 <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
-  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:#f97316;text-decoration:underline;">Learn more</a></p>
+  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:var(--primary);text-decoration:underline;">Learn more</a></p>
   <div class="flex gap-2">
     <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
     <button id="cookie-accept" class="btn-primary text-sm py-2 px-4">Accept All</button>
@@ -421,7 +422,7 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="../vendor/aos/aos.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/main.js"></script>
 </body>
