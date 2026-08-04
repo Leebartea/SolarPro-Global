@@ -22,29 +22,73 @@
 var TKEY = 'solarproTheme';
 var CKEY = 'solarproCurrency';
 
-var SUN_ICON  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
-var MOON_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+/* Three preferences, not two. 'system' follows the operating system's
+   appearance setting and keeps following it, so a machine that switches to
+   dark at sunset takes the page with it without a reload. */
+var THEME_ORDER = ['system', 'light', 'dark'];
 
-function _applyTheme(t) {
-  var root = document.documentElement;
-  root.classList.remove('dark', 'light');
-  root.classList.add(t);
-  document.querySelectorAll('#theme-toggle').forEach(function (btn) {
-    btn.innerHTML = t === 'dark' ? SUN_ICON : MOON_ICON;
-    btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-  });
-  try { localStorage.setItem(TKEY, t); } catch (e) {}
+var THEME_ICONS = {
+  light: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>',
+  dark:  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>',
+  system: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>'
+};
+
+var THEME_LABELS = {
+  system: 'Theme: follows your device. Click for light mode.',
+  light:  'Theme: light. Click for dark mode.',
+  dark:   'Theme: dark. Click to follow your device.'
+};
+
+var _darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+function _readPref() {
+  var pref = null;
+  try { pref = localStorage.getItem(TKEY); } catch (e) {}
+  return THEME_ORDER.indexOf(pref) === -1 ? 'system' : pref;
 }
 
+/** Which of light/dark a preference resolves to right now. */
+function _resolve(pref) {
+  if (pref === 'light' || pref === 'dark') return pref;
+  return _darkQuery.matches ? 'dark' : 'light';
+}
+
+function _applyTheme(pref, persist) {
+  if (THEME_ORDER.indexOf(pref) === -1) pref = 'system';
+  var resolved = _resolve(pref);
+
+  var root = document.documentElement;
+  root.classList.remove('dark', 'light');
+  root.classList.add(resolved);
+  root.setAttribute('data-theme-pref', pref);
+
+  document.querySelectorAll('#theme-toggle').forEach(function (btn) {
+    btn.innerHTML = THEME_ICONS[pref];
+    btn.setAttribute('aria-label', THEME_LABELS[pref]);
+    btn.setAttribute('title', THEME_LABELS[pref]);
+    btn.setAttribute('data-theme-pref', pref);
+  });
+
+  if (persist !== false) {
+    try { localStorage.setItem(TKEY, pref); } catch (e) {}
+  }
+}
+
+/** Cycle system -> light -> dark -> system. */
 function toggleTheme() {
-  _applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+  var next = THEME_ORDER[(THEME_ORDER.indexOf(_readPref()) + 1) % THEME_ORDER.length];
+  _applyTheme(next);
 }
 
 (function () {
-  var saved = null;
-  try { saved = localStorage.getItem(TKEY); } catch (e) {}
-  var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  _applyTheme(saved || sys);
+  _applyTheme(_readPref(), false);
+
+  // Keep tracking the OS while the preference is 'system'.
+  var onSystemChange = function () {
+    if (_readPref() === 'system') _applyTheme('system', false);
+  };
+  if (_darkQuery.addEventListener) _darkQuery.addEventListener('change', onSystemChange);
+  else if (_darkQuery.addListener) _darkQuery.addListener(onSystemChange);   // older Safari
 })();
 
 /* ============================================================

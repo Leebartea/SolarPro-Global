@@ -13,9 +13,17 @@
   <meta property="og:image" content="../assets/images/og-cover.jpg" />
   <script>
     (function(){
-      var s = localStorage.getItem('solarproTheme');
-      var d = s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      if (d) document.documentElement.classList.add('dark');
+      /* Runs before first paint so the page never flashes the wrong theme.
+         Stored preference is 'system' | 'light' | 'dark'; anything else, including
+         a first visit, resolves to 'system'. Always sets an explicit class —
+         the stylesheet has html.light rules as well as html.dark. */
+      var pref = null;
+      try { pref = localStorage.getItem('solarproTheme'); } catch (e) {}
+      if (pref !== 'light' && pref !== 'dark') pref = 'system';
+      var dark = pref === 'dark' ||
+        (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.add(dark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme-pref', pref);
     })();
   </script>
     <link rel="stylesheet" href="../vendor/aos/aos.css" />

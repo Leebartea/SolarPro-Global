@@ -24,13 +24,25 @@ const { Report } = require('../lib/report');
 const { PAGES, exists, read } = require('../lib/project');
 
 // Instructional copy that must never appear in rendered text.
+//
+// The first version of this list matched only "replace the placeholder", and
+// an outside reviewer found two live instructions it sailed past: "Replace
+// this placeholder with your Google Maps embed code" and "Replace avatar
+// initials with actual team photos in the assets/images folder". Both were
+// visible on the deployed demo. The lesson is that an enumerated blocklist
+// fails on the phrasing nobody thought of, so these patterns key on the
+// *shape* of an instruction — an imperative verb aimed at the reader — rather
+// than on remembered wordings.
 const BUILD_NOTES = [
-  /replace\s+(?:the\s+)?placeholder/i,
+  /\b(replace|swap|change|update|edit|paste|upload|insert)\b[^.!?]{0,60}\b(placeholder|dummy|sample image|your own|actual (?:photos?|logos?|images?|details?))/i,
+  /\b(replace|change|update)\s+(this|these|the|each|any)\b[^.!?]{0,40}\b(with|for)\b/i,
+  /\b(in|to|from)\s+the\s+assets\/images\s+folder/i,
+  /\bfor\s+your\s+(live\s+site|own\s+site|website)\b/i,
   /\bTODO\b/,
   /\bFIXME\b/,
   /lorem\s+ipsum/i,
-  /change\s+this\s+(?:value|text)/i,
   /\byour-(?:domain|photo|link|plan|project)\b/i,
+  /\bcoming\s+soon\b/i,
 ];
 
 // Vendor and certification-body marks that imply a relationship.

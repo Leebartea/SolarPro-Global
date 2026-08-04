@@ -13,9 +13,17 @@
   <meta property="og:image" content="../assets/images/og-cover.jpg" />
   <script>
     (function(){
-      var s = localStorage.getItem('solarproTheme');
-      var d = s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      if (d) document.documentElement.classList.add('dark');
+      /* Runs before first paint so the page never flashes the wrong theme.
+         Stored preference is 'system' | 'light' | 'dark'; anything else, including
+         a first visit, resolves to 'system'. Always sets an explicit class —
+         the stylesheet has html.light rules as well as html.dark. */
+      var pref = null;
+      try { pref = localStorage.getItem('solarproTheme'); } catch (e) {}
+      if (pref !== 'light' && pref !== 'dark') pref = 'system';
+      var dark = pref === 'dark' ||
+        (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.add(dark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme-pref', pref);
     })();
   </script>
     <link rel="stylesheet" href="../vendor/aos/aos.css" />
@@ -133,7 +141,7 @@
           <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center font-black text-white text-sm" style="background:linear-gradient(135deg,#f97316,#eab308);">2023</div>
           <div>
             <h3 class="font-bold text-sm mb-1" style="color:var(--text);">500 Projects Milestone &amp; Global Reach</h3>
-            <p class="text-sm" style="color:var(--text-muted);">Crossed 500 completed installations across 15 countries, 10 MW of total installed capacity, and launched our remote project management service for international clients.</p>
+            <p class="text-sm" style="color:var(--text-muted);">Crossed 500 completed installations across 15+ countries, 10 MW of total installed capacity, and launched our remote project management service for international clients.</p>
           </div>
         </div>
       </div>
@@ -249,7 +257,7 @@
 
     </div>
 
-    <p class="text-center text-sm mt-8" style="color:var(--text-muted);">Replace avatar initials with actual team photos in the assets/images folder for your live site.</p>
+    <p class="text-center text-sm mt-8" style="color:var(--text-muted);">Our engineering team holds internationally recognised PV certifications.</p>
   </div>
 </section>
 
@@ -353,7 +361,7 @@
 <section class="cta-banner py-16" aria-label="Call to action">
   <div class="max-w-3xl mx-auto px-4 text-center relative z-10" data-aos="fade-up">
     <h2 class="text-white font-black text-2xl sm:text-3xl mb-4">Ready to Work With Nigeria's Global Solar Engineers?</h2>
-    <p class="mb-6" style="color:rgba(255,255,255,0.72);">Contact our team today for a free consultation and see why 500+ clients across 15 countries have trusted SolarPro Global with their energy future.</p>
+    <p class="mb-6" style="color:rgba(255,255,255,0.72);">Contact our team today for a free consultation and see why 500+ clients across 15+ countries have trusted SolarPro Global with their energy future.</p>
     <div class="flex flex-wrap gap-4 justify-center">
       <a href="contact.html" class="btn-primary px-7 py-3 text-base">Get in Touch</a>
       <a href="portfolio.html" class="btn-outline-white px-7 py-3 text-base">See Our Projects</a>

@@ -55,18 +55,66 @@ module.exports = async function behaviour() {
       await page.goto(url('index.html'), { waitUntil: 'load' });
       await page.waitForTimeout(200);
 
-      await test('theme toggle flips the theme and persists it', page, async () => {
-        const before = await page.evaluate(() => document.documentElement.className);
-        await page.click('#theme-toggle');
-        await page.waitForTimeout(120);
-        const after = await page.evaluate(() => document.documentElement.className);
-        if (before === after) return `class stayed "${before}"`;
-        const stored = await page.evaluate(() => localStorage.getItem('solarproTheme'));
-        if (!after.includes(stored)) return `stored "${stored}" but html is "${after}"`;
-        await page.click('#theme-toggle');
-        await page.waitForTimeout(120);
-        const back = await page.evaluate(() => document.documentElement.className);
-        return back === before ? null : `did not toggle back (${back} vs ${before})`;
+      await test('theme control cycles system -> light -> dark -> system', page, async () => {
+        const pref = () => page.evaluate(() => document.documentElement.dataset.themePref);
+        const stored = () => page.evaluate(() => localStorage.getItem('solarproTheme'));
+        // Four states require three clicks, not four — read first, then advance.
+        const seen = [await pref()];
+        for (let i = 0; i < 3; i++) {
+          await page.click('#theme-toggle');
+          await page.waitForTimeout(110);
+          seen.push(await pref());
+        }
+        const expected = ['system', 'light', 'dark', 'system'];
+        if (seen.join(',') !== expected.join(',')) {
+          return `cycled ${seen.join(' -> ')}, expected ${expected.join(' -> ')}`;
+        }
+        const s = await stored();
+        return s === 'system' ? null : `persisted "${s}" after a full cycle, expected "system"`;
+      });
+
+      await test('an explicit choice resolves to that theme', page, async () => {
+        await page.evaluate(() => localStorage.setItem('solarproTheme', 'light'));
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForTimeout(150);
+        const cls = await page.evaluate(() => document.documentElement.className);
+        if (!cls.includes('light')) return `stored "light" but html is "${cls}"`;
+        await page.evaluate(() => localStorage.setItem('solarproTheme', 'dark'));
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForTimeout(150);
+        const cls2 = await page.evaluate(() => document.documentElement.className);
+        return cls2.includes('dark') ? null : `stored "dark" but html is "${cls2}"`;
+      });
+
+      await test('system mode follows the OS, an explicit choice does not', page, async () => {
+        // Default (no stored preference) must resolve from the OS setting.
+        const fresh = await ctx.browser().newContext({ colorScheme: 'dark' });
+        const p1 = await fresh.newPage();
+        await p1.goto(url('index.html'), { waitUntil: 'load' });
+        await p1.waitForTimeout(200);
+        const osDark = await p1.evaluate(() => ({
+          pref: document.documentElement.dataset.themePref,
+          cls: document.documentElement.className,
+        }));
+        if (osDark.pref !== 'system') { await fresh.close(); return `default preference is "${osDark.pref}", expected "system"`; }
+        if (!osDark.cls.includes('dark')) { await fresh.close(); return `OS is dark but page resolved "${osDark.cls}"`; }
+
+        // And must keep following a live OS change, without a reload.
+        await p1.emulateMedia({ colorScheme: 'light' });
+        await p1.waitForTimeout(350);
+        const flipped = await p1.evaluate(() => document.documentElement.className);
+        await fresh.close();
+        if (!flipped.includes('light')) return `OS switched to light but page stayed "${flipped}"`;
+
+        // An explicit choice must pin, ignoring the OS.
+        const pinned = await ctx.browser().newContext({ colorScheme: 'dark' });
+        await pinned.addInitScript(() => { try { localStorage.setItem('solarproTheme', 'light'); } catch (e) {} });
+        const p2 = await pinned.newPage();
+        await p2.goto(url('index.html'), { waitUntil: 'load' });
+        await p2.waitForTimeout(200);
+        const cls = await p2.evaluate(() => document.documentElement.className);
+        await pinned.close();
+        return cls.includes('light') ? null : `explicit light preference resolved to "${cls}" under a dark OS`;
       });
 
       await test('currency switcher re-prices data-usd amounts', page, async () => {

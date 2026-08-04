@@ -949,9 +949,10 @@ html.light .map-placeholder{background:#f1f5f9;}
 .payment-btn.disabled{opacity:.5;cursor:not-allowed;pointer-events:none;}
 
 /* --- Footer --------------------------------------------------- */
-.divider{height:1px;border:none;margin:2.5rem 0 1.5rem;}
-html.dark  .divider{background:var(--bd);}
-html.light .divider{background:var(--bl);}
+/* `.divider` is not a rule — the markup uses it as the container for the
+   copyright row (`class="divider pt-8 flex ..."`). Painting it as a 1px-tall
+   filled block drew a grey slab behind the text instead of a line above it. */
+.divider{border-top:1px solid var(--border);margin-top:2.5rem;}
 .footer-year{font-size:.8rem;}
 .footer-year{color:var(--text-muted);}
 
@@ -999,7 +1000,7 @@ html.light footer[role="contentinfo"]{--text-muted:#94a3b8;--text:#e2e8f0;--prim
 html.light footer[role="contentinfo"] .footer-social-btn{
   background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid rgba(255,255,255,.08);
 }
-html.light footer[role="contentinfo"] .divider{background:rgba(255,255,255,.08);}
+html.light footer[role="contentinfo"] .divider{border-top-color:rgba(255,255,255,.10);}
 
 /* --- Small-screen safety ------------------------------------- */
 /* Email addresses and URLs are single unbreakable words. In a narrow footer
