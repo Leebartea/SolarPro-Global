@@ -39,7 +39,7 @@ const FORBIDDEN = [
 
 // Must ship.
 const REQUIRED = [
-  'index.html', 'README.md', 'LICENSE.txt',
+  'index.html', 'README.md', 'LICENSE.txt', 'CHANGELOG.md',
   'css/custom.css', 'css/tailwind.min.css', 'css/fonts.css',
   'js/main.js', 'js/theme.js', 'js/calculator.js',
   'docs/documentation.html',
