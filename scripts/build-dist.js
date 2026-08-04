@@ -126,11 +126,19 @@ function main() {
     '/assets/images/*',
     '  Cache-Control: public, max-age=31536000, immutable',
     '',
+    // CSS and JS filenames are stable across releases — there is no content
+    // hash in them — so a long max-age would leave returning visitors on the
+    // previous build for a day after every deploy. must-revalidate makes the
+    // browser check the ETag each time, which costs one cheap 304 and
+    // guarantees a fix actually reaches people who have been here before.
     '/css/*',
-    '  Cache-Control: public, max-age=86400',
+    '  Cache-Control: public, max-age=0, must-revalidate',
     '',
     '/js/*',
-    '  Cache-Control: public, max-age=86400',
+    '  Cache-Control: public, max-age=0, must-revalidate',
+    '',
+    '/*.html',
+    '  Cache-Control: public, max-age=0, must-revalidate',
     '',
   ].join('\n'));
 
