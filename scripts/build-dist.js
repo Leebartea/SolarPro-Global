@@ -79,6 +79,48 @@ function copy(srcAbs, destAbs, rel) {
   return 1;
 }
 
+/**
+ * Strip `.html` from internal links in the deployed copy only.
+ *
+ * Cloudflare Pages serves `pages/calculator.html` at `/pages/calculator` and
+ * answers the `.html` form with a 308 redirect. Every link in this template
+ * points at the `.html` form, so every navigation on the live demo paid for an
+ * extra round trip — measured at 4.47s against 0.52s direct on a Nigerian
+ * mobile connection, which is the audience the demo exists to convince.
+ *
+ * The source keeps `.html` deliberately: a buyer must be able to unzip the
+ * template and open index.html from a folder with no server, and extensionless
+ * links break that. So this is a deploy-time transform, exactly like SITE_URL
+ * stamping — same source, two correct outputs.
+ */
+function stripHtmlExtensions(dir) {
+  const rewritten = [];
+  const walk = (d) => {
+    for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+      const full = path.join(d, entry.name);
+      if (entry.isDirectory()) { walk(full); continue; }
+      if (!entry.name.endsWith('.html')) continue;
+
+      const before = fs.readFileSync(full, 'utf8');
+      const after = before.replace(
+        /(\s(?:href)\s*=\s*")([^"#?:]*?)\.html((?:[#?][^"]*)?")/gi,
+        (whole, lead, target, tail) => {
+          // `index.html` is served at the directory root, so it becomes `./`
+          // or `../` rather than a bare `index`.
+          if (target === 'index') return `${lead}./${tail}`;
+          if (target.endsWith('/index')) return `${lead}${target.slice(0, -5)}${tail}`;
+          return `${lead}${target}${tail}`;
+        });
+      if (after !== before) {
+        fs.writeFileSync(full, after);
+        rewritten.push(path.relative(dir, full));
+      }
+    }
+  };
+  walk(dir);
+  return rewritten;
+}
+
 /** Rewrite the placeholder origin in canonical / og:url tags. */
 function stampSiteUrl(dir, siteUrl) {
   const origin = siteUrl.replace(/\/+$/, '');
@@ -89,7 +131,14 @@ function stampSiteUrl(dir, siteUrl) {
       if (entry.isDirectory()) { walk(full); continue; }
       if (!entry.name.endsWith('.html')) continue;
       const before = fs.readFileSync(full, 'utf8');
-      const after = before.replace(/https:\/\/www\.example\.com/g, origin);
+      // The absolute URLs in canonical and og:url are skipped by the link
+      // rewriter above (it deliberately leaves anything with a scheme alone),
+      // so normalise their paths here. A canonical that points at a 308 is
+      // telling search engines the wrong address for the page.
+      const after = before
+        .replace(/https:\/\/www\.example\.com/g, origin)
+        .replace(new RegExp(`(${origin.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[^"']*?)\\/index\\.html`, 'g'), '$1/')
+        .replace(new RegExp(`(${origin.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[^"']*?)\\.html`, 'g'), '$1');
       if (after !== before) { fs.writeFileSync(full, after); touched++; }
     }
   };
@@ -142,6 +191,10 @@ function main() {
     '',
   ].join('\n'));
 
+  // Order matters: strip extensions first so the canonical URLs stamped below
+  // point at the final address rather than at one that redirects.
+  const rewritten = stripHtmlExtensions(DIST);
+
   const siteUrl = process.env.SITE_URL;
   let stamped = 0;
   if (siteUrl) stamped = stampSiteUrl(DIST, siteUrl);
@@ -154,6 +207,7 @@ function main() {
   })(DIST);
 
   console.log(`dist/ built — ${files} files, ${(bytes / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`clean URLs: .html stripped from links in ${rewritten.length} page(s)`);
   if (siteUrl) console.log(`canonical origin stamped as ${siteUrl} in ${stamped} page(s)`);
   else console.log('canonical origin left as www.example.com (set SITE_URL to override)');
 
@@ -164,6 +218,39 @@ function main() {
       process.exit(1);
     }
   }
+
+  // Stripping extensions is only safe if every shortened link still points at
+  // a real page. A fast demo with dead navigation is worse than a slow one, so
+  // this refuses to emit a build it cannot prove.
+  const broken = [];
+  const verify = (d) => {
+    for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+      const full = path.join(d, entry.name);
+      if (entry.isDirectory()) { verify(full); continue; }
+      if (!entry.name.endsWith('.html')) continue;
+      const html = fs.readFileSync(full, 'utf8');
+      for (const m of html.matchAll(/\shref\s*=\s*"([^"]+)"/gi)) {
+        const ref = m[1];
+        if (/^(?:https?:|data:|mailto:|tel:|javascript:|#)/i.test(ref)) continue;
+        const clean = ref.split('#')[0].split('?')[0];
+        if (!clean) continue;
+        const base = path.dirname(full);
+        const target = path.resolve(base, clean);
+        const servable =
+          fs.existsSync(target) ||                       // a real file or dir
+          fs.existsSync(`${target}.html`) ||             // clean URL -> page
+          fs.existsSync(path.join(target, 'index.html')); // directory -> index
+        if (!servable) broken.push(`${path.relative(DIST, full)} -> ${ref}`);
+      }
+    }
+  };
+  verify(DIST);
+  if (broken.length) {
+    console.error(`\nBUILD REJECTED: ${broken.length} link(s) in dist/ resolve to nothing:`);
+    for (const b of broken.slice(0, 10)) console.error(`  ${b}`);
+    process.exit(1);
+  }
+  console.log(`link check: every internal link in dist/ resolves`);
 }
 
 main();
