@@ -1028,3 +1028,12 @@ a[href^="tel:"]{overflow-wrap:anywhere;word-break:break-word;}
 #slider-next,
 .lightbox-close{min-width:44px;min-height:44px;}
 #hamburger-btn{align-items:center;justify-content:center;}
+
+/* Menu links and social buttons are targets too. In the mobile menu the links
+   were 40×30 and the footer icons 34×34 — comfortable with a mouse, fiddly
+   with a thumb, and the two most-tapped things on a phone. */
+#mobile-menu .nav-link{
+  display:flex;align-items:center;
+  min-height:44px;padding:0 1rem;
+}
+.footer-social-btn{width:44px;height:44px;}

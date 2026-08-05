@@ -1,5 +1,12 @@
 # Changelog — SolarPro Global
 
+## 1.5.0 — 5 August 2026
+
+- **All touch targets now meet the 44px minimum.** The mobile menu links were
+  40×30px and the footer social buttons 34×34px — the two things most often
+  tapped on a phone, and the fiddliest. Everything interactive now clears 44px
+  at every tested width.
+
 ## 1.4.0 — 4 August 2026
 
 - **Mobile currency switcher fixed.** Inside the mobile menu the dropdown was
