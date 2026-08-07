@@ -1,5 +1,57 @@
 # Changelog — SolarPro Global
 
+## 1.6.0 — 7 August 2026
+
+- **Three new pages: 404, Privacy Policy and Terms of Service.** All three are
+  linked from the footer of every page. The 404 sits at the top level, because a
+  server serves it for a missing address at any depth. The two legal pages are
+  working drafts with every business-specific value left as a `[BRACKETED]`
+  placeholder — they are a starting point to fill in and have reviewed, not
+  finished documents, and publishing them unedited would describe a business
+  that is not yours.
+- **`.btn-outline` was unreadable in the light theme.** It used the fixed brand
+  orange, which measures 2.68:1 against the light background — below WCAG AA for
+  any text. It now uses the theme-aware `--primary` token (4.6:1 light, 6.1:1
+  dark) and keeps the orange border. The class was defined but used on no
+  shipped page, so nothing had ever sampled it; it surfaced the moment the 404
+  page used it.
+- **Six of the eleven checks were silently skipping any page not in a hardcoded
+  list.** They now cover all nine pages, and a new assertion fails the build if a
+  page exists that the list does not name — so a future page cannot be added
+  without being checked.
+- **All six demo photographs replaced**, with their source pages recorded at the
+  moment of download (`themeforest/licensing/CREDITS.txt`). The previous set had
+  no recorded provenance — the images had been downloaded and renamed during the
+  v1.3.0 self-contained pass and their origin lost — which is not a claim that
+  can be made on a marketplace submission. The set is also 1.28 MB instead of
+  2.8 MB.
+- **The home hero no longer depends on the photograph being dark.** Its heading
+  and lead paragraph are hardcoded white, and in the light theme they were
+  composited over the page's near-white background; the only thing making them
+  readable was the background image happening to be dark. Swapping in a brighter
+  photo made the hero unreadable. It now carries its own dark backdrop, the same
+  way the interior page heroes always have. The contrast check could not have
+  caught this: it declines to measure text over photographs rather than guess.
+- **`js/theme.js` had three silent bugs and is rewritten.** It did not know
+  about the `system` preference added in v1.4.0, so a visitor whose stored value
+  was `system` briefly got `class="system"` on `<html>` — neither of the two the
+  stylesheet styles. It applied any stored string unvalidated. And it read
+  `localStorage` with no `try`/`catch`, so in Safari private mode, or with site
+  data blocked, it threw an uncaught error on every page load.
+- **Security headers**: added a Content Security Policy, and a Permissions
+  Policy denying camera, microphone and geolocation. The one inline `onclick`
+  moved into `main.js`, so no behaviour depends on `unsafe-inline`. **If you
+  wire the contact form, you must add your form provider's origin to
+  `connect-src`** — this is documented beside the form-wiring snippet, because
+  a blocked request fails silently.
+- **New `security` guardrail check** (12 checks now): DOM-XSS sinks, `innerHTML`
+  assigned anything but a constant, unguarded storage access, `target="_blank"`
+  without `rel="noopener"`, inline event handlers, plain-HTTP URLs, and the
+  required response headers. Mutation-tested against 8 reintroduced faults.
+- **The documentation said v1.0.0** through five releases, and credited thirteen
+  Unsplash photo IDs from the version that hotlinked its images, while six
+  photographs actually ship. Both corrected.
+
 ## 1.5.0 — 5 August 2026
 
 - **All touch targets now meet the 44px minimum.** The mobile menu links were

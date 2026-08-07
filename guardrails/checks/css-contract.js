@@ -11,7 +11,7 @@
  */
 
 const { Report } = require('../lib/report');
-const { PAGES, exists, classesUsed, classesDefined } = require('../lib/project');
+const { PAGES, assertPagesComplete, exists, classesUsed, classesDefined } = require('../lib/project');
 
 // Classes applied only by JavaScript at runtime, so they legitimately appear
 // in a stylesheet or script without ever being in static markup, or vice versa.
@@ -35,6 +35,10 @@ module.exports = function cssContract() {
   for (const sheet of stylesheets) {
     for (const cls of classesDefined(sheet)) defined.add(cls);
   }
+
+  // Before checking classes, check that we are looking at every page at all.
+  // An unlisted page is a check that reports PASS over work it never read.
+  assertPagesComplete(report);
 
   let inspected = 0;
   const undefinedClasses = new Map(); // class -> sites

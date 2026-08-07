@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | SolarPro Global</title>
+  <meta name="description" content="The page you were looking for does not exist. Find your way back to SolarPro Global." />
+  <meta name="robots" content="noindex, follow" />
+  <!-- Canonical URL — replace with your live domain -->
+  <link rel="canonical" href="https://www.example.com/404.html" />
+  <meta property="og:title" content="Page Not Found | SolarPro Global" />
+  <meta property="og:description" content="The page you were looking for does not exist. Find your way back to SolarPro Global." />
+  <meta property="og:image" content="assets/images/og-cover.jpg" />
+  <script>
+    (function(){
+      /* Runs before first paint so the page never flashes the wrong theme.
+         Stored preference is 'system' | 'light' | 'dark'; anything else, including
+         a first visit, resolves to 'system'. Always sets an explicit class —
+         the stylesheet has html.light rules as well as html.dark. */
+      var pref = null;
+      try { pref = localStorage.getItem('solarproTheme'); } catch (e) {}
+      if (pref !== 'light' && pref !== 'dark') pref = 'system';
+      var dark = pref === 'dark' ||
+        (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.add(dark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme-pref', pref);
+    })();
+  </script>
+    <link rel="stylesheet" href="vendor/aos/aos.css" />
+  <link rel="stylesheet" href="css/custom.css" />
+  <!-- Tailwind utilities load last so they win over component styles -->
+  <link rel="stylesheet" href="css/tailwind.min.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0" aria-label="SolarPro Global Home">
+        <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <span style="font-weight:800;font-size:1.05rem;color:var(--text);">SolarPro <span style="color:var(--primary);">Global</span></span>
+      </a>
+      <div class="hidden lg:flex items-center gap-1">
+        <a href="index.html"   class="nav-link">Home</a>
+        <a href="pages/services.html"   class="nav-link">Services</a>
+        <a href="pages/calculator.html" class="nav-link">Calculator</a>
+        <a href="pages/portfolio.html"  class="nav-link">Portfolio</a>
+        <a href="pages/about.html"      class="nav-link">About</a>
+        <a href="pages/contact.html"    class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="currency-dropdown hidden lg:block">
+          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
+            <span class="currency-label">🇺🇸 USD</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="currency-dropdown-menu" role="listbox">
+            <div class="currency-option" data-currency="USD">🇺🇸 USD — US Dollar</div>
+            <div class="currency-option" data-currency="EUR">🇪🇺 EUR — Euro</div>
+            <div class="currency-option" data-currency="GBP">🇬🇧 GBP — British Pound</div>
+            <div class="currency-option" data-currency="NGN">🇳🇬 NGN — Nigerian Naira</div>
+          </div>
+        </div>
+        <button id="theme-toggle" aria-label="Toggle dark mode"></button>
+        <a href="pages/contact.html" class="btn-primary hidden lg:inline-flex text-sm py-2 px-4">Get Free Quote</a>
+        <button id="hamburger-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg" aria-label="Open menu" aria-expanded="false" style="color:var(--text);">
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+          <span class="block w-5 h-0.5" style="background:currentColor;"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden lg:hidden">
+    <a href="index.html"   class="nav-link">Home</a>
+    <a href="pages/services.html"   class="nav-link">Services</a>
+    <a href="pages/calculator.html" class="nav-link">Calculator</a>
+    <a href="pages/portfolio.html"  class="nav-link">Portfolio</a>
+    <a href="pages/about.html"      class="nav-link">About</a>
+    <a href="pages/contact.html"    class="nav-link">Contact</a>
+    <div style="padding:1rem;"><a href="pages/contact.html" class="btn-primary text-sm" style="display:block;text-align:center;">Get Free Quote</a></div>
+  </div>
+</nav>
+<!-- 404 -->
+<section class="py-20" style="background-color:var(--bg);min-height:60vh;display:flex;align-items:center;">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="section-tag" style="margin:0 auto;">Error 404</div>
+    <h1 class="section-title mt-4 mb-4" style="font-size:clamp(2rem,5vw,3.25rem);">This page isn't here</h1>
+    <p style="color:var(--text-muted);font-size:1.05rem;line-height:1.7;max-width:34rem;margin:0 auto 2rem;">
+      The link may be out of date, or the address mistyped. Everything below still works.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="index.html" class="btn-primary px-7 py-3 text-base">Back to Home</a>
+      <a href="pages/contact.html" class="btn-outline px-7 py-3 text-base">Contact Us</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-14 text-left">
+      <a href="pages/services.html" class="card p-6" style="text-decoration:none;display:block;">
+        <h3 style="font-weight:800;font-size:1.05rem;color:var(--text);margin-bottom:.4rem;">Services</h3>
+        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.6;">Residential, commercial and off-grid solar installation.</p>
+      </a>
+      <a href="pages/calculator.html" class="card p-6" style="text-decoration:none;display:block;">
+        <h3 style="font-weight:800;font-size:1.05rem;color:var(--text);margin-bottom:.4rem;">Solar Calculator</h3>
+        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.6;">Estimate system size, cost and payback in your currency.</p>
+      </a>
+      <a href="pages/portfolio.html" class="card p-6" style="text-decoration:none;display:block;">
+        <h3 style="font-weight:800;font-size:1.05rem;color:var(--text);margin-bottom:.4rem;">Portfolio</h3>
+        <p style="color:var(--text-muted);font-size:.92rem;line-height:1.6;">Completed installations and the numbers behind them.</p>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg solar-gradient flex items-center justify-center flex-shrink-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </div>
+          <span style="font-weight:800;color:#f1f5f9;">SolarPro <span style="color:var(--primary);">Global</span></span>
+        </div>
+        <p class="text-sm leading-relaxed" style="color:var(--text-muted);">Certified solar PV installations across Africa, Europe, the Middle East, and beyond.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/services.html">Services</a></li>
+          <li><a href="pages/calculator.html">Calculator</a></li>
+          <li><a href="pages/portfolio.html">Portfolio</a></li>
+          <li><a href="pages/about.html">About</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="pages/services.html#residential">Residential Solar</a></li>
+          <li><a href="pages/services.html#commercial">Commercial Solar</a></li>
+          <li><a href="pages/services.html#offgrid">Off-Grid Systems</a></li>
+          <li><a href="pages/services.html#maintenance">Maintenance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:#94a3b8;">Contact</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="mailto:hello@example.com" style="color:var(--text-muted);">hello@example.com</a></li>
+          <li><a href="tel:+2348000000000" style="color:var(--text-muted);">+234 800 0000 000</a></li>
+          <li><a href="https://wa.me/2348000000000" style="color:#25d366;" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="divider pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm" style="color:var(--text-muted);">&copy; <span class="footer-year">2026</span> SolarPro Global. All rights reserved.</p>
+      <p class="text-xs" style="color:var(--text-muted);">Certified Solar PV Engineering</p>
+      <p class="text-xs" style="color:var(--text-muted);">
+        <a href="pages/privacy.html" style="color:var(--text-muted);">Privacy Policy</a>
+        &nbsp;·&nbsp;
+        <a href="pages/terms.html" style="color:var(--text-muted);">Terms of Service</a>
+      </p>
+      <p class="text-xs" style="color:var(--text-muted);">
+        <a href="pages/privacy.html" style="color:var(--text-muted);">Privacy Policy</a>
+        &nbsp;·&nbsp;
+        <a href="pages/terms.html" style="color:var(--text-muted);">Terms of Service</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p class="text-sm" style="color:rgba(255,255,255,0.85);max-width:600px;">We use cookies to enhance your browsing experience. <a href="#" style="color:var(--primary);text-decoration:underline;">Learn more</a></p>
+  <div class="flex gap-2">
+    <button id="cookie-decline" class="text-sm px-4 py-2 rounded-lg font-medium" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:none;cursor:pointer;">Decline</button>
+    <button id="cookie-accept" class="btn-primary text-sm py-2 px-4">Accept All</button>
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="vendor/aos/aos.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

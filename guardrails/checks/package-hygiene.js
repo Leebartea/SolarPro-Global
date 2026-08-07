@@ -27,6 +27,7 @@ const FORBIDDEN = [
   [/(^|\/)Thumbs\.db$/,           'Windows thumbnail cache'],
   [/(^|\/)scripts(\/|$)/,         'internal screenshot and proof scripts'],
   [/(^|\/)guardrails(\/|$)/,      'internal release checks'],
+  [/(^|\/)themeforest(-build)?(\/|$)/, 'Envato-only packaging — the direct buyer gets LICENSE.txt at the root'],
   [/(^|\/)preview-info\.md$/,     'internal marketplace packaging notes'],
   [/(^|\/)proof-.*\.png$/,        'internal verification screenshots'],
   [/AGENTIC|CLAUDE/i,             'internal build documentation'],
@@ -45,6 +46,11 @@ const REQUIRED = [
   'docs/documentation.html',
   'pages/services.html', 'pages/calculator.html', 'pages/portfolio.html',
   'pages/about.html', 'pages/contact.html',
+  // Added in v1.6.0. Required here as well as in the themeforest suite: a
+  // direct buyer benefits from a 404 and legal pages just as much, and they
+  // are linked from every footer — shipping the links without the pages would
+  // give every buyer three broken links.
+  'pages/privacy.html', 'pages/terms.html', '404.html',
   'vendor/aos/aos.css', 'vendor/aos/aos.js',
 ];
 

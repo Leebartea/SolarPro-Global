@@ -1,0 +1,171 @@
+SolarPro Global — Third-Party Asset Credits
+===========================================
+
+Every asset bundled with this template, what it is licensed under, and where it
+came from. Envato requires this file; it is also the only complete record of
+what is in the package.
+
+This file lists the assets that ACTUALLY SHIP. It is generated against
+assets/ and vendor/ by the `themeforest` guardrail check, which fails if a
+bundled file is missing from this list or a listed file is not bundled.
+
+
+--------------------------------------------------------------------
+1. PHOTOGRAPHY
+--------------------------------------------------------------------
+
+Licence: Pexels Licence — https://www.pexels.com/license/
+         Free to use, no attribution required, modification permitted, and
+         redistribution as part of a larger work is permitted. Attribution is
+         recorded here anyway: a marketplace reviewer checks provenance, not
+         whether attribution was legally required.
+
+         Every photograph below was sourced deliberately on 7 Aug 2026 and its
+         source page recorded at the moment of download. That is the whole
+         point of this section — the previous set had no recorded provenance,
+         which is not a claim that can be made on a marketplace submission.
+
+  assets/images/solar-farm-clouds.jpg
+    Source:  https://www.pexels.com/photo/solar-panels-in-modern-photovoltaic-power-station-4320449/
+    Licence: Pexels Licence — https://www.pexels.com/license/
+    Used on: Home page hero background
+    Note:    resized and re-encoded for web delivery (225 KB)
+
+  assets/images/solar-array-rows.jpg
+    Source:  https://www.pexels.com/photo/modern-solar-power-station-in-countryside-4320475/
+    Licence: Pexels Licence — https://www.pexels.com/license/
+    Used on: About and Services page hero
+    Note:    resized and re-encoded for web delivery (228 KB)
+
+  assets/images/solar-panel-closeup.jpg
+    Source:  https://www.pexels.com/photo/solar-panel-closeup-27873610/
+    Licence: Pexels Licence — https://www.pexels.com/license/
+    Used on: Services — residential section
+    Note:    resized and re-encoded for web delivery (227 KB)
+
+  assets/images/solar-rooftop-commercial.jpg
+    Source:  https://www.pexels.com/photo/aerial-view-of-rooftop-solar-panel-installation-35691079/
+    Licence: Pexels Licence — https://www.pexels.com/license/
+    Used on: Commercial section and portfolio cards
+    Note:    resized and re-encoded for web delivery (226 KB)
+
+  assets/images/solar-ground-mount-aerial.jpg
+    Source:  https://www.pexels.com/photo/directly-above-solar-farm-9893731/
+    Licence: Pexels Licence — https://www.pexels.com/license/
+    Used on: Portfolio cards and Services — off-grid
+    Note:    resized and re-encoded for web delivery (227 KB)
+
+  assets/images/solar-farm-blue-sky.jpg
+    Source:  https://www.pexels.com/photo/back-view-of-solar-panels-25751713/
+    Licence: Pexels Licence — https://www.pexels.com/license/
+    Used on: Portfolio / secondary imagery
+    Note:    resized and re-encoded for web delivery (144 KB)
+
+  NOT INCLUDED IN THE THEMEFOREST DOWNLOAD.
+  These six photographs ship in the direct-sale package and are used on the
+  live demo. They are REPLACED WITH PLACEHOLDERS in the ThemeForest archive —
+  see §1b. The item description must state that the photographs are for preview
+  purposes only and are not included in the purchase.
+
+--------------------------------------------------------------------
+1b. WHY THE THEMEFOREST DOWNLOAD SHIPS PLACEHOLDERS
+--------------------------------------------------------------------
+
+Envato draws a hard line between the two uses, and the licence needed differs:
+
+  Item preview (the live demo)  -> a COMMERCIAL licence is enough.
+  Item download (the ZIP)       -> a REDISTRIBUTION licence is required,
+                                   meaning the right to RESELL the asset.
+
+  "In order to include an asset you did not create yourself in your item
+   download, you need to have an appropriate redistribution license (the rights
+   to resell that asset under the applicable Envato License)."
+   — What Assets Can I Use In My Items?, Envato Author Support
+
+The Pexels Licence is permissive and very probably satisfies this. "Very
+probably" is not a basis for a licensing warranty on a marketplace where
+rejection is expensive, so the ThemeForest archive contains no third-party
+photographs at all. `scripts/package-themeforest.js` swaps every photograph for
+a generated placeholder of identical filename and dimensions, so the template
+still renders correctly and the buyer drops their own photos straight in.
+
+This removes the question rather than answering it, and it is what most
+established Site Template authors do.
+
+--------------------------------------------------------------------
+2. FONTS
+--------------------------------------------------------------------
+
+License:  SIL Open Font License 1.1 — https://scripts.sil.org/OFL
+          Permits bundling and commercial use, including redistribution as part
+          of a sold template, provided the fonts are not sold on their own.
+
+  assets/fonts/outfit-300.woff2          Outfit
+  assets/fonts/outfit-400.woff2          Outfit
+  assets/fonts/outfit-500.woff2          Outfit
+  assets/fonts/outfit-600.woff2          Outfit
+  assets/fonts/outfit-700.woff2          Outfit
+  assets/fonts/outfit-800.woff2          Outfit
+  assets/fonts/outfit-900.woff2          Outfit
+    Source: https://fonts.google.com/specimen/Outfit
+    Designer: Smartsheet Inc., Rodrigo Fuenzalida
+
+  assets/fonts/space-grotesk-400.woff2   Space Grotesk
+  assets/fonts/space-grotesk-500.woff2   Space Grotesk
+  assets/fonts/space-grotesk-600.woff2   Space Grotesk
+  assets/fonts/space-grotesk-700.woff2   Space Grotesk
+    Source: https://fonts.google.com/specimen/Space+Grotesk
+    Designer: Florian Karsten
+
+
+--------------------------------------------------------------------
+3. JAVASCRIPT AND CSS LIBRARIES
+--------------------------------------------------------------------
+
+  vendor/aos/aos.js, vendor/aos/aos.css      AOS (Animate On Scroll) 2.3.4
+    License: MIT — https://github.com/michalsnik/aos/blob/next/LICENSE
+    Source:  https://michalsnik.github.io/aos/
+    Copyright (c) 2015 Michał Sajnóg
+
+  css/tailwind.min.css                        Tailwind CSS 3.4 (compiled output)
+    License: MIT — https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE
+    Source:  https://tailwindcss.com
+    Copyright (c) Tailwind Labs, Inc.
+    Note: this file is compiled output containing only the utility classes this
+    template uses. Tailwind itself is not redistributed.
+
+
+--------------------------------------------------------------------
+4. DATA
+--------------------------------------------------------------------
+
+  Peak sun hour values (js/calculator.js, COUNTRY_DATA)
+    Source:  NASA POWER Project — https://power.larc.nasa.gov
+    License: Public domain (US Government work)
+
+  Electricity tariff values (js/calculator.js, COUNTRY_DATA)
+    Source:  Published national average residential rates, 2024.
+    Note:    Indicative only. Ten countries are included: Nigeria, USA, Germany,
+             India, Ghana, UAE, UK, South Africa, Kenya, Brazil. Rates move;
+             the buyer is told to update them in the documentation.
+
+
+--------------------------------------------------------------------
+5. ICONS AND ILLUSTRATIONS
+--------------------------------------------------------------------
+
+  All icons in this template are inline SVG authored for it. No icon font or
+  third-party icon set is bundled, and assets/icons/ is empty.
+
+
+--------------------------------------------------------------------
+6. DEMO CONTENT
+--------------------------------------------------------------------
+
+  All company names, testimonials, client names, case studies, project figures,
+  certifications, addresses, phone numbers and email addresses in this template
+  are FICTIONAL. "SolarPro Global" is not a real company. The email address
+  hello@example.com uses the RFC 2606 reserved domain and can never be
+  registered by anyone.
+
+  See LICENSE.txt §4 for the buyer's obligation to replace it.

@@ -126,7 +126,15 @@ html.light #navbar{background:rgba(248,250,252,0.92);border-bottom:1px solid var
 }
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,.45);}
 .btn-outline{
-  background:transparent;color:var(--orange);
+  background:transparent;
+  /* --primary, not --orange. The fixed brand orange is 2.68:1 on the light
+     theme's near-white background — below AA for any text, let alone a button
+     label. --primary is the theme-aware token (#c2410c light, #fb923c dark)
+     and clears 4.5:1 in both. The border keeps the brand orange: a border is
+     not text and carries no contrast requirement.
+     Latent since v1.0 — the class was defined but used on no shipped page, so
+     no check ever sampled it. Found when the 404 page started using it. */
+  color:var(--primary);
   border:2px solid var(--orange);
 }
 .btn-outline:hover{background:var(--orange);color:#fff;transform:translateY(-2px);}
@@ -648,7 +656,18 @@ html.light .section-title{color:#0f172a;}
 }
 
 /* --- Hero ----------------------------------------------------- */
-.hero-section{position:relative;overflow:hidden;}
+/* The home hero carries the same guaranteed dark backdrop as .page-hero, and
+   for the same reason: its heading, lead paragraph and stat row are hardcoded
+   white in the markup. Without this the light theme composited white text over
+   the page's near-white background, and the only thing making it readable was
+   the background photograph happening to be dark. That is not a property you
+   want to depend on — swapping in a brighter photo silently broke the hero,
+   and the contrast check could not catch it because it declines to measure
+   text over photographs rather than guess. Now any photo works in both themes. */
+.hero-section{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0a0f1e 0%,#0f172a 40%,#1a1040 70%,#0a1628 100%);
+}
 .hero-sun{
   position:absolute;pointer-events:none;border-radius:50%;
   background:radial-gradient(circle,rgba(249,115,22,.35) 0%,rgba(249,115,22,0) 70%);

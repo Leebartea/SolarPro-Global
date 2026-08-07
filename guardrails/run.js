@@ -19,11 +19,48 @@ const { colours } = require('./lib/report');
 const { BOLD, DIM, OFF, RED, GRN, YEL } = colours;
 const CHECK_DIR = path.join(__dirname, 'checks');
 
-const available = fs
-  .readdirSync(CHECK_DIR)
-  .filter((f) => f.endsWith('.js'))
-  .map((f) => f.replace(/\.js$/, ''))
-  .sort();
+/**
+ * Marketplace-specific suites live in their own directory and are opt-in:
+ *
+ *   node guardrails/run.js --suite=themeforest
+ *
+ * They are NOT part of the default run, and that is the whole point. The
+ * product sold on Selar must never be blocked by a requirement that exists
+ * only because Envato asks for it — an Envato reviewer wanting a differently
+ * formatted help file is not a reason to stop shipping a fix to paying buyers.
+ * Requirements flow one way: everything in `checks/` applies to every
+ * deliverable; everything in `checks-<suite>/` applies to that one only.
+ *
+ * This replaces the earlier plan of a `release/themeforest` branch. A branch
+ * would need merging every time main moves, and an unmerged branch is how a
+ * marketplace ends up serving an older build than the one you fixed. One tree,
+ * one source of truth, an extra gate on top.
+ */
+const suites = process.argv
+  .filter((a) => a.startsWith('--suite='))
+  .map((a) => a.slice('--suite='.length));
+
+const dirs = [CHECK_DIR, ...suites.map((s) => path.join(__dirname, `checks-${s}`))];
+for (const d of dirs) {
+  if (!fs.existsSync(d)) {
+    console.error(`Unknown suite directory: ${path.basename(d)}`);
+    process.exit(2);
+  }
+}
+
+/** check name -> absolute file, later dirs never shadowing earlier ones. */
+const registry = new Map();
+for (const dir of dirs) {
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith('.js')).sort()) {
+    const name = f.replace(/\.js$/, '');
+    if (registry.has(name)) {
+      console.error(`Duplicate check name "${name}" in ${dir} — names must be unique across suites`);
+      process.exit(2);
+    }
+    registry.set(name, path.join(dir, f));
+  }
+}
+const available = [...registry.keys()].sort();
 
 async function main() {
   const requested = process.argv.slice(2).filter((a) => !a.startsWith('-'));
@@ -41,7 +78,7 @@ async function main() {
 
   const reports = [];
   for (const name of selected) {
-    const check = require(path.join(CHECK_DIR, `${name}.js`));
+    const check = require(registry.get(name));
     let report;
     try {
       report = await check();

@@ -632,6 +632,18 @@ function animCounter(el, to, dur, suf) {
    ============================================================ */
 (function () {
   var yr = new Date().getFullYear();
+  /* The Recalculate button. This was an inline onclick until v1.6.0; it moved
+     here so that no BEHAVIOUR depends on 'unsafe-inline' in the Content
+     Security Policy. The inline theme block in <head> still needs the
+     allowance, but that one is load-bearing for the flash-of-wrong-theme fix,
+     whereas this was simply convenient. */
+  document.querySelectorAll('[data-recalculate]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var calc = document.getElementById('calc-btn');
+      if (calc) calc.click();
+    });
+  });
+
   document.querySelectorAll('.footer-year').forEach(function (el) { el.textContent = yr; });
 })();
 

@@ -8,3 +8,6 @@ dist/
 # css/tailwind.min.css IS committed on purpose: the template's promise is
 # "no build step — open index.html", so a fresh clone must render correctly.
 
+
+# ThemeForest packaging output — assembled by npm run package:themeforest
+themeforest-build/

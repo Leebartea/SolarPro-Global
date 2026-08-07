@@ -367,9 +367,9 @@
 
   <!-- OVERVIEW -->
   <section class="doc-section" id="overview">
-    <h1>Documentation <span class="version-tag">v1.0.0</span></h1>
+    <h1>Documentation <span class="version-tag">v1.6.0</span></h1>
     <p style="font-size:1.05rem;color:var(--text);margin-bottom:0.25rem;"><strong>SolarPro Global</strong> is a complete, production-ready website template for solar PV installation businesses.</p>
-    <p>6 fully built HTML pages, an interactive savings calculator with real irradiance data for 10 countries, a filterable portfolio with lightbox, dark/light mode, currency switcher, and zero build-step dependency. Open a file in your browser and it works.</p>
+    <p>9 built HTML pages (6 in the nav, plus a 404, privacy policy and terms page), an interactive savings calculator with real irradiance data for 10 countries, a filterable portfolio with lightbox, dark/light mode, currency switcher, and zero build-step dependency. Open a file in your browser and it works.</p>
 
     <h3>What's Included</h3>
     <table>
@@ -423,12 +423,15 @@
     <h2>Folder Structure</h2>
     <pre><code>SolarPro-Global-v1/
 <span class="comment">├── index.html               ← Home page</span>
+<span class="comment">├── 404.html                 ← Not-found page (see note below)</span>
 ├── pages/
 │   ├── services.html        <span class="comment">← Services page</span>
 │   ├── calculator.html      <span class="comment">← Solar savings calculator</span>
 │   ├── portfolio.html       <span class="comment">← Project portfolio with lightbox</span>
 │   ├── about.html           <span class="comment">← Company story, team, certifications</span>
-│   └── contact.html         <span class="comment">← Contact form + WhatsApp</span>
+│   ├── contact.html         <span class="comment">← Contact form + WhatsApp</span>
+│   ├── privacy.html         <span class="comment">← Privacy policy — FILL IN THE BRACKETS</span>
+│   └── terms.html           <span class="comment">← Terms of service — FILL IN THE BRACKETS</span>
 ├── js/
 │   ├── main.js              <span class="comment">← Currency, slider, lightbox, form, cookies</span>
 │   ├── calculator.js        <span class="comment">← Solar calculation engine (heavily commented)</span>
@@ -440,7 +443,16 @@
 │   └── icons/               <span class="comment">← Place custom SVG icons here</span>
 ├── docs/
 │   └── documentation.html  <span class="comment">← This file</span>
+├── CHANGELOG.md             <span class="comment">← What changed in each version</span>
+├── LICENSE.txt              <span class="comment">← Your licence terms</span>
 └── README.md                <span class="comment">← Quick reference (for developers)</span></code></pre>
+
+    <h3>The 404 page</h3>
+    <p><code>404.html</code> sits at the top level rather than in <code>pages/</code>, because a web server serves it for a missing address at <em>any</em> depth. Its links are written relative to the site root for the same reason. Most hosts pick it up automatically; on Apache add <code>ErrorDocument 404 /404.html</code> to <code>.htaccess</code>, and on Netlify, Vercel or Cloudflare Pages no configuration is needed.</p>
+
+    <h3>The legal pages</h3>
+    <p><code>pages/privacy.html</code> and <code>pages/terms.html</code> are <strong>working drafts, not legal advice</strong>. Every business-specific value is written as a <code>[BRACKETED]</code> placeholder — your company name, address, email, retention periods and governing law. Publishing them unedited would describe a business that is not yours, so every bracket has to be filled in and the result reviewed against the law where you and your customers are.</p>
+    <p>They are linked from the footer of every page. If you delete them, remove those two footer links as well.</p>
   </section>
 
   <!-- BRANDING -->
@@ -832,27 +844,21 @@ npx tailwindcss -i ./css/custom.css -o ./css/tailwind.css --content "./**/*.html
     <p>All third-party resources used in this template are free for commercial use under their respective licenses.</p>
 
     <h3>Photography (Unsplash)</h3>
-    <p>All photographs are sourced from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> under the <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a> — free for commercial use, no attribution required. Original photographer credits:</p>
+    <p>All photographs are sourced from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> under the <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a> — free for commercial use, no attribution required. Six photographs are bundled with the template; none is loaded from the internet.</p>
     <table>
       <thead>
-        <tr><th>Photo ID</th><th>Usage</th></tr>
+        <tr><th>File</th><th>Usage</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>photo-1509391366360-2e959784a276</code></td><td>Home hero background — solar panel field</td></tr>
-        <tr><td><code>photo-1521618755572-156ae0cdd74d</code></td><td>About/Services hero — solar technician</td></tr>
-        <tr><td><code>photo-1545209463-e2825498edbf</code></td><td>Services — residential solar</td></tr>
-        <tr><td><code>photo-1497440001374-f26997328c1b</code></td><td>Services — commercial solar</td></tr>
-        <tr><td><code>photo-1508514177221-188b1cf16e9d</code></td><td>Services — off-grid systems</td></tr>
-        <tr><td><code>photo-1560518883-ce09059eeffa</code></td><td>Portfolio card 1</td></tr>
-        <tr><td><code>photo-1466611653911-95081537e5b7</code></td><td>Portfolio card 2</td></tr>
-        <tr><td><code>photo-1491895200222-0fc4a4c35e18</code></td><td>Portfolio card 3</td></tr>
-        <tr><td><code>photo-1543966888-7c1dc482a810</code></td><td>Portfolio card 4</td></tr>
-        <tr><td><code>photo-1532601224476-15c79f2f7a51</code></td><td>Portfolio card 5</td></tr>
-        <tr><td><code>photo-1473341304170-971dccb5ac1e</code></td><td>Portfolio card 6</td></tr>
-        <tr><td><code>photo-1611365892117-00ac5ef43c90</code></td><td>Portfolio card 7</td></tr>
-        <tr><td><code>photo-1560518883-ce09059eeffa</code></td><td>Index portfolio preview</td></tr>
+        <tr><td><code>assets/images/solar-farm-blue-sky.jpg</code></td><td>Home hero background</td></tr>
+        <tr><td><code>assets/images/solar-array-rows.jpg</code></td><td>About and Services page hero</td></tr>
+        <tr><td><code>assets/images/solar-panel-closeup.jpg</code></td><td>Services</td></tr>
+        <tr><td><code>assets/images/solar-rooftop-commercial.jpg</code></td><td>Commercial section</td></tr>
+        <tr><td><code>assets/images/solar-farm-clouds.jpg</code></td><td>Portfolio</td></tr>
+        <tr><td><code>assets/images/solar-ground-mount-aerial.jpg</code></td><td>Portfolio</td></tr>
       </tbody>
     </table>
+    <p>These are <strong>demo photographs</strong>. Replacing them with photographs of your own installations is the single highest-value change you can make to this template — a real roof in a real neighbourhood sells better than any stock image.</p>
 
     <h3>Open Source Libraries</h3>
     <ul>
@@ -906,6 +912,19 @@ npx tailwindcss -i ./css/custom.css -o ./css/tailwind.css --content "./**/*.html
     <code>js/main.js</code> find the <code>CONTACT FORM</code> section and replace the
     <code>setTimeout</code> block inside the submit handler with this:</p>
 
+    <div style="border-left:3px solid #d9730d;background:rgba(217,115,13,0.08);padding:14px 18px;border-radius:4px;margin:18px 0;">
+      <strong>If you deploy with the included <code>_headers</code> file, read this first.</strong>
+      The Content Security Policy sets <code>connect-src 'self'</code>, which <em>blocks</em> the
+      request below until you allow the form provider's origin. A blocked request fails
+      silently in the page &mdash; the form appears to submit and nothing arrives.
+      Add the origin to that one directive in <code>_headers</code>:
+      <br><br>
+      <code>connect-src 'self' https://api.web3forms.com;</code>
+      <br><br>
+      Use whichever origin your provider posts to. If you are hosting somewhere that ignores
+      <code>_headers</code> (most shared cPanel hosting does), nothing is blocked and there is
+      nothing to change &mdash; but you also have none of the other security headers.
+    </div>
     <pre><code><span class="key">const</span> res = <span class="key">await</span> fetch(<span class="str">'https://api.web3forms.com/submit'</span>, {
   method:  <span class="str">'POST'</span>,
   headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span>, Accept: <span class="str">'application/json'</span> },

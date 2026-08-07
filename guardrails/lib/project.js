@@ -6,7 +6,19 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 
-/** Every shippable page, in nav order. */
+/**
+ * Every shippable page: the six nav pages first, then the pages reachable only
+ * from the footer or from a server's 404 handler.
+ *
+ * Six of the eleven checks iterate this list rather than globbing, so a page
+ * missing from it is not checked at all — it renders, it ships, and nothing
+ * says otherwise. That is exactly what happened when privacy, terms and 404
+ * were added: `local-assets` and `package-hygiene` picked them up because they
+ * walk the tree, while contrast, responsive, cross-browser, offline-render,
+ * css-contract and content-integrity silently skipped them.
+ *
+ * `assertPagesComplete()` below is why it cannot happen twice.
+ */
 const PAGES = [
   'index.html',
   'pages/services.html',
@@ -14,7 +26,38 @@ const PAGES = [
   'pages/portfolio.html',
   'pages/about.html',
   'pages/contact.html',
+  'pages/privacy.html',
+  'pages/terms.html',
+  '404.html',
 ];
+
+/**
+ * Fail if any shippable HTML file is absent from PAGES.
+ *
+ * A hardcoded list is the right structure here — it fixes the order checks run
+ * in and lets a page be deliberately excluded — but it silently under-reports
+ * the moment someone adds a file and forgets. Called by css-contract, which
+ * every run executes.
+ */
+function assertPagesComplete(report) {
+  const found = ['404.html', 'index.html']
+    .filter((f) => fs.existsSync(path.join(ROOT, f)))
+    .concat(
+      fs
+        .readdirSync(path.join(ROOT, 'pages'))
+        .filter((f) => f.endsWith('.html'))
+        .map((f) => `pages/${f}`),
+    );
+  for (const f of found) {
+    if (!PAGES.includes(f)) {
+      report.error(
+        `${f} exists but is not in PAGES — six checks would skip it entirely`,
+        'guardrails/lib/project.js',
+      );
+    }
+  }
+  return found.length;
+}
 
 /** Pages plus the buyer documentation, which also has to be defect-free. */
 const ALL_HTML = [...PAGES, 'docs/documentation.html'];
@@ -84,4 +127,4 @@ const host = (url) => {
   try { return new URL(url).host; } catch { return null; }
 };
 
-module.exports = { ROOT, PAGES, ALL_HTML, read, exists, abs, classesUsed, classesDefined, externalUrls, host };
+module.exports = { ROOT, PAGES, ALL_HTML, assertPagesComplete, read, exists, abs, classesUsed, classesDefined, externalUrls, host };

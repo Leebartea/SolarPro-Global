@@ -30,6 +30,11 @@ const EXCLUDES = [
   '.claude/*', '*/.claude/*',
   'node_modules/*', '*/node_modules/*',
   'guardrails/*', 'scripts/*',
+  // Envato-only artefacts. A Selar buyer receives LICENSE.txt at the root; the
+  // Licensing/ folder and its credits manifest are ThemeForest's packaging
+  // convention and would only confuse a direct buyer about what they bought.
+  'themeforest/*', '*/themeforest/*',
+  'themeforest-build/*', '*/themeforest-build/*',
   'preview-info.md', 'shots.js',
   'tailwind.config.js', 'css/tailwind.src.css',
   'package.json', 'package-lock.json',

@@ -1,13 +1,15 @@
 {
   "name": "solarpro-global",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
-  "description": "SolarPro Global \u2014 solar installation website template",
+  "description": "SolarPro Global — solar installation website template",
   "scripts": {
     "build:css": "tailwindcss -c tailwind.config.js -i css/tailwind.src.css -o css/tailwind.min.css --minify",
     "build": "npm run build:css && node scripts/build-dist.js",
     "check": "node guardrails/run.js",
-    "package": "npm run build:css && npm run check && node guardrails/package.js"
+    "package": "npm run build:css && npm run check && node guardrails/package.js",
+    "check:themeforest": "node guardrails/run.js --suite=themeforest",
+    "package:themeforest": "npm run build:css && node scripts/package-themeforest.js"
   },
   "devDependencies": {
     "playwright": "^1.58.2",

@@ -4,6 +4,7 @@ module.exports = {
   // this template actually uses — and nothing else.
   content: [
     './index.html',
+    './404.html',            // root-level, so ./pages/** does not reach it
     './pages/**/*.html',
     './js/**/*.js',
   ],

@@ -168,6 +168,30 @@ function main() {
     '  X-Content-Type-Options: nosniff',
     '  X-Frame-Options: SAMEORIGIN',
     '  Referrer-Policy: strict-origin-when-cross-origin',
+    '  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()',
+    // Content Security Policy.
+    //
+    // The template loads nothing from a third-party host — that is enforced by
+    // the `external-deps` check — so `default-src 'self'` costs nothing and
+    // shuts the door on injected remote scripts.
+    //
+    // 'unsafe-inline' is present for both script and style, honestly rather
+    // than decoratively: every page carries an inline theme block in <head>
+    // (removing it reintroduces the flash of wrong theme) and several hundred
+    // inline style attributes. Hashing them would break on every edit. The
+    // directives that still carry real weight without it are object-src,
+    // base-uri and frame-ancestors, which block the injection techniques that
+    // do not need inline execution.
+    //
+    // NOTE FOR BUYERS WIRING THE CONTACT FORM: connect-src is 'self', so a
+    // fetch() to Web3Forms, Formspree or your own API will be BLOCKED until you
+    // add that origin here. This is called out in the documentation because a
+    // CSP violation fails silently in the UI — the form would simply never
+    // send, which is the worst possible failure for a lead-capture page.
+    "  Content-Security-Policy: default-src 'self'; img-src 'self' data:; " +
+      "style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; " +
+      "font-src 'self'; connect-src 'self'; object-src 'none'; " +
+      "base-uri 'self'; frame-ancestors 'self'",
     '',
     '/assets/fonts/*',
     '  Cache-Control: public, max-age=31536000, immutable',
