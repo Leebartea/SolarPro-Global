@@ -453,13 +453,14 @@ function animCounter(el, to, dur, suf) {
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
+  /* The card used to carry role="button" and tabindex="0". A div with that role
+     may not contain a heading — the role takes presentational children — so the
+     markup did not validate, and the accessible name came from an attribute
+     rather than the visible project title. The tab stop is now a real <button>
+     inside the <h3>: Enter and Space work natively, and its click bubbles to the
+     card handler below, which is what still opens the lightbox. */
   items.forEach(function (item) {
-    item.setAttribute('tabindex', '0');
-    item.setAttribute('role', 'button');
     item.addEventListener('click', function () { open(item); });
-    item.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item); }
-    });
   });
 
   if (lbCls) lbCls.addEventListener('click', close);

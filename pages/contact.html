@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="../css/custom.css" />
   <!-- Tailwind utilities load last so they win over component styles -->
   <link rel="stylesheet" href="../css/tailwind.min.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%E2%98%80%EF%B8%8F%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
 
@@ -54,8 +54,8 @@
       </div>
       <div class="flex items-center gap-2">
         <div class="currency-dropdown hidden lg:block">
-          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
-            <span class="currency-label">🇺🇸 USD</span>
+          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);">
+            <span class="sr-only">Switch currency: </span><span class="currency-label">🇺🇸 USD</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="currency-dropdown-menu" role="listbox">

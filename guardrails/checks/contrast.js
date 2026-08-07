@@ -78,14 +78,36 @@ module.exports = async function contrast() {
           // against a photograph cannot be derived from computed styles, and a
           // check that reports confident falsehoods gets switched off. It
           // declines to guess instead.
+          // Source-over compositing: `over` painted on top of `under`.
+          //
+          // The first version had no such step — it looked for the first layer
+          // with alpha > 0.5 and ignored everything more transparent than that.
+          // The portfolio badges paint rgba(34,197,94,.14) over a white card, so
+          // the tint was skipped and the text measured against pure white: 5.9:1,
+          // comfortably passing. What a reader actually sees is #15803d on the
+          // composited #e0f7e8, which is 4.45:1 — a fail. The check was not
+          // lenient, it was measuring a colour that appears nowhere on screen.
+          const composite = (over, under) => {
+            const a = over.a + under.a * (1 - over.a);
+            const mix = (o, u) => (o * over.a + u * under.a * (1 - over.a)) / a;
+            return { r: mix(over.r, under.r), g: mix(over.g, under.g), b: mix(over.b, under.b), a };
+          };
+
           const backdrop = (el) => {
             // An element that paints its own background is its own backdrop —
             // white label text on a gradient button sits on the button, not on
             // whatever section happens to be behind it.
             const ownCs = getComputedStyle(el);
             if (ownCs.backgroundImage && ownCs.backgroundImage !== 'none') return null;
+
+            // Every translucent layer between the glyphs and the first opaque
+            // surface, nearest first.
+            const layers = [];
             const own = parse(ownCs.backgroundColor);
-            if (own && own.a > 0.5) return own;
+            if (own && own.a > 0) {
+              if (own.a >= 0.999) return own;
+              layers.push(own);
+            }
 
             const rect = el.getBoundingClientRect();
             const cx = Math.min(Math.max(rect.left + rect.width / 2, 1), window.innerWidth - 1);
@@ -93,17 +115,24 @@ module.exports = async function contrast() {
             const stack = document.elementsFromPoint(cx, cy);
             const start = stack.indexOf(el);
             if (start === -1) return null;
+
+            // Flatten from the opaque base upward, so the result is the colour
+            // the eye receives.
+            const flatten = (base) => layers.reduceRight((acc, layer) => composite(layer, acc), base);
+
             for (const node of stack.slice(start + 1)) {
               const cs = getComputedStyle(node);
               if (cs.backgroundImage && cs.backgroundImage !== 'none') return null;
               if (node.tagName === 'IMG' || node.tagName === 'SVG') return null;
               const bg = parse(cs.backgroundColor);
-              if (bg && bg.a > 0.5) return bg;
+              if (!bg || bg.a === 0) continue;
+              if (bg.a >= 0.999) return flatten(bg);
+              layers.push(bg);
             }
             const rootCs = getComputedStyle(document.documentElement);
             if (rootCs.backgroundImage && rootCs.backgroundImage !== 'none') return null;
             const html = parse(rootCs.backgroundColor);
-            return html && html.a > 0.5 ? html : { r: 255, g: 255, b: 255, a: 1 };
+            return flatten(html && html.a >= 0.999 ? html : { r: 255, g: 255, b: 255, a: 1 });
           };
 
           const out = [];

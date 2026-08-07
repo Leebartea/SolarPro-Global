@@ -62,9 +62,52 @@ function visibleText(html) {
     .replace(/\s+/g, ' ');
 }
 
+/**
+ * Stock-photo sources other than the one actually used. Naming the wrong
+ * licensor is a licensing claim the seller cannot support, and it is exactly
+ * what a marketplace reviewer cross-checks against the credits file.
+ *
+ * This fires for real: the photographs moved to Pexels in v1.6.0, and
+ * LICENSE.txt, README.md and the help file all still named Unsplash — three
+ * documents shipping to buyers, each asserting a licence that no longer
+ * governed anything in the package. Nothing rendered wrong, so nothing caught
+ * it. The buyer-facing documents are checked here rather than the page markup,
+ * because that is where a licence gets asserted.
+ */
+const STOCK_SOURCES = ['pexels', 'unsplash', 'pixabay', 'shutterstock', 'freepik', 'istock', 'getty images', 'adobe stock'];
+const LICENCE_DOCS = ['LICENSE.txt', 'README.md', 'docs/documentation.html'];
+const CREDITS = 'themeforest/licensing/CREDITS.txt';
+
+/** Which stock sources the credits file actually declares. */
+function declaredSources() {
+  if (!exists(CREDITS)) return null;
+  const credits = read(CREDITS).toLowerCase();
+  return STOCK_SOURCES.filter((s) => credits.includes(s));
+}
+
 module.exports = function contentIntegrity() {
   const report = new Report('Content integrity — no build notes, no borrowed credibility');
   let inspected = 0;
+
+  const declared = declaredSources();
+  if (declared === null) {
+    report.warn(`${CREDITS} is missing — cannot verify licence claims agree`, CREDITS);
+  } else {
+    for (const doc of LICENCE_DOCS) {
+      if (!exists(doc)) continue;
+      inspected++;
+      const text = read(doc).toLowerCase();
+      for (const source of STOCK_SOURCES) {
+        if (declared.includes(source)) continue;
+        if (text.includes(source)) {
+          report.error(
+            `names "${source}" as a photography source, but ${CREDITS} declares ` +
+            `${declared.length ? declared.join(', ') : 'none'} — a buyer-facing ` +
+            `licence claim must match the credits file`, doc);
+        }
+      }
+    }
+  }
 
   for (const rel of PAGES) {
     if (!exists(rel)) continue;

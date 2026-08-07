@@ -367,7 +367,7 @@
 
   <!-- OVERVIEW -->
   <section class="doc-section" id="overview">
-    <h1>Documentation <span class="version-tag">v1.6.0</span></h1>
+    <h1>Documentation <span class="version-tag">v1.6.1</span></h1>
     <p style="font-size:1.05rem;color:var(--text);margin-bottom:0.25rem;"><strong>SolarPro Global</strong> is a complete, production-ready website template for solar PV installation businesses.</p>
     <p>9 built HTML pages (6 in the nav, plus a 404, privacy policy and terms page), an interactive savings calculator with real irradiance data for 10 countries, a filterable portfolio with lightbox, dark/light mode, currency switcher, and zero build-step dependency. Open a file in your browser and it works.</p>
 
@@ -514,7 +514,9 @@
   <!-- IMAGES -->
   <section class="doc-section" id="images">
     <h2>Images</h2>
-    <p>Hero and section images are served from Unsplash CDN URLs embedded in the HTML. To replace them with your own photos, place your image files in <code>assets/images/</code> and update the <code>src</code> attribute.</p>
+    <p>Every image is a local file in <code>assets/images/</code>. Nothing is fetched from a CDN or any other outside host, which is why the template renders with the network switched off. To use your own photography, drop your file into that folder and update the <code>src</code> attribute — or simply overwrite the existing file, keeping the same name and pixel dimensions, and no layout changes at all.</p>
+
+    <p><strong>Which images you received depends on your package.</strong> The direct download bundles the six demo photographs used on the live preview. The ThemeForest edition ships same-name, same-size placeholders instead, because Envato requires a redistribution licence for anything inside the download and stock photography is licensed for use, not resale. Either way the layouts are identical, so your own photos drop straight in.</p>
 
     <h3>Recommended Image Specs</h3>
     <table>
@@ -531,9 +533,9 @@
       </tbody>
     </table>
 
-    <h3>Replacing an Unsplash Image with Your Own</h3>
-    <p>Find the <code>&lt;img&gt;</code> tag in the relevant HTML file and replace the <code>src</code> URL:</p>
-    <pre><code><span class="comment">&lt;!-- Before (Unsplash CDN): --&gt;</span>
+    <h3>Replacing a Demo Image with Your Own</h3>
+    <p>Find the <code>&lt;img&gt;</code> tag in the relevant HTML file and replace the <code>src</code> path:</p>
+    <pre><code><span class="comment">&lt;!-- Before (bundled demo file): --&gt;</span>
 <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"../assets/images/solar-farm-clouds.jpg"</span>
      <span class="attr">alt</span>=<span class="str">"Solar panel field"</span> ... <span class="tag">/&gt;</span>
 
@@ -843,8 +845,9 @@ npx tailwindcss -i ./css/custom.css -o ./css/tailwind.css --content "./**/*.html
     <h2>Image &amp; Library Credits</h2>
     <p>All third-party resources used in this template are free for commercial use under their respective licenses.</p>
 
-    <h3>Photography (Unsplash)</h3>
-    <p>All photographs are sourced from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> under the <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a> — free for commercial use, no attribution required. Six photographs are bundled with the template; none is loaded from the internet.</p>
+    <h3>Photography (Pexels)</h3>
+    <p>The six demo photographs are sourced from <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer">Pexels</a> under the <a href="https://www.pexels.com/license/" target="_blank" rel="noopener noreferrer">Pexels License</a> — free for commercial use, no attribution required. Each source page was recorded at the moment of download; the full list is in <code>Licensing/CREDITS.txt</code> where your package includes one. None is loaded from the internet: every file is local, which is what lets the template render offline.</p>
+    <p>Home hero note: the hero carries its own dark backdrop rather than relying on the photograph being dark, so swapping in a bright image will not make the heading unreadable.</p>
     <table>
       <thead>
         <tr><th>File</th><th>Usage</th></tr>

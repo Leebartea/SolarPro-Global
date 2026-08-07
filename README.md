@@ -64,7 +64,7 @@ Open the folder in any browser. It works.
 
 ### Portfolio
 - [x] Filter by: All / Residential / Commercial / Off-Grid — animated show/hide
-- [x] 9 real project cards with Unsplash photography
+- [x] 9 project cards with bundled demo photography
 - [x] Vanilla JS lightbox (no jQuery) — click any card for detailed project modal
 - [x] Keyboard accessible — Enter/Space to open, Escape to close lightbox
 - [x] Lightbox populated from `data-*` attributes — no JS changes needed to add projects
@@ -155,10 +155,14 @@ Each project card uses `data-*` attributes — the JS lightbox reads these on cl
 Edit the attributes to add your real projects. No JavaScript changes needed.
 
 ### 6. Images
-Replace Unsplash image URLs with local paths from `assets/images/`:
+Every image is already a local file in `assets/images/` — nothing is fetched
+from a CDN, which is what lets the template render offline. Point the `src` at
+your own file, or overwrite the demo file keeping its name and dimensions and
+change no markup at all:
+
 ```html
 <!-- Before: -->
-<img src="https://images.unsplash.com/photo-XXXXXXXXX?w=800&q=80" ... />
+<img src="../assets/images/solar-farm-clouds.jpg" ... />
 
 <!-- After: -->
 <img src="../assets/images/your-photo.jpg" ... />
@@ -272,7 +276,7 @@ Full buyer documentation is at `docs/documentation.html` — open it in your bro
 
 - **Tailwind CSS** — [tailwindcss.com](https://tailwindcss.com) — MIT License
 - **AOS (Animate On Scroll)** — [michalsnik.github.io/aos](https://michalsnik.github.io/aos) — MIT License
-- **Photography** — [unsplash.com](https://unsplash.com) — Unsplash License (free commercial use)
+- **Photography** — [pexels.com](https://www.pexels.com) — Pexels License (free commercial use)
 - **Solar Irradiance Data** — [NASA POWER Project](https://power.larc.nasa.gov) — Public domain
 
 ---

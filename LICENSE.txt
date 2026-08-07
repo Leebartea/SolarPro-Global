@@ -49,12 +49,17 @@ permit the use made of them here:
   AOS           - MIT License          - michalsnik.github.io/aos
   Outfit        - SIL Open Font 1.1    - fonts.google.com/specimen/Outfit
   Space Grotesk - SIL Open Font 1.1    - fonts.google.com/specimen/Space+Grotesk
-  Photography   - Unsplash License     - unsplash.com/license
+  Photography   - Pexels License       - pexels.com/license
 
-The Unsplash License permits commercial use without attribution. The
-bundled photographs are DEMO CONTENT: they illustrate the layout and
+The Pexels License permits commercial use without attribution. The
+demo photographs are DEMO CONTENT: they illustrate the layout and
 are not warranted for your use. Replace them with your own project
 photography before launch.
+
+Where this package was obtained through a marketplace that requires a
+redistribution licence for bundled assets, the photographs are replaced
+with same-name, same-size placeholders and the layouts are unchanged.
+Check assets/images/ to see which you have.
 
 --------------------------------------------------------------------
 4. DEMO CONTENT IS NOT REAL

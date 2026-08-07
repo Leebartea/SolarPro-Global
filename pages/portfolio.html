@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="../css/custom.css" />
   <!-- Tailwind utilities load last so they win over component styles -->
   <link rel="stylesheet" href="../css/tailwind.min.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%E2%98%80%EF%B8%8F%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
 
@@ -54,8 +54,8 @@
       </div>
       <div class="flex items-center gap-2">
         <div class="currency-dropdown hidden lg:block">
-          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);" aria-label="Switch currency">
-            <span class="currency-label">🇺🇸 USD</span>
+          <button class="currency-trigger flex items-center gap-1 px-3 py-1.5 rounded-lg border text-sm font-semibold" style="border-color:var(--border);background:var(--bg-alt);color:var(--text);">
+            <span class="sr-only">Switch currency: </span><span class="currency-label">🇺🇸 USD</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="currency-dropdown-menu" role="listbox">
@@ -98,7 +98,7 @@
 </section>
 
 <!-- STATS STRIP -->
-<div style="background:linear-gradient(90deg,#f97316 0%,#eab308 50%,#1e3a5f 100%);padding:1rem 0;" aria-label="Quick stats">
+<div style="background:linear-gradient(90deg,#f97316 0%,#eab308 50%,#1e3a5f 100%);padding:1rem 0;" role="group" aria-label="Quick stats">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
       <div><div class="font-black text-white text-xl">500+</div><div class="text-xs font-medium" style="color:rgba(255,255,255,0.75);">Projects Completed</div></div>
@@ -145,9 +145,6 @@
            data-gradient="solar-gradient"
            data-icon="🏭"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 50 kWp Commercial Rooftop Lagos"
            data-aos="fade-up" data-aos-delay="0">
         <div class="project-image" style="background:#1e3a5f;">
           <img src="../assets/images/solar-rooftop-commercial.jpg"
@@ -165,7 +162,7 @@
             <span class="badge badge-commercial">Commercial</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇳🇬 Lagos, Nigeria</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">50 kWp Commercial Rooftop — Lagos</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">50 kWp Commercial Rooftop — Lagos</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">Grid-tied manufacturing plant installation. 120 × 415W tier-1 panels, 50 kW string inverter. 70% daytime demand offset.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">50 kWp</span>
@@ -188,9 +185,6 @@
            data-gradient=""
            data-icon="🌍"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 80 kWp Rural Microgrid Ghana"
            data-aos="fade-up" data-aos-delay="80">
         <div class="project-image" style="background:#0f172a;">
           <img src="../assets/images/solar-ground-mount-aerial.jpg"
@@ -208,7 +202,7 @@
             <span class="badge badge-offgrid">Off-Grid</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇬🇭 Ashanti Region, Ghana</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">80 kWp Rural Microgrid — Ghana</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">80 kWp Rural Microgrid — Ghana</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">200 kWh LiFePO₄ battery bank powering 30 households and health clinic. First electricity access for the community.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">80 kWp</span>
@@ -231,9 +225,6 @@
            data-gradient=""
            data-icon="🏠"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 10 kWp Hybrid Cape Town"
            data-aos="fade-up" data-aos-delay="160">
         <div class="project-image" style="background:#1e3a5f;">
           <img src="../assets/images/solar-panel-closeup.jpg"
@@ -251,7 +242,7 @@
             <span class="badge badge-residential">Residential</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇿🇦 Cape Town, South Africa</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">10 kWp Hybrid Home — Cape Town</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">10 kWp Hybrid Home — Cape Town</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">20 kWh rack-mounted battery storage. Load-shedding protection, 92% grid independence, seamless 20ms switchover.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">10 kWp</span>
@@ -274,9 +265,6 @@
            data-gradient=""
            data-icon="🏢"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 250 kWp Office Complex Nairobi"
            data-aos="fade-up" data-aos-delay="0">
         <div class="project-image" style="background:#0f172a;">
           <img src="../assets/images/solar-farm-blue-sky.jpg"
@@ -294,7 +282,7 @@
             <span class="badge badge-commercial">Commercial</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇰🇪 Nairobi, Kenya</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">250 kWp Office Complex — Nairobi</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">250 kWp Office Complex — Nairobi</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">610 bifacial panels across three buildings. Central inverters with building-management system integration.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">250 kWp</span>
@@ -317,9 +305,6 @@
            data-gradient=""
            data-icon="🏖️"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 20 kWp Hybrid Villa Dubai"
            data-aos="fade-up" data-aos-delay="80">
         <div class="project-image" style="background:#1e3a5f;">
           <img src="../assets/images/solar-array-rows.jpg"
@@ -337,7 +322,7 @@
             <span class="badge badge-residential">Residential</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇦🇪 Dubai, UAE</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">20 kWp Hybrid Villa — Dubai</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">20 kWp Hybrid Villa — Dubai</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">DEWA-approved net metering. 30 kWh battery backup. 38,000+ kWh annually. LEED certification contribution.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">20 kWp</span>
@@ -360,9 +345,6 @@
            data-gradient=""
            data-icon="📡"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: Telecom Tower Kano Nigeria"
            data-aos="fade-up" data-aos-delay="160">
         <div class="project-image" style="background:#0f172a;">
           <img src="../assets/images/solar-farm-clouds.jpg"
@@ -380,7 +362,7 @@
             <span class="badge badge-offgrid">Off-Grid</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇳🇬 Kano, Nigeria</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">15 kWp Telecom BTS — Kano</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">15 kWp Telecom BTS — Kano</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">60 kWh AGM storage. 99.7% uptime over 18 months. ₦14.4M annual diesel cost savings.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">15 kWp</span>
@@ -403,9 +385,6 @@
            data-gradient=""
            data-icon="🦁"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 25 kWp Safari Lodge Maasai Mara"
            data-aos="fade-up" data-aos-delay="0">
         <div class="project-image" style="background:#1e3a5f;">
           <img src="../assets/images/solar-ground-mount-aerial.jpg"
@@ -423,7 +402,7 @@
             <span class="badge badge-commercial">Commercial</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇰🇪 Maasai Mara, Kenya</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">25 kWp Safari Lodge — Maasai Mara</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">25 kWp Safari Lodge — Maasai Mara</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">50 kWh lithium storage. Zero-noise power for conservation lodge. 95% diesel displacement, 99.5% system availability.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">25 kWp</span>
@@ -446,9 +425,6 @@
            data-gradient=""
            data-icon="🏡"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 5 kWp Grid-Tied Bangalore"
            data-aos="fade-up" data-aos-delay="80">
         <div class="project-image" style="background:#0f172a;">
           <img src="../assets/images/solar-rooftop-commercial.jpg"
@@ -466,7 +442,7 @@
             <span class="badge badge-residential">Residential</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇮🇳 Bangalore, India</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">5 kWp Grid-Tied Rooftop — Bangalore</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">5 kWp Grid-Tied Rooftop — Bangalore</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">BESCOM net metering. 7,800 kWh/yr generation. 80% bill reduction. 5.2-year payback period.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">5 kWp</span>
@@ -489,9 +465,6 @@
            data-gradient=""
            data-icon="🏥"
            style="cursor:pointer;transition:opacity 0.25s,transform 0.25s;"
-           tabindex="0"
-           role="button"
-           aria-label="View details: 120 kWp Hospital Abuja"
            data-aos="fade-up" data-aos-delay="160">
         <div class="project-image" style="background:#1e3a5f;">
           <img src="../assets/images/solar-farm-blue-sky.jpg"
@@ -509,7 +482,7 @@
             <span class="badge badge-commercial">Commercial</span>
             <span class="text-xs font-medium" style="color:var(--text-muted);">🇳🇬 Abuja, Nigeria</span>
           </div>
-          <h3 class="font-bold text-base mb-1" style="color:var(--text);">120 kWp Hospital System — Abuja</h3>
+          <h3 class="font-bold text-base mb-1" style="color:var(--text);"><button type="button" class="project-open">120 kWp Hospital System — Abuja</button></h3>
           <p class="text-sm mb-3" style="color:var(--text-muted);">240 kWh lithium storage. 10ms critical load switchover. Full energy independence from AEDC supply.</p>
           <div class="flex gap-4 text-xs font-semibold" style="color:var(--text-muted);">
             <span style="color:var(--primary);">120 kWp</span>

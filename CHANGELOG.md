@@ -1,5 +1,60 @@
 # Changelog — SolarPro Global
 
+## 1.6.1 — 7 August 2026
+
+- **The nine pages did not validate.** Running them through the W3C Nu
+  validator — a step Envato requires and nothing here had ever done — returned
+  26 errors in four classes, every one of them invisible: the pages rendered
+  correctly, all twelve checks were green, and no console errored. The favicon's
+  inline SVG was pasted raw into `href` on all nine pages, so the `<`, `>` and
+  emoji were never percent-encoded. Five star-rating divs and two others carried
+  `aria-label` with no role, which ARIA forbids and assistive technology
+  silently drops — invalid *and* doing nothing. The nine portfolio cards used
+  `role="button"` around their `<h3>` titles; that role takes presentational
+  children, so the title of every project was erased from the accessibility
+  tree. And the 404 page skipped from `h1` to `h3`. All nine pages now return
+  zero errors.
+- **Portfolio cards are keyboard-operable through a real button.** The card was
+  the tab stop, named by an attribute. The tab stop is now a `<button>` inside
+  the heading, so its accessible name is the visible project title and Enter and
+  Space work natively rather than through a `keydown` handler.
+- **New `markup-validity` check** (14 checks now) pinning those four classes.
+  It states plainly that it is not a validator — it encodes the errors that have
+  actually bitten, and the real validator still has to be run before a
+  marketplace submission.
+- **The contrast check was measuring colours that appear nowhere on screen.**
+  It looked for the first background with alpha above 0.5 and ignored anything
+  more transparent, so a badge painting `rgba(34,197,94,.14)` over a white card
+  was measured against pure white — 5.9:1, passing — when what a reader sees is
+  the composited tint at 4.45:1, failing. It now composites every translucent
+  layer down to the first opaque surface. That change alone surfaced nine real
+  AA failures that had been passing since the check was written: both portfolio
+  badges, and the section eyebrow label on five pages at 4.38:1. All fixed by
+  darkening one step; the ratios are recorded beside the colours.
+- **`404.html` was never deployed.** It shipped in the buyer ZIP and passed
+  every check — they all read the source tree — but was missing from
+  `scripts/build-dist.js`'s include list, so the live site served Cloudflare's
+  generic 404 instead. The build now refuses to run if a page exists in the repo
+  and not in that list.
+- **Three buyer-facing documents still credited Unsplash** — `LICENSE.txt`,
+  `README.md` and the help file — after the photographs moved to Pexels in
+  1.6.0. A licence asserted over assets it does not govern is exactly what a
+  marketplace reviewer cross-checks against the credits file. Corrected, and
+  `content-integrity` now fails if any of the three names a stock source the
+  credits file does not declare.
+- The help file also still described images as "served from Unsplash CDN URLs",
+  two versions after the template became self-contained.
+- **WCAG 2.5.3, Label in Name**: the currency button's visible text reads
+  "🇺🇸 USD" but its `aria-label` was "Switch currency", so a voice-control user
+  saying "click USD" matched nothing. The label now extends the visible text
+  instead of replacing it. The testimonial dots' container claimed
+  `role="tablist"` while holding plain buttons, not tabs.
+
+**Verified**: nine pages, zero W3C errors. Lighthouse desktop — accessibility
+and best-practices 100 on all nine; performance 95–100; SEO 100 on eight, and
+63 on `404.html`, which is correct, because a 404 page is deliberately
+`noindex`.
+
 ## 1.6.0 — 7 August 2026
 
 - **Three new pages: 404, Privacy Policy and Terms of Service.** All three are

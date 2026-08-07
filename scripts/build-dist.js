@@ -41,6 +41,13 @@ const DIST = path.join(ROOT, 'dist');
 /** Copied verbatim. Directories are copied recursively. */
 const INCLUDE = [
   'index.html',
+  // v1.6.0 added 404.html and this list was not updated, so the page existed in
+  // the repo, passed every check that reads the source tree, and was absent
+  // from the only build anyone visits. Cloudflare served its own generic 404
+  // instead. A missing file cannot fail a test that never looks for it, which
+  // is why `assertDeployedPages` below now compares this list against the pages
+  // on disk rather than trusting it.
+  '404.html',
   'pages',
   'css/custom.css',
   'css/tailwind.min.css',
@@ -146,7 +153,29 @@ function stampSiteUrl(dir, siteUrl) {
   return touched;
 }
 
+/**
+ * Every page in the repo must be in INCLUDE.
+ *
+ * The reverse direction — INCLUDE naming something absent — was already
+ * guarded. This is the direction that actually bit: 404.html was added to the
+ * repo and not to INCLUDE, so it shipped in the buyer ZIP, passed all fourteen
+ * checks (they read the source tree), and simply did not exist on the deployed
+ * site. Nothing failed, because nothing was looking.
+ */
+function assertDeployedPages() {
+  const pages = fs.readdirSync(ROOT)
+    .filter((f) => f.endsWith('.html'))
+    .filter((f) => !INCLUDE.includes(f));
+  if (pages.length) {
+    console.error(`Cannot build: ${pages.join(', ')} exist(s) in the repo but ` +
+                  `is not in INCLUDE, so it would be missing from the deployed site.`);
+    console.error('Add it to INCLUDE in scripts/build-dist.js.');
+    process.exit(1);
+  }
+}
+
 function main() {
+  assertDeployedPages();
   const missing = INCLUDE.filter((rel) => !fs.existsSync(path.join(ROOT, rel)));
   if (missing.length) {
     console.error(`Cannot build: missing ${missing.join(', ')}`);
