@@ -120,6 +120,38 @@ fs.copyFileSync(
   path.join(OUT, 'Documentation', 'index.html'),
 );
 
+/* Strip the competing-marketplace names from the buyer-facing support text.
+ * The working tree says "(Gumroad / Selar / ThemeForest)" because that sentence
+ * is correct for a Selar or Gumroad buyer — it is not a mistake there. Inside
+ * an item someone paid Envato for, it names two other places to buy the same
+ * work. Not a hyperlink, so it is the mild form, but it is squarely against the
+ * spirit of the policy and one sentence is enough for a soft reject.
+ *
+ * Substituted at package time rather than edited at source, so the Selar ZIP
+ * keeps the accurate wording and there is still only one copy of the file. */
+console.log('rewriting the support text for the Envato copy…');
+
+const MARKETPLACE_REWRITES = [
+  // README.md and Documentation/index.html word the sentence slightly
+  // differently after the parenthetical, so match up to it and no further.
+  [/contact the template author via the marketplace where you purchased this template \(Gumroad \/ Selar \/ ThemeForest\)\./g,
+   'contact the template author through your ThemeForest item page.'],
+];
+
+for (const file of [path.join(mainFiles, 'README.md'), path.join(OUT, 'Documentation', 'index.html')]) {
+  const before = fs.readFileSync(file, 'utf8');
+  let after = before;
+  for (const [re, to] of MARKETPLACE_REWRITES) after = after.replace(re, to);
+  if (after === before) {
+    console.error(
+      `  NO SUBSTITUTION MADE in ${path.relative(OUT, file)} — the support sentence\n` +
+      '  has been reworded upstream. Update MARKETPLACE_REWRITES to match it.',
+    );
+    process.exit(1);
+  }
+  fs.writeFileSync(file, after);
+}
+
 fs.mkdirSync(path.join(OUT, 'Licensing'), { recursive: true });
 fs.copyFileSync(path.join(ROOT, 'LICENSE.txt'), path.join(OUT, 'Licensing', 'LICENSE.txt'));
 fs.copyFileSync(
@@ -163,6 +195,27 @@ for (const f of fs.readdirSync(srcImages).filter((x) => /\.(jpe?g|png)$/i.test(x
   if (original.equals(shipped)) {
     console.error(`  NOT REPLACED: assets/images/${f} is the original photograph, not a placeholder`);
     bad++;
+  }
+}
+
+/* No competing marketplace may be named anywhere in the archive. The rewrite
+ * above handles the two known sentences; this catches the third one someone
+ * adds later, and catches it in the bytes that actually ship rather than in the
+ * source they came from. */
+const BANNED = [/gumroad/i, /\bselar\b/i];
+const TEXTUAL = /\.(html?|md|txt|css|js|json|xml|svg)$/i;
+
+for (const rel of listed.filter((f) => TEXTUAL.test(f))) {
+  const abs = path.join(BUILD, rel);
+  if (!fs.existsSync(abs) || fs.statSync(abs).isDirectory()) continue;
+  const text = fs.readFileSync(abs, 'utf8');
+  for (const re of BANNED) {
+    const hit = text.match(re);
+    if (hit) {
+      const line = text.slice(0, hit.index).split('\n').length;
+      console.error(`  NAMES A COMPETING MARKETPLACE: ${rel}:${line} — "${hit[0]}"`);
+      bad++;
+    }
   }
 }
 
