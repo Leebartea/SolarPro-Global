@@ -33,7 +33,14 @@
  */
 
 const { Report } = require('../lib/report');
-const { PAGES, exists, read } = require('../lib/project');
+/* ALL_HTML, not PAGES. Scoped to PAGES this check never opened
+ * docs/documentation.html, which carried an h1 -> h3 skip — error class 4,
+ * the very thing this file exists to pin — through every green run. The help
+ * file is the first thing an Envato reviewer opens after the demo, so it is
+ * as buyer-facing as any page. Same shape as the PAGES defect in project.js:
+ * a check scoped to a hand-maintained list passes over the work it never
+ * reads. */
+const { ALL_HTML, exists, read } = require('../lib/project');
 
 /** Attribute values that are URLs, and so must be percent-encoded. */
 const URL_ATTR = /\b(?:href|src|content)\s*=\s*"(data:[^"]*)"/gi;
@@ -90,7 +97,7 @@ module.exports = async function markupValidity() {
   const report = new Report('Markup validity — the W3C errors that have bitten, cannot return');
   let inspected = 0;
 
-  for (const rel of PAGES) {
+  for (const rel of ALL_HTML) {
     if (!exists(rel)) continue;
     const raw = read(rel);
     const src = markup(raw);

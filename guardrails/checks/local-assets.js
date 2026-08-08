@@ -52,6 +52,45 @@ module.exports = function localAssets() {
     });
   }
 
+  /**
+   * Social-card images, which live in `content=` and so are invisible above.
+   *
+   * The src/href sweep never reads a <meta> tag, so og:image pointed at a
+   * file that had never existed — on all nine pages, through every release,
+   * with thirteen checks green. Nothing renders it, so nothing 404s in a
+   * browser; the failure only appears in someone else's timeline.
+   *
+   * These URLs must also be ABSOLUTE. Facebook and LinkedIn fetch the card
+   * with a bare client that does not resolve a relative path against the
+   * page, so a working relative reference still shares as a bare link. The
+   * pages carry the www.example.com placeholder origin that build-dist.js
+   * rewrites from SITE_URL; strip it back off to find the repo file.
+   */
+  const PLACEHOLDER_ORIGIN = 'https://www.example.com';
+  const SOCIAL_IMAGE = /<meta\s+(?:property|name)\s*=\s*"(og:image(?::secure_url)?|twitter:image)"\s+content\s*=\s*"([^"]*)"/gi;
+  for (const rel of ALL_HTML) {
+    if (!exists(rel)) continue;
+    const src = read(rel);
+    let m;
+    SOCIAL_IMAGE.lastIndex = 0;
+    while ((m = SOCIAL_IMAGE.exec(src)) !== null) {
+      const [, prop, url] = m;
+      const at = `${rel}:${src.slice(0, m.index).split('\n').length}`;
+      inspected++;
+      if (!url.startsWith(PLACEHOLDER_ORIGIN + '/')) {
+        report.error(
+          `${prop} is "${url}" — it must be an absolute URL under ` +
+          `${PLACEHOLDER_ORIGIN}/ so SITE_URL can stamp the live origin. ` +
+          `Scrapers do not resolve relative card images.`, at);
+        continue;
+      }
+      const file = url.slice(PLACEHOLDER_ORIGIN.length + 1).split(/[?#]/)[0];
+      if (!existsExactCase(path.resolve(ROOT, file))) {
+        report.error(`${prop} points at "${file}", which is not in the package`, at);
+      }
+    }
+  }
+
   // Files a buyer is entitled to find in the package.
   for (const required of ['README.md', 'docs/documentation.html', 'css/custom.css',
                           'css/tailwind.min.css', 'js/main.js', 'js/theme.js']) {

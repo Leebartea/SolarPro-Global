@@ -367,11 +367,11 @@
 
   <!-- OVERVIEW -->
   <section class="doc-section" id="overview">
-    <h1>Documentation <span class="version-tag">v1.6.1</span></h1>
+    <h1>Documentation <span class="version-tag">v1.6.2</span></h1>
     <p style="font-size:1.05rem;color:var(--text);margin-bottom:0.25rem;"><strong>SolarPro Global</strong> is a complete, production-ready website template for solar PV installation businesses.</p>
     <p>9 built HTML pages (6 in the nav, plus a 404, privacy policy and terms page), an interactive savings calculator with real irradiance data for 10 countries, a filterable portfolio with lightbox, dark/light mode, currency switcher, and zero build-step dependency. Open a file in your browser and it works.</p>
 
-    <h3>What's Included</h3>
+    <h2>What's Included</h2>
     <table>
       <thead>
         <tr><th>File</th><th>Page</th><th>Key Features</th></tr>
@@ -386,7 +386,7 @@
       </tbody>
     </table>
 
-    <h3>Global Features on Every Page</h3>
+    <h2>Global Features on Every Page</h2>
     <ul class="check-list">
       <li>Dark / light mode toggle with <code>localStorage</code> persistence — no flash on reload</li>
       <li>Currency switcher: USD, EUR, GBP, NGN — persists across page navigations</li>
@@ -556,7 +556,10 @@
      <span class="attr">loading</span>=<span class="str">"lazy"</span> <span class="tag">/&gt;</span></code></pre>
 
     <h3>Open Graph Image</h3>
-    <p>The OG image (<code>assets/images/og-cover.jpg</code>) is what shows when your site is shared on social media. Create a 1200 × 630 px image using Canva, Figma, or Photoshop. Recommended content: company logo, tagline, website URL on a dark background with a solar panel image. Place the file at <code>assets/images/og-cover.jpg</code> — all 6 pages already reference this path.</p>
+    <p>The OG image (<code>assets/images/og-cover.jpg</code>) is what shows when your site is shared on social media. The template ships a placeholder there; replace it with your own 1200 × 630 px image made in Canva, Figma, or Photoshop. Recommended content: company logo, tagline, website URL on a dark background with a solar panel image. All 9 pages already reference this path.</p>
+    <p><strong>Use your real domain in the tag.</strong> Facebook, LinkedIn and X fetch the card with a plain HTTP client that does <em>not</em> resolve a relative path against the page, so a share still renders as a bare link if the URL is relative. Every page ships the tag as an absolute URL against the placeholder domain:</p>
+    <pre><code><span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="str">"og:image"</span> <span class="attr">content</span>=<span class="str">"https://www.example.com/assets/images/og-cover.jpg"</span> <span class="tag">/&gt;</span></code></pre>
+    <p>Search and replace <code>https://www.example.com</code> with your own domain across all 9 pages — the same replacement the canonical and <code>og:url</code> tags need.</p>
   </section>
 
   <!-- CALCULATOR -->
