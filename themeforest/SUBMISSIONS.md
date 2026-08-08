@@ -23,7 +23,8 @@ there is a reason to, not on every patch.
 
 | Date | Template version | Action | Envato status | Notes |
 |---|---|---|---|---|
-| — | 1.6.0 | *not yet submitted* | — | Package builds and passes all 12 + 1 checks. Three manual checks outstanding — see the guide §4.2. |
+| — | 1.6.0 | *not submitted* | — | Superseded by 1.6.1 before submission. Three manual checks were still outstanding. |
+| — | 1.6.1 | **ready to submit** | — | 14 checks green. W3C: 9 pages, 0 errors. Lighthouse desktop: a11y and best-practices 100 on all nine, perf 95–100, SEO 100 on eight (404 is 63 by design — it is `noindex`). Envato 3:2 cover built. AI policy re-read 7 Aug 2026, unchanged. |
 
 <!-- Add a row for every submission, update, and review outcome. A soft
      rejection with its reasons belongs here too: the reasons are the spec, and
