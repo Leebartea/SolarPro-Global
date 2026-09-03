@@ -1038,22 +1038,28 @@ html.light .footer-social-btn{background:#fff;color:#64748b;border:1px solid var
 }
 
 /* --- Footer surface ------------------------------------------- */
+/* Selector is the ELEMENT, not footer[role="contentinfo"]. The role attribute
+   came off the markup because the validator flags it as redundant on <footer>,
+   and every rule below silently stopped matching — the footer went white-on-
+   white and the contrast check dropped 44 errors. Never key a style off an
+   ARIA attribute: the attribute is there for assistive tech and is the first
+   thing an accessibility pass deletes. */
 /* The footer's headings, brand wordmark and link colours are hardcoded light
    in the markup, so it needs a dark surface in both themes — on a light page
    they were rendering at 1.05:1 (white on white). Its own social buttons and
    muted text are re-pinned to dark-theme values to match. */
-footer[role="contentinfo"]{background:#0a0f1e;color:#e2e8f0;}
-html.light footer[role="contentinfo"]{--text-muted:#94a3b8;--text:#e2e8f0;--primary:#fb923c;}
-html.light footer[role="contentinfo"] .footer-social-btn{
+footer{background:#0a0f1e;color:#e2e8f0;}
+html.light footer{--text-muted:#94a3b8;--text:#e2e8f0;--primary:#fb923c;}
+html.light footer .footer-social-btn{
   background:rgba(255,255,255,.06);color:#94a3b8;border:1px solid rgba(255,255,255,.08);
 }
-html.light footer[role="contentinfo"] .divider{border-top-color:rgba(255,255,255,.10);}
+html.light footer .divider{border-top-color:rgba(255,255,255,.10);}
 
 /* --- Small-screen safety ------------------------------------- */
 /* Email addresses and URLs are single unbreakable words. In a narrow footer
    column they push past the viewport edge — an address at 768px was extending
    9px beyond it. Let long tokens break rather than overflow. */
-footer[role="contentinfo"] a,
+footer a,
 .contact-value,
 a[href^="mailto:"],
 a[href^="tel:"]{overflow-wrap:anywhere;word-break:break-word;}

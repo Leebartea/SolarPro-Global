@@ -197,7 +197,12 @@ function main() {
     '  X-Content-Type-Options: nosniff',
     '  X-Frame-Options: SAMEORIGIN',
     '  Referrer-Policy: strict-origin-when-cross-origin',
-    '  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()',
+    '  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()',
+    // Added 3 Sep 2026. Both siblings (seunscope-furniture, leebartea) sent
+    // HSTS and this one did not, so a first visit over http:// on a hostile
+    // network was strippable. A year, and no preload — preload is a one-way
+    // door and this is a *.pages.dev demo, not the buyer's own domain.
+    '  Strict-Transport-Security: max-age=31536000',
     // Content Security Policy.
     //
     // The template loads nothing from a third-party host — that is enforced by
@@ -220,7 +225,7 @@ function main() {
     "  Content-Security-Policy: default-src 'self'; img-src 'self' data:; " +
       "style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; " +
       "font-src 'self'; connect-src 'self'; object-src 'none'; " +
-      "base-uri 'self'; frame-ancestors 'self'",
+      "base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
     '',
     '/assets/fonts/*',
     '  Cache-Control: public, max-age=31536000, immutable',
