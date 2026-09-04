@@ -1,14 +1,25 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * Assemble the ThemeForest submission folder.
+ * Assemble a marketplace package.
  *
- *   npm run package:themeforest
+ *   npm run package:themeforest     → themeforest-build/
+ *   npm run package:fiverr          → fiverr-build/
+ *
+ * Two presets, one script, because the two archives differ only in three
+ * strings and a banned-word list. The Fiverr preset exists because a Fiverr
+ * delivery is a REDISTRIBUTION of the template to the buyer — the same test
+ * Envato applies to an item download — so it ships the same photograph
+ * placeholders, and because naming Selar or ThemeForest inside a Fiverr
+ * delivery is "directing clients to external platforms" under Fiverr's
+ * off-platform policy. Neither existing archive is deliverable on Fiverr
+ * as-is: the Selar ZIP says "(Gumroad / Selar / ThemeForest)" and the Envato
+ * one says "through your ThemeForest item page".
  *
  * Emits, beside the repo:
  *
- *   themeforest-build/
- *   └── SolarPro-Global-ThemeForest-v1.5.0/
+ *   <preset>-build/
+ *   └── SolarPro-Global-<Preset>-v1.5.0/
  *       ├── Main Files/            ← the template a buyer unzips
  *       ├── Documentation/
  *       │   └── index.html         ← docs/documentation.html, renamed
@@ -37,8 +48,49 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const VERSION = require(path.join(ROOT, 'package.json')).version;
-const NAME = `SolarPro-Global-ThemeForest-v${VERSION}`;
-const BUILD = path.join(ROOT, 'themeforest-build');
+
+/* ── 0. Preset ─────────────────────────────────────────────────────────────
+ * `banned` is scanned against the bytes that actually ship, not the source
+ * they came from, and it hard-fails. It is the safety net under every rewrite
+ * below: a mention this script forgets to substitute stops the build rather
+ * than reaching a buyer. */
+const PRESETS = {
+  themeforest: {
+    tag: 'ThemeForest',
+    build: 'themeforest-build',
+    support: 'contact the template author through your ThemeForest item page.',
+    banned: [/gumroad/i, /\bselar\b/i],
+    creditsFor: 'themeforest',
+    tail:
+      "  Upload the ZIP as the item's main file. The preview images are uploaded\n" +
+      '  separately — see Revenue Plan/09-themeforest/THEMEFOREST-GUIDE.md §4.\n',
+  },
+  fiverr: {
+    tag: 'Fiverr',
+    build: 'fiverr-build',
+    support:
+      'contact the template author by messaging them on your Fiverr order page.',
+    banned: [/gumroad/i, /\bselar\b/i, /themeforest/i, /\benvato\b/i],
+    creditsFor: 'fiverr',
+    tail:
+      '  This is the base archive. Per order, apply the buyer\'s brand and content\n' +
+      '  to Main Files/ before delivering, and attach the result to the Fiverr\n' +
+      '  order — never a cloud link. See Revenue Plan/13-fiverr-template/GUIDE.md.\n',
+  },
+};
+
+const arg = process.argv.slice(2).find((a) => a.startsWith('--marketplace='));
+const PRESET_KEY = arg ? arg.split('=')[1] : 'themeforest';
+const PRESET = PRESETS[PRESET_KEY];
+if (!PRESET) {
+  console.error(
+    `unknown --marketplace=${PRESET_KEY}. Known: ${Object.keys(PRESETS).join(', ')}`,
+  );
+  process.exit(1);
+}
+
+const NAME = `SolarPro-Global-${PRESET.tag}-v${VERSION}`;
+const BUILD = path.join(ROOT, PRESET.build);
 const OUT = path.join(BUILD, NAME);
 
 /** Everything the Main Files folder must not contain. Mirrors the Selar ZIP's
@@ -47,6 +99,7 @@ const OUT = path.join(BUILD, NAME);
 const EXCLUDE = [
   '.git', '.github', '.claude', '.DS_Store',
   'node_modules', 'guardrails', 'scripts', 'themeforest', 'themeforest-build',
+  'fiverr-build',
   'dist', 'docs',
   'package.json', 'package-lock.json', 'tailwind.config.js',
   'preview-info.md', 'preview-desktop-1920x1080.jpg',
@@ -129,13 +182,13 @@ fs.copyFileSync(
  *
  * Substituted at package time rather than edited at source, so the Selar ZIP
  * keeps the accurate wording and there is still only one copy of the file. */
-console.log('rewriting the support text for the Envato copy…');
+console.log(`rewriting the support text for the ${PRESET.tag} copy…`);
 
 const MARKETPLACE_REWRITES = [
   // README.md and Documentation/index.html word the sentence slightly
   // differently after the parenthetical, so match up to it and no further.
   [/contact the template author via the marketplace where you purchased this template \(Gumroad \/ Selar \/ ThemeForest\)\./g,
-   'contact the template author through your ThemeForest item page.'],
+   PRESET.support],
 ];
 
 for (const file of [path.join(mainFiles, 'README.md'), path.join(OUT, 'Documentation', 'index.html')]) {
@@ -152,12 +205,111 @@ for (const file of [path.join(mainFiles, 'README.md'), path.join(OUT, 'Documenta
   fs.writeFileSync(file, after);
 }
 
+/* The support sentence is not the only place a competing marketplace is named.
+ * These three were found by the banned-word scan below, not by reading the
+ * files — which is the argument for having the scan. The documentation
+ * paragraph is the one that matters: it tells the reader that a different
+ * package of the same template exists and has better photographs in it. */
+const EXTRA_REWRITES = {
+  themeforest: [],
+  fiverr: [
+    [
+      ['Documentation', 'index.html'],
+      /<p><strong>Which images you received depends on your package\.<\/strong>[\s\S]*?<\/p>/,
+      '<p><strong>The photographs in this package are placeholders.</strong> Same filenames, ' +
+        'same pixel dimensions, plain grey. Stock photography is licensed for use rather than ' +
+        'for resale, so the archive ships no third-party photograph at all and the demo imagery ' +
+        'you saw is preview material. Drop your own project photos in over the placeholders, ' +
+        'keeping the names and sizes, and no layout changes at all.</p>',
+    ],
+    [['Main Files', 'CHANGELOG.md'], /a step Envato requires/, 'a step marketplaces require'],
+    [
+      ['Main Files', 'CHANGELOG.md'],
+      /\(`themeforest\/licensing\/CREDITS\.txt`\)/,
+      '(`Licensing/CREDITS.txt`)',
+    ],
+  ],
+};
+
+for (const [rel, re, to] of EXTRA_REWRITES[PRESET.creditsFor]) {
+  const file = path.join(OUT, ...rel);
+  const before = fs.readFileSync(file, 'utf8');
+  const after = before.replace(re, to);
+  if (after === before) {
+    console.error(
+      `  NO SUBSTITUTION MADE in ${rel.join('/')} for ${re}\n` +
+      '  — reworded upstream. Update EXTRA_REWRITES to match it.',
+    );
+    process.exit(1);
+  }
+  fs.writeFileSync(file, after);
+}
+
 fs.mkdirSync(path.join(OUT, 'Licensing'), { recursive: true });
 fs.copyFileSync(path.join(ROOT, 'LICENSE.txt'), path.join(OUT, 'Licensing', 'LICENSE.txt'));
-fs.copyFileSync(
+
+/* CREDITS.txt is written for Envato — it cites Envato Author Support by name
+ * and tells the reader which package the photographs DO ship in. Both are
+ * fine on ThemeForest and neither belongs in a Fiverr delivery, so the Fiverr
+ * preset replaces those blocks whole rather than word by word. Section
+ * headers are the delimiters because they are the stable part of the file;
+ * a heading that moves fails the build instead of silently skipping. */
+const CREDITS_REWRITES = {
+  themeforest: [],
+  fiverr: [
+    [
+      /Envato requires this file; it is also the only complete record of\nwhat is in the package\./,
+      'This file is the complete record of what is in the package.',
+    ],
+    [
+      /  NOT INCLUDED IN THE THEMEFOREST DOWNLOAD\.[\s\S]*?(?=\n-{20,}\n1a\.)/,
+      '  NOT INCLUDED IN THIS ARCHIVE.\n' +
+        '  These six photographs are used on the live demo only. They are replaced\n' +
+        '  with placeholders here — see §1b. The listing states that the photographs\n' +
+        '  are for preview purposes and are not part of what you receive.\n',
+    ],
+    [/ThemeForest archive along with the rest/, 'archive along with the rest'],
+    [/by the `themeforest` guardrail check/, 'by the packaging guardrail check'],
+    [
+      /-{20,}\n1b\. WHY THE THEMEFOREST DOWNLOAD SHIPS PLACEHOLDERS\n-{20,}\n[\s\S]*?(?=\n-{20,}\n2\. FONTS)/,
+      '--------------------------------------------------------------------\n' +
+        '1b. WHY THIS ARCHIVE SHIPS PLACEHOLDERS\n' +
+        '--------------------------------------------------------------------\n\n' +
+        'The licence a stock photograph needs depends on what is being done with it:\n\n' +
+        '  Showing it on a live demo  -> a COMMERCIAL licence is enough.\n' +
+        '  Shipping it inside a file  -> a REDISTRIBUTION licence is required,\n' +
+        '  the buyer keeps               meaning the right to pass the asset on.\n\n' +
+        'The Pexels Licence is permissive and very probably covers the second case\n' +
+        'as well. "Very probably" is not a basis for a licensing warranty, so this\n' +
+        'archive contains no third-party photograph at all.\n' +
+        'The packaging step swaps every photograph for a generated\n' +
+        'placeholder of identical filename and dimensions, so the layout still\n' +
+        'renders correctly and your own photographs drop straight in.\n\n' +
+        'This removes the question rather than answering it.\n\n' +
+        'Note the distinction, because it cuts the other way too: putting a\n' +
+        'Pexels photograph onto YOUR OWN finished website is ordinary permitted\n' +
+        'use, and nothing here restricts it. It is bundling one into a template\n' +
+        'archive that someone else then keeps and reuses that is unsettled.\n',
+    ],
+  ],
+};
+
+let credits = fs.readFileSync(
   path.join(ROOT, 'themeforest', 'licensing', 'CREDITS.txt'),
-  path.join(OUT, 'Licensing', 'CREDITS.txt'),
+  'utf8',
 );
+for (const [re, to] of CREDITS_REWRITES[PRESET.creditsFor]) {
+  const after = credits.replace(re, to);
+  if (after === credits) {
+    console.error(
+      `  NO SUBSTITUTION MADE in CREDITS.txt for ${re}\n` +
+      '  — the section has been reworded upstream. Update CREDITS_REWRITES.',
+    );
+    process.exit(1);
+  }
+  credits = after;
+}
+fs.writeFileSync(path.join(OUT, 'Licensing', 'CREDITS.txt'), credits);
 
 /* ── 3. Zip, then verify the ZIP — not the folder it came from ──────────── */
 const zip = path.join(BUILD, `${NAME}.zip`);
@@ -202,7 +354,7 @@ for (const f of fs.readdirSync(srcImages).filter((x) => /\.(jpe?g|png)$/i.test(x
  * above handles the two known sentences; this catches the third one someone
  * adds later, and catches it in the bytes that actually ship rather than in the
  * source they came from. */
-const BANNED = [/gumroad/i, /\bselar\b/i];
+const BANNED = PRESET.banned;
 const TEXTUAL = /\.(html?|md|txt|css|js|json|xml|svg)$/i;
 
 for (const rel of listed.filter((f) => TEXTUAL.test(f))) {
@@ -244,6 +396,4 @@ console.log(`  ${zip}  (${mb} MB, ${listed.length} entries)`);
 console.log(`
   Verified: required files present, excluded files absent.
 
-  Upload the ZIP as the item's main file. The preview images are uploaded
-  separately — see Revenue Plan/09-themeforest/THEMEFOREST-GUIDE.md §4.
-`);
+${PRESET.tail}`);

@@ -9,7 +9,8 @@
     "check": "node guardrails/run.js",
     "package": "npm run build:css && npm run check && node guardrails/package.js",
     "check:themeforest": "node guardrails/run.js --suite=themeforest",
-    "package:themeforest": "npm run build:css && node scripts/package-themeforest.js"
+    "package:themeforest": "npm run build:css && node scripts/package-themeforest.js --marketplace=themeforest",
+    "package:fiverr": "npm run build:css && node scripts/package-themeforest.js --marketplace=fiverr"
   },
   "devDependencies": {
     "playwright": "^1.58.2",

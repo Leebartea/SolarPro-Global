@@ -9,5 +9,6 @@ dist/
 # "no build step — open index.html", so a fresh clone must render correctly.
 
 
-# ThemeForest packaging output — assembled by npm run package:themeforest
+# Marketplace packaging output — assembled by scripts/package-themeforest.js
 themeforest-build/
+fiverr-build/
